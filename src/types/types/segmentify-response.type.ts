@@ -2,7 +2,6 @@ import type { API_ERROR_ENUMS } from '../enums';
 
 /**
  * TSEGMENTIFY_CAMPAING_RESPONSE
- * @description
  * TSEGMENTIFY_CAMPAING_RESPONSE is a type that represents the response body for Segmentify API.
  * It is a json object that contains the response of the request.
  * It has a statusCode parameter that represents the status of the request.
