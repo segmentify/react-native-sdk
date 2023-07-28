@@ -16,7 +16,7 @@ module.exports = {
           '.ios.tsx',
         ],
         alias: {
-          'segmentify-react-native-sdk': ['../src/index.js'],
+          'react-native-sdk': ['../src/index.js'],
         },
       },
     ],

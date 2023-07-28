@@ -38,6 +38,10 @@ export const DisplayNotification = async (
         ...notification.android,
         channelId: CHANNEL_ID,
         importance: AndroidImportance.HIGH,
+        pressAction: {
+          id: 'default',
+          launchActivity: 'default',
+        },
         ...(android || {}),
       },
       data: {

@@ -389,9 +389,6 @@ Once successfully linked and rebuilt, your application will be connected to Fire
 
 ## Highly Recommended
 
-Android devices requires background tasks to be enabled for remote push notifications. This is required by `HeadlessJs` in order to handle push notifications in background. You can find more information from [here](https://reactnative.dev/docs/headless-js-android).
-You can find more information from [here](https://rnfirebase.io/messaging/usage).
-
 Right after installing Segmentify and Firebase, you should run the following commands to make sure that everything is working properly.
 
 ```js

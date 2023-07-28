@@ -1,5 +1,6 @@
 import { FirePushNotificationInteraction } from '../EventManager';
 import notifee from '@notifee/react-native';
+
 export const HandleClickedNotification = ({
   instanceId,
 }: {
@@ -9,8 +10,6 @@ export const HandleClickedNotification = ({
     FirePushNotificationInteraction({
       instanceId: instanceId,
       type: 'CLICK',
-    }).then(() => {
-      console.log('Push notification interaction CLICK sent');
     });
   }
 };
@@ -24,8 +23,6 @@ export const HandleReceivedNotification = ({
     FirePushNotificationInteraction({
       instanceId: instanceId,
       type: 'VIEW',
-    }).then(() => {
-      console.log('Push notification interaction VIEW sent');
     });
   }
 };

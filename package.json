@@ -1,7 +1,7 @@
 {
-  "name": "react-native-segmentify-sdk",
+  "name": "react-native-sdk",
   "version": "0.1.0",
-  "description": "segmentify react native sdk",
+  "description": "Introducing the cutting-edge React Native app designed to revolutionize personalization and segmentation for e-commerce businesses. Our app harnesses the power of React Native, a powerful and widely adopted framework, to deliver a seamless cross-platform experience for both iOS and Android users.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -38,6 +38,16 @@
   },
   "keywords": [
     "react-native",
+    "segmentify",
+    "ecommerce",
+    "personalization",
+    "segmentation",
+    "push",
+    "notification",
+    "analytics",
+    "ab",
+    "search",
+    "recommendation",
     "ios",
     "android"
   ],
@@ -50,6 +60,10 @@
   "homepage": "https://github.com/segmentify/segmentify-react-native-sdk#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "yarn@1.22.15",
+  "engines": {
+    "node": ">= 16.0.0"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.0",
@@ -86,17 +100,44 @@
     "taffydb": "^2.7.3",
     "typescript": "^5.0.2"
   },
-  "resolutions": {
-    "@types/react": "17.0.21"
-  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
-  "engines": {
-    "node": ">= 16.0.0"
+  "resolutions": {
+    "@types/react": "17.0.21"
   },
-  "packageManager": "yarn@1.22.15",
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/",
+    "examplenativeapp/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -132,36 +173,6 @@
         "preset": "angular"
       }
     }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native-community",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
   },
   "react-native-builder-bob": {
     "source": "src",

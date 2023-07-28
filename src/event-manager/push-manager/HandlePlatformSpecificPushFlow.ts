@@ -48,12 +48,10 @@ export const HandlePlatformSpecificPushFlow = async ({
   await RequestPushNotificationPermission({
     deviceToken,
     userId: user!.userId,
-  }).catch((error) => {
-    console.log(error);
   });
 
-  //create channel
   if (Platform.OS === 'android') {
+    //create channel
     await notifee.createChannel({
       id: CHANNEL_ID,
       name: CHANNEL_NAME,
@@ -63,7 +61,6 @@ export const HandlePlatformSpecificPushFlow = async ({
 
   // Listen the messages
   messaging().onMessage((response: TFireBasePushResponse) => {
-    console.log(JSON.stringify(response));
     DisplayNotification(
       response.data,
       Platform.OS === 'android'
@@ -74,8 +71,7 @@ export const HandlePlatformSpecificPushFlow = async ({
 
   // When the application is in a background or quit state, the onMessage handler will not be called when receiving messages. Instead, you need to setup a background callback handler via the setBackgroundMessageHandler method.
   messaging().setBackgroundMessageHandler((response: TFireBasePushResponse) => {
-    console.log(JSON.stringify(response));
-    DisplayNotification(
+    return DisplayNotification(
       response.data,
       Platform.OS === 'android'
         ? { android: pushNotificationConfig?.android }
