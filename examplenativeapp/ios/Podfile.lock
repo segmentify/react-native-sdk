@@ -505,8 +505,8 @@ PODS:
   - RNScreens (3.22.1):
     - React-Core
     - React-RCTImage
-  - RNSVG (12.1.1):
-    - React
+  - RNSVG (13.10.0):
+    - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -709,14 +709,14 @@ SPEC CHECKSUMS:
   React-Core: aaacca67f9ca54f142827e67f44bfbd815875eb6
   React-CoreModules: 32fab1d62416849a3b6dac6feff9d54e5ddc2d1e
   React-cxxreact: 37765b4975541105b2a3322a4b473417c158c869
-  React-debug: 00e15f0204c1827fb8bfec582b9be369d628d3a7
+  React-debug: 861767a456effd8a85715f5ab900a85938c52609
   React-hermes: 935ae71fb3d7654e947beba8498835cd5e479707
   React-jsi: ec628dc7a15ffea969f237b0ea6d2fde212b19dd
   React-jsiexecutor: 59d1eb03af7d30b7d66589c410f13151271e8006
   React-jsinspector: b511447170f561157547bc0bef3f169663860be7
   React-logger: c5b527272d5f22eaa09bb3c3a690fee8f237ae95
-  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
-  React-NativeModulesApple: a4091c156451c873becfd62a591ffd21177fde16
+  react-native-safe-area-context: 9697629f7b2cda43cf52169bb7e0767d330648c2
+  React-NativeModulesApple: 3181637716176fef29c23c70c498004337d8a718
   React-perflogger: 6bd153e776e6beed54c56b0847e1220a3ff92ba5
   React-RCTActionSheet: c0b62af44e610e69d9a2049a682f5dba4e9dff17
   React-RCTAnimation: fe7005136b58f58871cab2f70732343b6e330d30
@@ -730,9 +730,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: ea3a68a49873a54ced927c90923fc6932baf344a
   React-rncore: 9672a017af4a7da7495d911f0b690cbcae9dd18d
   React-runtimeexecutor: 369ae9bb3f83b65201c0c8f7d50b72280b5a1dbc
-  React-runtimescheduler: 4506dfe83ab715470d9ae72427bcec5d083f4253
-  React-utils: 5df08b17bffcd9dd1e61aba81bea9b26022093dc
-  ReactCommon: 7fb4cfd142067de90a2b6b130dcc0e81a531672e
+  React-runtimescheduler: c9f370a670ed2c39d2fd1f88af061338d15aba7a
+  React-utils: 8ea06b8175d8cb73ef5a70d9b76a6a3257b28adb
+  ReactCommon: 27c366148fa323f9c8cfee386efd0e59031ee621
   RNCAsyncStorage: f47fe18526970a69c34b548883e1aeceb115e3e1
   RNCMaskedView: 949696f25ec596bfc697fc88e6f95cf0c79669b6
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
@@ -740,7 +740,7 @@ SPEC CHECKSUMS:
   RNFBMessaging: 5fa69e7c4f9641fc222327208d90d3b56e907f58
   RNNotifee: f3c01b391dd8e98e67f539f9a35a9cbcd3bae744
   RNScreens: 50ffe2fa2342eabb2d0afbe19f7c1af286bc7fb3
-  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  RNSVG: 80584470ff1ffc7994923ea135a3e5ad825546b9
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
 

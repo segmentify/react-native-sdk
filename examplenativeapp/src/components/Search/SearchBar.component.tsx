@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-import {useSegmentifyStorage, FireEvent} from 'segmentify-react-native';
+import {useSegmentifyStorage, FireEvent} from 'segmentify-react-native-sdk';
 import {SearchBarMime} from './SearchBarMime.component';
 import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
 

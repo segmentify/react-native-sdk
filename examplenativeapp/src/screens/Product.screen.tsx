@@ -2,7 +2,7 @@ import React from 'react';
 
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useSegmentifyStorage, FireEvent} from 'segmentify-react-native';
+import {useSegmentifyStorage, FireEvent} from 'segmentify-react-native-sdk';
 
 import type {RootStackParamList} from '../router/Router';
 

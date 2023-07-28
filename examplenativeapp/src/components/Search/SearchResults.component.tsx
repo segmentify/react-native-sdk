@@ -9,7 +9,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import {FireEvent, useSegmentifyStorage} from 'segmentify-react-native';
+import {FireEvent, useSegmentifyStorage} from 'segmentify-react-native-sdk';
 import {ISearchResponse} from '../../types/search-response.interface';
 import {SearchIcon} from 'native-base';
 
