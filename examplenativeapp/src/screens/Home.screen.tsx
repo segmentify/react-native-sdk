@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import type {RootStackParamList} from '../router/Router';
-import {FireEvent} from 'segmentify-react-native-sdk';
+import {FireEvent} from 'react-native-sdk';
 import {PAGE_VIEW_EVENT_EXAMPLE} from '../example/events';
 import {ParallaxCarousel} from '../components/ParallaxCarousel.component';
 

@@ -29,7 +29,7 @@
     "react-native-screens": "^3.22.1",
     "react-native-svg": "^13.10.0",
     "react-native-swiper-flatlist": "^3.2.3",
-    "segmentify-react-native-sdk": "file:../src"
+    "react-native-sdk": "file:../src"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

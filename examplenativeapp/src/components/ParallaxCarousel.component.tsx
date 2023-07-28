@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import {Image} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
-import {FireEvent} from 'segmentify-react-native-sdk';
+import {FireEvent} from 'react-native-sdk';
 import {PRODUCT_VIEW_EVENT_EXAMPLE} from '../example/events';
 import {SECONDARY_COLOR, TERTIARY_COLOR} from '../constants';
 

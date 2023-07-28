@@ -6786,6 +6786,9 @@ react-native-screens@^3.22.1:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+"react-native-sdk@file:../src":
+  version "0.0.0"
+
 react-native-svg@^13.10.0:
   version "13.10.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.10.0.tgz#d3c6222ea9cc1e21e2af0fd59dfbeafe7a3d0dc1"
@@ -7095,9 +7098,6 @@ scheduler@^0.23.0:
   integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
   dependencies:
     loose-envify "^1.1.0"
-
-"segmentify-react-native-sdk@file:../src":
-  version "0.0.0"
 
 semver@^5.6.0:
   version "5.7.2"
