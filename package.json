@@ -165,7 +165,6 @@
     "hooks": {
       "before:init": [
         "git pull",
-        "yarn typecheck",
         "yarn lint",
         "yarn test"
       ],
