@@ -2781,10 +2781,10 @@
   dependencies:
     "@react-types/shared" "^3.18.1"
 
-"@segmentify/react-native-sdk@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@segmentify/react-native-sdk/-/react-native-sdk-0.1.0.tgz#66323d9d73ab098d143159b05832a7ab1f5d1bc0"
-  integrity sha512-jv93oTIcvWk/5/QY+gu63hPIMF858bkW4sDphQdn8p0g6Yb+uGWgZJ5aa8wbFSPkm/3Qs9RA0b/M/4DFEwKwOg==
+"@segmentify/react-native-sdk@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@segmentify/react-native-sdk/-/react-native-sdk-0.1.1.tgz#3de72ad99fccedebbe8be26b885d96f7ffe3b478"
+  integrity sha512-egXfKJzBoXTpzhnS5OdRLK98hr0Q/6bJuB0tH5jY2DZu3BhYyFMRHWm+1X9f16PoGvBU174fgJawDNvpO7eGgg==
   dependencies:
     "@react-native-async-storage/async-storage" "^1.19.0"
     axios "^1.4.0"
