@@ -162,6 +162,18 @@
       "commitMessage": "chore: release ${version}",
       "tagName": "v${version}"
     },
+    "hooks": {
+      "before:init": [
+        "git pull",
+        "yarn typecheck",
+        "yarn lint",
+        "yarn test"
+      ],
+      "after:bump": [
+        "yarn docs",
+        "npx auto-changelog -p"
+      ]
+    },
     "npm": {
       "publish": true
     },
