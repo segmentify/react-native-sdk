@@ -23,6 +23,6 @@ export type TSEGMENTIFY_CAMPAING_RESPONSE = {
   coupons: Array<any[]>;
   experiments: Array<any[]>;
   responses: Array<any[]>;
-  statusCode: typeof API_ERROR_ENUMS & 'SUCCESS';
+  statusCode: typeof API_ERROR_ENUMS & { SUCCESS: 'SUCCESS' };
   timestamp: number;
 };
