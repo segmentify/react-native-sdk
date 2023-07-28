@@ -17,8 +17,6 @@ apiGetAway.interceptors.request.use(
       'Accept': 'application/json',
       'Content-Type': 'text/plain',
     };
-
-    console.log('config', config);
     return config;
   },
   async (error) => {
