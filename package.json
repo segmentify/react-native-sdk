@@ -164,7 +164,10 @@
     },
     "hooks": {
       "before:init": [
-        "git pull"
+        "git pull",
+        "yarn typecheck",
+        "yarn lint",
+        "yarn test"
       ],
       "after:bump": [
         "yarn docs",
