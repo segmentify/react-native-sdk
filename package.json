@@ -1,5 +1,5 @@
 {
-  "name": "react-native-sdk",
+  "name": "@segmentify/react-native-sdk",
   "version": "0.1.0",
   "description": "Introducing the cutting-edge React Native app designed to revolutionize personalization and segmentation for e-commerce businesses. Our app harnesses the power of React Native, a powerful and widely adopted framework, to deliver a seamless cross-platform experience for both iOS and Android users.",
   "main": "lib/commonjs/index",
@@ -51,13 +51,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/segmentify/segmentify-react-native-sdk",
-  "author": "segmentify <dev@segmentify.com> (https://github.com/segmentify/segmentify-react-native-sdk)",
+  "repository": "https://github.com/segmentify/react-native-sdk",
+  "author": "segmentify <dev@segmentify.com> (https://github.com/segmentify/react-native-sdk)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/segmentify/segmentify-react-native-sdk/issues"
+    "url": "https://github.com/segmentify/react-native-sdk/issues"
   },
-  "homepage": "https://github.com/segmentify/segmentify-react-native-sdk#readme",
+  "homepage": "https://github.com/segmentify/react-native-sdk#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -175,7 +175,7 @@
     }
   },
   "react-native-builder-bob": {
-    "source": "src",
+    "source": "./src",
     "output": "lib",
     "targets": [
       "commonjs",
