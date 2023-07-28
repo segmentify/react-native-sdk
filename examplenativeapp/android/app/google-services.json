@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "794335569547",
+    "firebase_url": "https://segmentify-qa.firebaseio.com",
+    "project_id": "segmentify-qa",
+    "storage_bucket": "segmentify-qa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794335569547:android:2dd7ab3c0e14426066568e",
+        "android_client_info": {
+          "package_name": "com.segmentify.segmentifysdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794335569547-ng6bboi02t8aksdnq9drqebr3qgu51t7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBul9RNuHLGGfjPwH8YdtC5D9qTPC4eDcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794335569547-ng6bboi02t8aksdnq9drqebr3qgu51t7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
