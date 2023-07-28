@@ -1,0 +1,39 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src"],
+    "exclude": ["node_modules", "dist", "test"],
+    "includePattern": "\\.(jsx|js|ts|tsx)$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [
+    "node_modules/better-docs/typescript",
+    "plugins/markdown",
+    "node_modules/better-docs/component",
+    "node_modules/better-docs/category",
+    "node_modules/better-docs/typedef-import"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "search": true,
+    "default": {
+      "name": "Segmentify React Native Documentation",
+      "title": "Segmentify React Native Documentation"
+    },
+    "better-docs": {
+      "name": "Segmentify React Native Documentation",
+      "title": "Segmentify React Native Documentation"
+    }
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "docs/",
+    "readme": "README.md",
+    "recurse": true,
+    "verbose": true,
+    "template": "./node_modules/better-docs"
+  }
+}

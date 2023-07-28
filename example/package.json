@@ -22,5 +22,6 @@
     "@expo/webpack-config": "^18.0.1",
     "babel-loader": "^8.1.0"
   },
+  "license": "MIT",
   "private": true
 }

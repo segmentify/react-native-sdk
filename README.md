@@ -1,7 +1,7 @@
 <h1 align="center">Segmentify React Native SDK</h1>
 
 <p align='center'>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.2-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/node-%3E%3D%2016.0.0-blue.svg" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
@@ -386,6 +386,32 @@ npx react-native run-ios
 ```
 
 Once successfully linked and rebuilt, your application will be connected to Firebase using the @react-native-firebase/app module. This module does not provide much functionality, therefore to use other Firebase services, each of the modules for the individual Firebase services need installing separately.
+
+## Background Notifications (Android Only)
+
+Android devices have different approach for background notifications. If you want to handle background notifications you need to add following lines to your `index.js` file.
+
+```ts
+import { AppRegistry } from 'react-native';
+import App from './App';
+import messaging from '@react-native-firebase/messaging';
+import {
+  HandlePushInteraction,
+  HandleBackGroundNotification,
+} from '@segmentify/react-native-sdk';
+import { name as appName } from './app.json';
+
+HandleBackGroundNotification(messaging);
+HandlePushInteraction();
+
+function HeadlessCheck({ isHeadless }) {
+  if (isHeadless) {
+    return <App />;
+  }
+}
+
+AppRegistry.registerComponent(appName, () => HeadlessCheck);
+```
 
 ## Highly Recommended
 

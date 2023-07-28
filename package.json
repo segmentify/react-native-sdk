@@ -1,6 +1,6 @@
 {
   "name": "@segmentify/react-native-sdk",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Introducing the cutting-edge React Native app designed to revolutionize personalization and segmentation for e-commerce businesses. Our app harnesses the power of React Native, a powerful and widely adopted framework, to deliver a seamless cross-platform experience for both iOS and Android users.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -129,7 +129,8 @@
   "eslintIgnore": [
     "node_modules/",
     "lib/",
-    "examplenativeapp/"
+    "examplenativeapp/",
+    "docs/"
   ],
   "prettier": {
     "quoteProps": "consistent",
@@ -146,7 +147,8 @@
       "<rootDir>/exampleandroidapp",
       "<rootDir>/exampleandroidapp/node_modules",
       "<rootDir>/lib/",
-      "<rootDir>/src/__tests__/__mocks__/*"
+      "<rootDir>/src/__tests__/__mocks__/*",
+      "<rootDir>/docs/*"
     ],
     "setupFiles": [
       "<rootDir>/setup-jest.js"
@@ -161,6 +163,16 @@
     "git": {
       "commitMessage": "chore: release ${version}",
       "tagName": "v${version}"
+    },
+    "hooks": {
+      "before:init": [
+        "git pull",
+        "yarn lint",
+        "yarn test"
+      ],
+      "after:bump": [
+        "npx auto-changelog -p"
+      ]
     },
     "npm": {
       "publish": true
