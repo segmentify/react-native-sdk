@@ -146,7 +146,8 @@
       "<rootDir>/exampleandroidapp",
       "<rootDir>/exampleandroidapp/node_modules",
       "<rootDir>/lib/",
-      "<rootDir>/src/__tests__/__mocks__/*"
+      "<rootDir>/src/__tests__/__mocks__/*",
+      "<rootDir>/docs/*"
     ],
     "setupFiles": [
       "<rootDir>/setup-jest.js"
