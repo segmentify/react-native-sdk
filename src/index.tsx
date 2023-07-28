@@ -5,4 +5,6 @@ export {
   RequestCredentials,
   FireEvent,
   RequestPushNotificationPermission,
+  HandlePushInteraction,
+  HandleBackGroundNotification,
 } from './event-manager';

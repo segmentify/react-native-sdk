@@ -387,6 +387,32 @@ npx react-native run-ios
 
 Once successfully linked and rebuilt, your application will be connected to Firebase using the @react-native-firebase/app module. This module does not provide much functionality, therefore to use other Firebase services, each of the modules for the individual Firebase services need installing separately.
 
+## Background Notifications (Android Only)
+
+Android devices have different approach for background notifications. If you want to handle background notifications you need to add following lines to your `index.js` file.
+
+```ts
+import { AppRegistry } from 'react-native';
+import App from './App';
+import messaging from '@react-native-firebase/messaging';
+import {
+  HandlePushInteraction,
+  HandleBackGroundNotification,
+} from '@segmentify/react-native-sdk';
+import { name as appName } from './app.json';
+
+HandleBackGroundNotification(messaging);
+HandlePushInteraction();
+
+function HeadlessCheck({ isHeadless }) {
+  if (!isHeadless) {
+    return <App />;
+  }
+}
+
+AppRegistry.registerComponent(appName, () => HeadlessCheck);
+```
+
 ## Highly Recommended
 
 Right after installing Segmentify and Firebase, you should run the following commands to make sure that everything is working properly.
