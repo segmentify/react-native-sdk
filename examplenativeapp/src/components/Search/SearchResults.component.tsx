@@ -9,8 +9,8 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import {FireEvent, useSegmentifyStorage} from 'segmentify-react-native-sdk';
-import {ISearchResponse} from '../../types/search-response.interface';
+import {FireEvent, useSegmentifyStorage} from '@segmentify/react-native-sdk';
+import type {ISearchResponse} from '../../types/search-response.interface';
 import {SearchIcon} from 'native-base';
 
 type SearchResultsProps = {
@@ -36,6 +36,7 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
       }).then(() => {
         console.log('Product CLICK Event Sent');
       });
+      // @ts-ignore
       navigation.navigate('Product', {item});
     },
     [user, navigation],
