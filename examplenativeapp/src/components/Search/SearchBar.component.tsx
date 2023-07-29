@@ -62,7 +62,6 @@ export const SearchBar = ({
     <SearchBarMime
       navigation={navigation}
       isMime={isMime}
-      inputValue={inputValue}
       onSearchHandler={onSearchHandler}
     />
   );
