@@ -42,8 +42,9 @@ export const SearchBar = ({
   );
 
   const onSearchHandler = useCallback(
-    (text: string) => {
-      setInputValue(text);
+    (text: string | undefined) => {
+      const query = text || '';
+      setInputValue(query);
     },
     [setInputValue],
   );

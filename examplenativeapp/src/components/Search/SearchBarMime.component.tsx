@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  TextInput,
   Image,
   View,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import {TERTIARY_COLOR} from '../../constants';
 import {NotificationIcon} from '../Icons';
+import {Input, SearchIcon, CloseIcon} from 'native-base';
 
 type SearchBarMimeProps = {
   navigation: any;
   isMime?: boolean;
-  inputValue?: string;
-  onSearchHandler?: (text: string) => void;
+  onSearchHandler?: (text: string | undefined) => void;
 };
 
 export const SearchBarMime = ({
   navigation,
   isMime = true,
-  inputValue = '',
   onSearchHandler,
 }: SearchBarMimeProps) => {
+  const [searchText, setSearchText] = useState<string | undefined>('');
   const windowWidth = Dimensions.get('window').width;
+
+  const submitSearch = () => {
+    if (onSearchHandler) {
+      onSearchHandler(searchText);
+    }
+  };
+
+  const clearSearch = () => {
+    setSearchText('');
+    if (onSearchHandler) {
+      onSearchHandler('');
+    }
+  }
 
   return (
     <View
@@ -51,14 +62,25 @@ export const SearchBarMime = ({
             navigation.navigate('Search');
           }
         }}>
-        <TextInput
-          placeholder="Search Products..."
-          placeholderTextColor={TERTIARY_COLOR}
-          value={inputValue}
+        <Input 
           editable={!isMime}
-          onChangeText={
-            onSearchHandler ? text => onSearchHandler(text) : undefined
-          }
+          width="100%"
+          height="100%"
+          placeholder="Search"
+          variant="filled"
+          fontSize={14}
+          borderRadius="4"
+          backgroundColor="white"
+          borderColor="#7d7d7d"
+          py="1"
+          px="2"
+          value={searchText}
+          onChangeText={(text) => {
+            setSearchText(text);
+          }}
+          onSubmitEditing={submitSearch}
+          InputLeftElement={<SearchIcon color="gray.400" size="5" ml="2" />} 
+          InputRightElement={searchText && searchText.length ? <CloseIcon color="gray.400" size="4" mr="3" onPress={clearSearch} /> : undefined}
         />
       </View>
       <TouchableOpacity
@@ -93,8 +115,7 @@ export const SearchInputStyles = (windowWidth: number) => {
       marginLeft: 10,
       marginRight: 5,
       marginBottom: 4,
-      borderWidth: 2,
-      borderColor: '#7d7d7d',
+      borderWidth: 0,
       ...commonStyles,
     },
     isMimeContainer: {
@@ -109,8 +130,7 @@ export const SearchInputStyles = (windowWidth: number) => {
       marginLeft: 18,
       marginRight: 5,
       marginBottom: 4,
-      borderWidth: 2,
-      borderColor: '#7d7d7d',
+      borderWidth: 0,
       ...commonStyles,
     },
     input: {
