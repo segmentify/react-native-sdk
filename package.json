@@ -78,7 +78,8 @@
     "@react-native-firebase/messaging": "^18.2.0",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^29.5.2",
-    "@types/react": "~17.0.21",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "17.0.14",
     "@types/react-native": "0.70.0",
     "@types/react-native-push-notification": "^8.1.1",
     "better-docs": "^2.7.2",
@@ -105,7 +106,9 @@
     "react-native": "*"
   },
   "resolutions": {
-    "@types/react": "17.0.21"
+    "@types/react": "18.2.0",
+    "@types/react-dom": "17.0.14",
+    "@types/react-native": "0.70.0"
   },
   "eslintConfig": {
     "root": true,
