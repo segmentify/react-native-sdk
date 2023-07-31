@@ -22,7 +22,7 @@ export const Product = ({navigation, route}: Props) => {
         sessionId: segmentify?.user?.sessionId,
         lang: 'TR',
         os: 'android',
-        device: 'app',
+        device: 'android',
       },
     });
 
@@ -36,7 +36,7 @@ export const Product = ({navigation, route}: Props) => {
         sessionId: segmentify?.user?.sessionId,
         lang: 'TR',
         os: 'android',
-        device: 'app',
+        device: 'android',
       },
     });
     await Promise.all([sendProductViewEvent, sendProductInteractionEvent]).then(
@@ -118,3 +118,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
 });
+
+// TODO: Search Interaction Eventi gönderilecek Seachten sonra
+// TODO: Recommendation icin impression eventi gonderilecek
+// TODO: Interaction eventi icin type 'IMPRESSION'| 'WIDGET_VIEW' | 'CLICK' olacak

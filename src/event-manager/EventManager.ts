@@ -103,6 +103,10 @@ export const FireEvent = async ({
       `${dataCenterUrl}${SEND_EVENTS_URL}?apiKey=${apiKey}`,
       eventPayload
     );
+    if (eventType === TEventTypes.SEARCH && data) {
+      //Interaction Impression yolla
+      // Interaction WIDGET_VIEW yolla
+    }
     return data;
   }
 
