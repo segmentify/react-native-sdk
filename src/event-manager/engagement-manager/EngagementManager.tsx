@@ -4,7 +4,8 @@ import { useExternalStore } from './store/useExternalStore';
 import { ModalView } from '../../components/Engagement.modal';
 import type { ModalProps } from 'react-native';
 
-export const EngagementLayer = () => {
+export const EngagementManager = (props) => {
+  console.log('++++++EngagementManager props', props);
   const { campaign } = useExternalStore((state) => state);
   const [modalVisible, setModalVisible] = useState(false);
 

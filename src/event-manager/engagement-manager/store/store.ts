@@ -1,6 +1,6 @@
 import type { TInitialState } from './types.d.ts';
 
-import { campaignMock } from './campaignMockMock.js';
+import { campaignMock } from './campaignMock.js';
 
 function createStore<T>(initialState: T) {
   let currentState = initialState;

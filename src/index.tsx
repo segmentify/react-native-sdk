@@ -7,4 +7,5 @@ export {
   RequestPushNotificationPermission,
   HandlePushInteraction,
   HandleBackGroundNotification,
+  EngagementManager,
 } from './event-manager';

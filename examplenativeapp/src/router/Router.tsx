@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Providers} from '../provider/Providers';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import {EngagementManager} from '@segmentify/react-native-sdk';
 // Screens
 import {Home, Product, Search} from '../screens/';
 
@@ -23,9 +23,8 @@ const SearchBarComponent = (props: any) => {
 
 export const Router = () => {
   const [searchProducts, setSearchProducts] = useState<any>([]);
-
   return (
-    <NavigationContainer>
+    <NavigationContainer onStateChange={state => console.log('state', state)}>
       <Providers>
         <Stack.Navigator
           initialRouteName="Home"
