@@ -11,13 +11,15 @@ import type { TSEGMENTIFY_EVENT_PARAMETERS } from '../types';
  * You can check the required and optional parameters for each event from this object.
  */
 
+const commonParams = ['sessionId', 'userId', 'language', 'device', 'os'];
+
 export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
   PAGE_VIEW: {
-    requiredParams: ['sessionId', 'userId'],
+    requiredParams: [...commonParams],
     optionalParams: ['category', 'subCategory'],
   },
   PRODUCT_VIEW: {
-    requiredParams: ['productId', 'sessionId', 'userId'],
+    requiredParams: ['productId', ...commonParams],
     optionalParams: [
       'title',
       'url',
@@ -58,11 +60,11 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   BASKET_OPERATIONS: {
-    requiredParams: ['productId', 'basketId', 'step', 'sessionId', 'userId'],
+    requiredParams: ['productId', 'basketId', 'step', ...commonParams],
     optionalParams: ['price', 'quantity', 'size', 'activeBanners'],
   },
   CHECKOUT: {
-    requiredParams: ['totalPrice', 'basketId', 'step', 'sessionId', 'userId'],
+    requiredParams: ['totalPrice', 'basketId', 'step', ...commonParams],
     optionalParams: [
       'productList',
       'orderNo',
@@ -77,7 +79,7 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   USER_OPERATIONS: {
-    requiredParams: ['step', 'sessionId', 'userId'],
+    requiredParams: ['step', ...commonParams],
     optionalParams: [
       'username',
       'fullName',
@@ -100,15 +102,15 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   CUSTOM_EVENT: {
-    requiredParams: ['type', 'sessionId', 'userId'],
+    requiredParams: ['type', ...commonParams],
     optionalParams: [],
   },
   INTERACTION: {
     requiredParams: ['type'],
-    optionalParams: ['interactionId', 'instanceId'],
+    optionalParams: ['interactionId', 'instanceId', ...commonParams],
   },
   SEARCH: {
-    requiredParams: ['sessionId', 'userId'],
+    requiredParams: ['sessionId', 'userId', ...commonParams],
     optionalParams: [
       'query',
       'type',
