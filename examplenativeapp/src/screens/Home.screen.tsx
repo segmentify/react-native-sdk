@@ -1,6 +1,4 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import type {RootStackParamList} from '../router/Router';
 import {FireEvent} from '@segmentify/react-native-sdk';
 import {PAGE_VIEW_EVENT_EXAMPLE} from '../example/events';
 import {
@@ -10,13 +8,11 @@ import {
   Text,
   VStack,
   View,
-  useToast,
 } from 'native-base';
 import {ProductCardList} from '../components/ProductCard/ProductCardList';
+import { useToast } from "react-native-toast-notifications";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-export const Home = ({navigation}: Props) => {
+export const Home = () => {
   const toast = useToast();
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [recommendations, setRecommendations] = useState<any>({});
@@ -65,11 +61,19 @@ export const Home = ({navigation}: Props) => {
 
     setRecommendations(recommendationList);
     setIsLoaded(true);
-    toast.show({
-      title: 'Page View Event Sent',
-      description: 'category: ' + PAGE_VIEW_EVENT_EXAMPLE.category,
-      placement: 'bottom',
-    });
+    toast.show(
+      "",
+      {
+        type: "custom_toast",
+        animationDuration: 100,
+        data: {
+          title: 'Page View Event Sent',
+          messages: {
+            'category': PAGE_VIEW_EVENT_EXAMPLE.category,
+          }
+        },
+      }
+    )
     console.log('Page View Event Sent');
   }, []);
 
