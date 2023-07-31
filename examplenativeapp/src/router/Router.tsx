@@ -18,6 +18,8 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator();
 
 const SearchBarComponent = (props: any) => {
+  console.log('SearchBarComponent', props);
+  
   return <SearchBar {...props} />;
 };
 

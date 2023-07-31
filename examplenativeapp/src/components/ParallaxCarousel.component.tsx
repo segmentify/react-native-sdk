@@ -30,7 +30,6 @@ export const ParallaxCarousel = ({
       type: 'PRODUCT_VIEW',
       eventPayload: PRODUCT_VIEW_EVENT_EXAMPLE,
     }).then(response => {
-      console.log('PRODUCT_VIEW response', response);
       navigation.navigate('Product', {item});
     });
   };
