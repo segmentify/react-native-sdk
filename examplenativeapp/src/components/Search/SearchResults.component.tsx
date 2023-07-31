@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { View, Skeleton, Center, VStack, SearchIcon } from 'native-base';
-import { ProductCardList } from '../ProductCard/ProductCardList';
+import {Text, StyleSheet} from 'react-native';
+import {View, Skeleton, Center, VStack, SearchIcon} from 'native-base';
+import {ProductCardList} from '../ProductCard/ProductCardList';
 
 type SearchResultsProps = {
   searchProducts?: any;
@@ -12,7 +12,10 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
     return (
       <Center>
         <VStack w="100%" h="100%" space={4} overflow="hidden" p={4}>
-          <View flexDirection="row" flexWrap="wrap" justifyContent="space-between">
+          <View
+            flexDirection="row"
+            flexWrap="wrap"
+            justifyContent="space-between">
             {Array.from(Array(15).keys()).map((_item, index) => (
               <Skeleton key={index} w="48%" h="280" mb="4" rounded="md" />
             ))}

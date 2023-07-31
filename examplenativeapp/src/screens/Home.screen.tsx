@@ -3,8 +3,16 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import type {RootStackParamList} from '../router/Router';
 import {FireEvent} from '@segmentify/react-native-sdk';
 import {PAGE_VIEW_EVENT_EXAMPLE} from '../example/events';
-import { HStack, ScrollView, Skeleton, Text, VStack, View, useToast } from 'native-base';
-import { ProductCardList } from '../components/ProductCard/ProductCardList';
+import {
+  HStack,
+  ScrollView,
+  Skeleton,
+  Text,
+  VStack,
+  View,
+  useToast,
+} from 'native-base';
+import {ProductCardList} from '../components/ProductCard/ProductCardList';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -15,9 +23,9 @@ export const Home = ({navigation}: Props) => {
 
   type IRecommendationList = {
     [key: string]: {
-      name?: string,
-      products?: any[],
-    }
+      name?: string;
+      products?: any[];
+    };
   };
 
   const getRecommendedProducts = useCallback(async () => {
@@ -27,9 +35,11 @@ export const Home = ({navigation}: Props) => {
       eventPayload: PAGE_VIEW_EVENT_EXAMPLE,
     });
     let recommendationList: IRecommendationList = {};
-    
+
     response?.responses[0]?.forEach((item: any) => {
-      const algorithmKeys: string[] = Object.keys(item.params?.recommendedProducts);
+      const algorithmKeys: string[] = Object.keys(
+        item.params?.recommendedProducts,
+      );
       const recoInstanceId: string = item.params?.instanceId;
       const recoName: string = item.params?.notificationTitle;
 
@@ -46,8 +56,10 @@ export const Home = ({navigation}: Props) => {
 
     console.group('Recommended Products');
     Object.keys(recommendationList).forEach((key: string) => {
-      const productNames = recommendationList?.[key]?.["products"]?.map((product: any) => product.name);
-      console.log(recommendationList?.[key]?.["name"], productNames);
+      const productNames = recommendationList?.[key]?.['products']?.map(
+        (product: any) => product.name,
+      );
+      console.log(recommendationList?.[key]?.['name'], productNames);
     });
     console.groupEnd();
 
@@ -55,8 +67,7 @@ export const Home = ({navigation}: Props) => {
     setIsLoaded(true);
     toast.show({
       title: 'Page View Event Sent',
-      description: 
-      'category: ' + PAGE_VIEW_EVENT_EXAMPLE.category,
+      description: 'category: ' + PAGE_VIEW_EVENT_EXAMPLE.category,
       placement: 'bottom',
     });
     console.log('Page View Event Sent');
@@ -68,35 +79,43 @@ export const Home = ({navigation}: Props) => {
 
   return (
     <ScrollView pt={4}>
-      {
-        Object.keys(recommendations).map((key: string) => {
-          const {name, products} = recommendations[key];
-          if (products.length === 0) {
-            return null;
-          }
+      {Object.keys(recommendations).map((key: string) => {
+        const {name, products} = recommendations[key];
+        if (products.length === 0) {
+          return null;
+        }
 
-          if (!isLoaded) {
-            return (
-              <VStack key={key} mb={8} p={3}>
-                <Skeleton height={8} width="65%" />
-                <HStack justifyContent="space-between" alignItems="center" mt={2} space={4}>
-                  <Skeleton height={250} width="200" />
-                  <Skeleton height={250} width="200" />
-                  <Skeleton height={250} width="200" />
-                  <Skeleton height={250} width="200" />
-                </HStack>
-              </VStack>
-            );
-          }
-
+        if (!isLoaded) {
           return (
-            <View key={key} mb={8}>
-              <Text fontSize="2xl" fontWeight="bold" mb={2} ml={3}>{name}</Text>
-              <ProductCardList productList={products} cardSize={200} isHorizontal={true} />
-            </View>
+            <VStack key={key} mb={8} p={3}>
+              <Skeleton height={8} width="65%" />
+              <HStack
+                justifyContent="space-between"
+                alignItems="center"
+                mt={2}
+                space={4}>
+                <Skeleton height={250} width="200" />
+                <Skeleton height={250} width="200" />
+                <Skeleton height={250} width="200" />
+                <Skeleton height={250} width="200" />
+              </HStack>
+            </VStack>
           );
-        })
-      }
+        }
+
+        return (
+          <View key={key} mb={8}>
+            <Text fontSize="2xl" fontWeight="bold" mb={2} ml={3}>
+              {name}
+            </Text>
+            <ProductCardList
+              productList={products}
+              cardSize={200}
+              isHorizontal={true}
+            />
+          </View>
+        );
+      })}
     </ScrollView>
   );
 };
