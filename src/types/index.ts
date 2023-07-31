@@ -29,4 +29,12 @@ export type {
   TRequestPushNotificationPermissionPayload,
   TFirePushNotificationInteraction,
   TNotificationConfigs,
+  PageViewEventType,
+  ProductViewEventType,
+  BasketOperationsEventType,
+  CheckOutEventType,
+  UserOperationsEventType,
+  CustomEventType,
+  InteractionEventType,
+  SearchEventType,
 } from './interfaces/';

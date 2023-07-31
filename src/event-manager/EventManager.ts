@@ -29,6 +29,11 @@ import type {
   FirePushNotificationInteractionResponse,
 } from '../types';
 
+import type {
+  GenericSegmentifyEventPayload,
+  KEYS_OF_EVENTS,
+} from '../types/interfaces/events/events-payload.interface';
+
 /**
  * RequestCredentials
  * @description
@@ -73,12 +78,12 @@ export const RequestCredentials = async ({
  * @throws Error
  */
 
-export const FireEvent = async ({
+export const FireEvent = async <T extends KEYS_OF_EVENTS>({
   type,
   eventPayload,
 }: {
   type: TEventTypes;
-  eventPayload: any;
+  eventPayload: GenericSegmentifyEventPayload<T> | any;
 }) => {
   const eventType = eventPayload?.name;
   if (type === eventType) {
@@ -103,10 +108,10 @@ export const FireEvent = async ({
       `${dataCenterUrl}${SEND_EVENTS_URL}?apiKey=${apiKey}`,
       eventPayload
     );
-    if (eventType === TEventTypes.SEARCH && data) {
-      //Interaction Impression yolla
-      // Interaction WIDGET_VIEW yolla
-    }
+    // if (eventType === TEventTypes.SEARCH && data) {
+    //   //Interaction Impression yolla
+    //   // Interaction WIDGET_VIEW yolla
+    // }
     return data;
   }
 

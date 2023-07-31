@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// TODO: Search Interaction Eventi gönderilecek Seachten sonra
-// TODO: Recommendation icin impression eventi gonderilecek
-// TODO: Interaction eventi icin type 'IMPRESSION'| 'WIDGET_VIEW' | 'CLICK' olacak
+//TODO: Search Interaction Eventi gönderilecek Seachten sonra
+//TODO: Recommendation icin impression eventi gonderilecek
+//TODO: Interaction eventi icin type 'IMPRESSION'| 'WIDGET_VIEW' | 'CLICK' olacak

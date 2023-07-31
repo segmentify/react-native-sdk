@@ -14,6 +14,6 @@ import type { TPAGE_TYPES } from '../../types';
  * }
  */
 export interface PageViewEventType extends SegmentifyBase {
-  category: typeof TPAGE_TYPES | String;
+  category?: typeof TPAGE_TYPES | String;
   subCategory?: String;
 }

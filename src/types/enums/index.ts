@@ -10,3 +10,5 @@ export {
   USER_OPERATIONS_STEPS,
   BANNER_OPERATIONS_TYPES,
 } from './segmentify-event-steps.enum';
+
+export { OS_TYPES, DEVICE_TYPES } from './device-os.enum';

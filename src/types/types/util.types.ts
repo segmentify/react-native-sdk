@@ -8,11 +8,15 @@ import {
   PAGE_TYPES,
   USER_OPERATIONS_STEPS,
   BANNER_OPERATIONS_TYPES,
+  OS_TYPES,
+  DEVICE_TYPES,
 } from '../enums/';
 
 export type TSEGMENTIFY_EVENTS = typeof SEGMENTIFY_EVENTS;
 export type TSUPPORTED_LANGUAGES = typeof SUPPORTED_LANGUAGES;
 export type TCURRENCY = typeof CURRENCY;
+export type TOS_TYPES = typeof OS_TYPES;
+export type TDEVICE_TYPES = typeof DEVICE_TYPES;
 export type TOV<T> = T[keyof T];
 export type { BASKET_OPERATIONS_STEPS as TBASKET_OPERATIONS_STEPS };
 export type { CHECKOUT_STEPS as TCHECKOUT_STEPS };
