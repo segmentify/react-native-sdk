@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useToast} from 'native-base';
 import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import {SearchBarMime} from './SearchBarMime.component';
 import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
+import { useToast } from "react-native-toast-notifications";
 
 export const SearchBar = ({
   isMime = false,
@@ -34,14 +34,21 @@ export const SearchBar = ({
         }).then(res => {
           const products = res?.search[0][0]?.products;
           setSearchProducts(products);
-          toast.show({
-            title: 'Search Event Sent',
-            description: 
-              'query: ' + query + '\n' +
-              'userId: ' + user?.userId + '\n' +
-              'sessionId: ' + user?.sessionId,
-            placement: 'bottom',
-          });
+          toast.show(
+            "",
+            {
+              type: "custom_toast",
+              animationDuration: 100,
+              data: {
+                title: 'Search Event Sent',
+                messages: {
+                  'query': query,
+                  'userId': user?.userId,
+                  'sessionId': user?.sessionId,
+                }
+              },
+            }
+          )
           console.log('Search Event Sent');
         });
       } else {

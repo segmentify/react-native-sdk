@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
-import {useToast} from 'native-base';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import type {RootStackParamList} from '../router/Router';
+import { useToast } from "react-native-toast-notifications";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Product'>;
 
@@ -41,33 +42,37 @@ export const Product = ({navigation, route}: Props) => {
     });
     await Promise.all([sendProductViewEvent, sendProductInteractionEvent]).then(
       () => {
-        toast.show({
-          title: 'Product View Event Sent',
-          description:
-            'productId: ' +
-            route.params!.item.productId +
-            '\n' +
-            'userId: ' +
-            segmentify?.user?.userId +
-            '\n' +
-            'sessionId: ' +
-            segmentify?.user?.sessionId,
-          placement: 'bottom',
-        });
+        toast.show(
+          "",
+          {
+            type: "custom_toast",
+            animationDuration: 100,
+            data: {
+              title: 'Product View Event Sent',
+              messages: {
+                'productId': route.params!.item.productId,
+                'userId': segmentify?.user?.userId,
+                'sessionId': segmentify?.user?.sessionId,
+              }
+            },
+          }
+        )
+        toast.show(
+          "",
+          {
+            type: "custom_toast",
+            animationDuration: 100,
+            data: {
+              title: 'Product Interaction Event Sent',
+              messages: {
+                'productId': route.params!.item.productId,
+                'userId': segmentify?.user?.userId,
+                'sessionId': segmentify?.user?.sessionId,
+              }
+            },
+          }
+        )
         console.log('Product View Event Sent');
-        toast.show({
-          title: 'Product Interaction Event Sent',
-          description:
-            'productId: ' +
-            route.params!.item.productId +
-            '\n' +
-            'userId: ' +
-            segmentify?.user?.userId +
-            '\n' +
-            'sessionId: ' +
-            segmentify?.user?.sessionId,
-          placement: 'bottom',
-        });
         console.log('Product Interaction Event Sent');
       },
     );

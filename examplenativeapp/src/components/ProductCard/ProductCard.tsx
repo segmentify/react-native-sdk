@@ -9,9 +9,9 @@ import {
   Heading,
   Text,
   VStack,
-  useToast,
 } from 'native-base';
 import type {ISearchResponse} from '../../types/search-response.interface';
+import {useToast} from 'react-native-toast-notifications';
 
 export const ProductCard = ({
   item,
@@ -41,19 +41,21 @@ export const ProductCard = ({
           sessionId: user?.sessionId,
         },
       }).then(() => {
-        toast.show({
-          title: 'Product CLICK Event Sent',
-          description:
-            'productId: ' +
-            item.productId +
-            '\n' +
-            'userId: ' +
-            user?.userId +
-            '\n' +
-            'sessionId: ' +
-            user?.sessionId,
-          placement: 'bottom',
-        });
+        toast.show(
+          "",
+          {
+            type: "custom_toast",
+            animationDuration: 100,
+            data: {
+              title: 'Product CLICK Event Sent',
+              messages: {
+                'productId': item.productId,
+                'userId': user?.userId,
+                'sessionId': user?.sessionId,
+              }
+            },
+          }
+        )
         console.log('Product CLICK Event Sent');
       });
       // @ts-ignore
