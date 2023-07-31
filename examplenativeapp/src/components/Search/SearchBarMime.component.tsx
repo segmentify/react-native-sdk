@@ -62,7 +62,7 @@ export const SearchBarMime = ({
             navigation.navigate('Search');
           }
         }}>
-        <Input 
+        <Input
           editable={!isMime}
           width="100%"
           height="100%"
@@ -79,7 +79,7 @@ export const SearchBarMime = ({
             setSearchText(text);
           }}
           onSubmitEditing={submitSearch}
-          InputLeftElement={<SearchIcon color="gray.400" size="5" ml="2" />} 
+          InputLeftElement={<SearchIcon color="gray.400" size="5" ml="2" />}
           InputRightElement={searchText && searchText.length ? <CloseIcon color="gray.400" size="4" mr="3" onPress={clearSearch} /> : undefined}
         />
       </View>

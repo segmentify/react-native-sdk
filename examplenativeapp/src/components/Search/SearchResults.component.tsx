@@ -2,12 +2,36 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {View, Skeleton, Center, VStack, SearchIcon} from 'native-base';
 import {ProductCardList} from '../ProductCard/ProductCardList';
+import {BeforeSearch} from './BeforeSearch/BeforeSearch.component';
+import {FireEvent} from '@segmentify/react-native-sdk';
+import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
 
 type SearchResultsProps = {
   searchProducts?: any;
 };
 
 export const SearchResults = ({searchProducts}: SearchResultsProps) => {
+  const [beforeSearch, setBeforeSearch] = React.useState<any>(null);
+
+  const handleBeforeSearch = React.useCallback(async () => {
+    await FireEvent({
+      type: 'SEARCH',
+      eventPayload: {
+        ...SEARCH_EVENT_EXAMPLE,
+      },
+    }).then((res:any) => {
+      console.log(res)
+      if(res?.search[0][0]){
+      setBeforeSearch(res?.search[0][0]);
+      }
+    });
+  }, [searchProducts]);
+
+
+  React.useEffect(() => {
+    handleBeforeSearch();
+  }, [handleBeforeSearch]);
+
   if (searchProducts === 'loading') {
     return (
       <Center>
@@ -27,6 +51,10 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
 
   if (searchProducts.length === 0) {
     return (
+      <>
+      {beforeSearch ? (
+      <BeforeSearch beforeSearch={beforeSearch}/>
+      ):(
       <View style={styles.container}>
         <VStack space={2} style={styles.container}>
           <SearchIcon size="90" color="gray.400" />
@@ -35,6 +63,8 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
           </Text>
         </VStack>
       </View>
+      )}
+      </>
     );
   }
 

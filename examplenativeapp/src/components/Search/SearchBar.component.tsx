@@ -49,9 +49,15 @@ export const SearchBar = ({
               },
             }
           )
+          FireEvent({
+          type: 'INTERACTION',
+          eventPayload: {
+            name: 'INTERACTION',
+            type:'impression',
+          }})
           console.log('Search Event Sent');
         });
-      } else {
+      }else {
         setSearchProducts([]);
       }
     },
