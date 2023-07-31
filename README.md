@@ -70,9 +70,9 @@ This is the configuration that you can get from Segmentify.
 const providerConfig = {
   config: {
     apiKey: 'your-api-key',
-    dataCenterUrl: 'https://gandalf.segmentify.com',
-    subDomain: 'https://www.intersport.com.tr',
-    dataCenterPushUrl: 'https://gimli.segmentify.com',
+    dataCenterUrl: 'https://per.segmentify.com',
+    subDomain: 'https://www.yoursite.com',
+    dataCenterPushUrl: 'https://psh.segmentify.com',
     isApnsEnabled: false,
   },
   user: {
