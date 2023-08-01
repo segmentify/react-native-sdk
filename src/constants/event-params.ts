@@ -11,7 +11,7 @@ import type { TSEGMENTIFY_EVENT_PARAMETERS } from '../types';
  * You can check the required and optional parameters for each event from this object.
  */
 
-const commonParams = ['sessionId', 'userId', 'language', 'device', 'os'];
+const commonParams = ['sessionId', 'userId', 'lang', 'device', 'os'];
 
 export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
   PAGE_VIEW: {
