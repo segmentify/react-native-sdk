@@ -20,6 +20,7 @@ export type TContext = {
     | FirebaseMessagingTypes.Module
     | any;
   pushNotificationConfig?: any;
+  logger?: boolean;
 };
 
 export type TSegmentifyState = {
@@ -45,6 +46,7 @@ export type TSegmentifyState = {
 
 export type TContextInitilizer = {
   stateSetter: React.Dispatch<React.SetStateAction<TSegmentifyState>>;
+  logger: boolean;
   ctxData: {
     config: TSegmentifyState['segmentify']['config'];
     user: TSegmentifyState['segmentify']['user'];
