@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { VStack, ScrollView, View, Heading } from 'native-base';
-import {BeforeSearchBadge} from './BeforeSearchBadge.component';
+import { BeforeSearchBadge } from './BeforeSearchBadge.component';
 import { BeforeSearchBanner } from './BeforeSearchBanner.component';
 import { ProductCardList } from '../../ProductCard/ProductCardList';
 
@@ -10,14 +10,15 @@ type BeforeSearchProps = {
   setSearchQuery?: any;
 };
 
-export const BeforeSearch = ({beforeSearch, setSearchQuery}: BeforeSearchProps) => {
-  console.log('BeforeSearch', beforeSearch)
+export const BeforeSearch = ({ beforeSearch, setSearchQuery }: BeforeSearchProps) => {
+  console.log('---BeforeSearch---');
+  
   return (
     <ScrollView>
       <VStack space="1">
-        <BeforeSearchBanner banners={beforeSearch?.banners}/>
-        <BeforeSearchBadge renderItem={Object.keys(beforeSearch?.brands)} header="Popular Brands 🔥" setSearchQuery={setSearchQuery}/>
-        <BeforeSearchBadge renderItem={Object.keys(beforeSearch?.keywords)} header="Popular Keywords 🔥" setSearchQuery={setSearchQuery}/>
+        <BeforeSearchBanner banners={beforeSearch?.banners} />
+        <BeforeSearchBadge renderItem={Object.keys(beforeSearch?.brands)} header="Popular Brands 🔥" setSearchQuery={setSearchQuery} />
+        <BeforeSearchBadge renderItem={Object.keys(beforeSearch?.keywords)} header="Popular Keywords 🔥" setSearchQuery={setSearchQuery} />
         {
           beforeSearch?.products?.length > 0 && (
             <View style={styles.container}>
