@@ -1,17 +1,22 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {View, Skeleton, Center, VStack, SearchIcon} from 'native-base';
+import {View, Skeleton, Center, VStack, SearchIcon, Stack, Heading} from 'native-base';
 import {ProductCardList} from '../ProductCard/ProductCardList';
 import {BeforeSearch} from './BeforeSearch/BeforeSearch.component';
+import {BeforeSearchBanner} from './BeforeSearch/BeforeSearchBanner.component';
 import {FireEvent} from '@segmentify/react-native-sdk';
 import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
 
 type SearchResultsProps = {
   searchProducts?: any;
+  setSearchQuery?: any;
+  searchBanners?: any;
 };
 
-export const SearchResults = ({searchProducts}: SearchResultsProps) => {
+export const SearchResults = ({searchProducts, setSearchQuery, searchBanners}: SearchResultsProps) => {
   const [beforeSearch, setBeforeSearch] = React.useState<any>(null);
+
+  console.log('searchProducts', searchProducts);
 
   const handleBeforeSearch = React.useCallback(async () => {
     await FireEvent({
@@ -40,6 +45,8 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
             flexDirection="row"
             flexWrap="wrap"
             justifyContent="space-between">
+              <Skeleton w="100%" h="150" mb="4" rounded="md" />
+              <Skeleton w="60%" ml="20%" h="8" mb="2" rounded="md" justifyContent="center" />
             {Array.from(Array(15).keys()).map((_item, index) => (
               <Skeleton key={index} w="48%" h="280" mb="4" rounded="md" />
             ))}
@@ -53,7 +60,7 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
     return (
       <>
       {beforeSearch ? (
-      <BeforeSearch beforeSearch={beforeSearch}/>
+        <BeforeSearch beforeSearch={beforeSearch} setSearchQuery={setSearchQuery}/>
       ):(
       <View style={styles.container}>
         <VStack space={2} style={styles.container}>
@@ -70,6 +77,14 @@ export const SearchResults = ({searchProducts}: SearchResultsProps) => {
 
   return (
     <View style={styles.container}>
+      {searchBanners && searchBanners.length > 0 && (
+        <>
+          <BeforeSearchBanner banners={searchBanners}/>
+          <Stack ml="2" direction="row" space={3}>
+            <Heading size="md" mt="4" mb="2">Search Results</Heading>
+          </Stack>
+        </>
+      )}
       <ProductCardList productList={searchProducts} cardSize="50%" />
     </View>
   );

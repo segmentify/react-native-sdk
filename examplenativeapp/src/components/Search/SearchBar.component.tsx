@@ -8,17 +8,21 @@ import { useToast } from "react-native-toast-notifications";
 export const SearchBar = ({
   isMime = false,
   setSearchProducts,
+  searchQuery,
+  setSearchQuery,
+  setSearchBanners,
 }: {
   isMime?: boolean;
   setSearchProducts?: any;
+  searchQuery?: string;
+  setSearchQuery?: any;
+  setSearchBanners?: any;
 }) => {
   const toast = useToast();
   const navigation = useNavigation();
   const {
     segmentify: {user},
   } = useSegmentifyStorage();
-  const [inputValue, setInputValue] = useState<string>('');
-
   const getSearchProducts = useCallback(
     async ({query}: {query: string}) => {
       if (query.length >= 1) {
@@ -33,7 +37,9 @@ export const SearchBar = ({
           },
         }).then(res => {
           const products = res?.search[0][0]?.products;
+          const banners = res?.search[0][0]?.banners;
           setSearchProducts(products);
+          setSearchBanners(banners);
           toast.show(
             "",
             {
@@ -59,6 +65,7 @@ export const SearchBar = ({
         });
       }else {
         setSearchProducts([]);
+        setSearchBanners([]);
       }
     },
     [user?.userId, user?.sessionId, setSearchProducts],
@@ -67,24 +74,25 @@ export const SearchBar = ({
   const onSearchHandler = useCallback(
     (text: string | undefined) => {
       const query = text || '';
-      setInputValue(query);
+      setSearchQuery(query);
     },
-    [setInputValue],
+    [setSearchQuery],
   );
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchProducts({query: inputValue});
+      getSearchProducts({query: searchQuery || ''});
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [inputValue, getSearchProducts]);
+  }, [searchQuery, getSearchProducts]);
 
   return (
     <SearchBarMime
       navigation={navigation}
       isMime={isMime}
       onSearchHandler={onSearchHandler}
+      searchQuery={searchQuery}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   View,
@@ -13,15 +13,27 @@ type SearchBarMimeProps = {
   navigation: any;
   isMime?: boolean;
   onSearchHandler?: (text: string | undefined) => void;
+  searchQuery?: string;
 };
 
 export const SearchBarMime = ({
   navigation,
   isMime = true,
   onSearchHandler,
+  searchQuery,
 }: SearchBarMimeProps) => {
-  const [searchText, setSearchText] = useState<string | undefined>('');
+  const [searchText, setSearchText] = useState<string | undefined>(searchQuery);
   const windowWidth = Dimensions.get('window').width;
+
+  useEffect(() => {
+    setSearchText(searchQuery);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    return () => {
+      setSearchText('');
+    };
+  }, []);
 
   const submitSearch = () => {
     if (onSearchHandler) {
