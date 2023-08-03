@@ -2,10 +2,16 @@ import React from 'react';
 import {View} from 'react-native';
 import {SearchResults} from '../components/Search/SearchResults.component';
 
-export const Search = ({searchProducts = []}: any) => {
+type SearchProps = {
+  searchProducts?: any;
+  setSearchQuery?: any;
+  searchBanners?: any;
+};
+
+export const Search = ({searchProducts = [], setSearchQuery, searchBanners}: SearchProps) => {
   return (
     <View>
-      <SearchResults searchProducts={searchProducts} />
+      <SearchResults searchProducts={searchProducts} setSearchQuery={setSearchQuery} searchBanners={searchBanners}/>
     </View>
   );
 };

@@ -1,40 +1,40 @@
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
-import { Image, Stack, Badge } from 'native-base';
+import { Image,  Stack,Badge } from 'native-base';
 
-export const BeforeSearchBanner = ({ banners }: any) => {
+export const AfterSearchBanner = ({banners}:any) => {
   useEffect(() => {
-    console.log('Before Search Banner', banners);
-    console.log('Before Search Banner Started');
+    console.log('After Search Banner', banners);
+    console.log('After Search Banner Started');
     return () => {
-      console.log('Before Search Banner Ended');
+      console.log('After Search Banner Ended');
     }
-  }, [banners]);
-
+  }, []);
+  
   return (
     <SwiperFlatList
       data={banners}
       index={0}
-      renderItem={({ item }: any) => (
+      renderItem={({item}:any) => (
         <Stack direction="column" space={3}>
-          <Image source={{ uri: item?.bannerUrl }}
+          <Image source={{uri: item?.bannerUrl}}
             alt={item.name}
             size="xl"
             width={420}
             height={160}
             key={item.id}
-          />
+            />
           <Badge
             style={styles.bannerText}
             colorScheme="dark"
             _text={{
-              fontSize: 12,
-              color: '#fff',
+            fontSize: 12,
+            color: '#fff',
             }}>
-            {item?.name}
+              {item?.name}
           </Badge>
-        </Stack>
+      </Stack>
       )}
       keyExtractor={(item) => item.id}
       autoplay={true}

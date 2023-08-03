@@ -24,6 +24,8 @@ const SearchBarComponent = (props: any) => {
 
 export const Router = () => {
   const [searchProducts, setSearchProducts] = useState<any>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchBanners, setSearchBanners] = useState<any>([]);
 
   return (
     <NavigationContainer>
@@ -49,11 +51,11 @@ export const Router = () => {
           <Stack.Screen
             name="Search"
             options={{
-              headerTitle: () => SearchBarComponent({setSearchProducts}),
+              headerTitle: () => SearchBarComponent({setSearchProducts, searchQuery, setSearchQuery, setSearchBanners}),
               headerTintColor: '#7d7d7d',
               headerBackTitleVisible: false,
             }}>
-            {props => <Search {...props} searchProducts={searchProducts} />}
+            {props => <Search {...props} searchProducts={searchProducts} setSearchQuery={setSearchQuery} searchBanners={searchBanners}/>}
           </Stack.Screen>
         </Stack.Navigator>
       </Providers>
