@@ -7,7 +7,10 @@ import {providerConfig} from '../../config';
 
 export const Providers = ({children}: {children: React.ReactNode}) => {
   return (
-    <SegmentifyNativeProvider segmentify={providerConfig} messaging={messaging}>
+    <SegmentifyNativeProvider
+      segmentify={providerConfig}
+      messaging={messaging}
+      logger>
       {children}
     </SegmentifyNativeProvider>
   );

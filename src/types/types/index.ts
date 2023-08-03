@@ -10,6 +10,7 @@ export type {
   TBANNER_OPERATIONS_TYPES,
   TDEVICE_TYPES,
   TOS_TYPES,
+  TLogLevel,
 } from './util.types';
 
 export type { SEGMENTIFY_REQUEST_TYPE } from './segmentify-request.type';

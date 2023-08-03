@@ -21,12 +21,16 @@ import type { TContextInitilizer } from '../types';
 
 export const useContextInitilizer = ({
   stateSetter,
+  logger,
   ctxData,
 }: TContextInitilizer) => {
   const { config, user } = ctxData;
 
+  if (logger) {
+    setStorageItem({ key: 'logger', value: logger });
+  }
+
   const setStorage = useCallback(async () => {
-    console.log('Platform', Platform);
     const deviceInformation = {
       deviceName:
         Platform.OS === 'ios'

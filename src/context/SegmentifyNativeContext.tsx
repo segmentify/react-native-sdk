@@ -23,6 +23,7 @@ const SegmentifyNativeContext = createContext<TSegmentifyState>(
 const SegmentifyNativeProvider = ({
   children,
   segmentify,
+  logger = false,
   messaging,
   pushNotificationConfig,
 }: TContext): JSX.Element => {
@@ -34,6 +35,7 @@ const SegmentifyNativeProvider = ({
 
   useContextInitilizer({
     stateSetter: setState,
+    logger,
     ctxData: {
       config,
       user,

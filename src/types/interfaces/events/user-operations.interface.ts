@@ -37,7 +37,7 @@ import type { TUSER_OPERATIONS_STEPS } from '../../types';
  */
 export interface UserOperationsEventType extends SegmentifyBase {
   step: typeof TUSER_OPERATIONS_STEPS;
-  username: String;
+  username?: String;
   fullName?: String;
   email?: String;
   phone?: String;

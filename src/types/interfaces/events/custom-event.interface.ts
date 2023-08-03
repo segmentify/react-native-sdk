@@ -14,5 +14,5 @@ import type { SegmentifyBase } from '../segmentify-event-base.interface';
  */
 export interface CustomEventType extends SegmentifyBase {
   type: String;
-  params?: Map<String, Object>;
+  params?: Map<String, String>;
 }
