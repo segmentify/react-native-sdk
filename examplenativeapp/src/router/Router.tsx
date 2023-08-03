@@ -1,5 +1,8 @@
+//@ts-nocheck
 import React, {useState} from 'react';
 import {Providers} from '../provider/Providers';
+import notifee from '@notifee/react-native';
+import {Linking, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -22,13 +25,29 @@ const SearchBarComponent = (props: any) => {
   return <SearchBar {...props} />;
 };
 
+const linkingConfig = {
+  prefixes: [
+    'segmentifynativeapp://',
+    'https://app.segmentifynativeapp.com',
+    'http://app.segmentifynativeapp.com',
+  ],
+  config: {
+    screens: {
+      Home: 'home',
+      Product: 'product/:id',
+      Search: 'search',
+    },
+  },
+};
 export const Router = () => {
   const [searchProducts, setSearchProducts] = useState<any>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchBanners, setSearchBanners] = useState<any>([]);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      linking={linkingConfig}
+      fallback={<Text>Loading...</Text>}>
       <Providers>
         <Stack.Navigator
           initialRouteName="Home"
@@ -51,16 +70,27 @@ export const Router = () => {
           <Stack.Screen
             name="Search"
             options={{
-              headerTitle: () => SearchBarComponent({setSearchProducts, searchQuery, setSearchQuery, setSearchBanners}),
+              headerTitle: () =>
+                SearchBarComponent({
+                  setSearchProducts,
+                  searchQuery,
+                  setSearchQuery,
+                  setSearchBanners,
+                }),
               headerTintColor: '#7d7d7d',
               headerBackTitleVisible: false,
             }}>
-            {props => <Search {...props} searchProducts={searchProducts} setSearchQuery={setSearchQuery} searchBanners={searchBanners}/>}
+            {props => (
+              <Search
+                {...props}
+                searchProducts={searchProducts}
+                setSearchQuery={setSearchQuery}
+                searchBanners={searchBanners}
+              />
+            )}
           </Stack.Screen>
         </Stack.Navigator>
       </Providers>
     </NavigationContainer>
   );
 };
-
-
