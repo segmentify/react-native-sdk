@@ -46,7 +46,6 @@ export const SearchBar = ({
               },
             },
           });
-          console.log('Search Event Sent');
         });
       } else {
         setSearchProducts([]);
