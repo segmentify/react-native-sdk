@@ -15,11 +15,11 @@ HandleBackGroundNotification(messaging);
 HandlePushInteraction();
 
 function HeadlessCheck({isHeadless}) {
-  if (isHeadless) {
+  if (!isHeadless) {
     return <App />;
   }
 
-  return <App />;
+  return null;
 }
 
 AppRegistry.registerComponent(appName, () => HeadlessCheck);

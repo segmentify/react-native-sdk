@@ -1,16 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {FireEvent} from '@segmentify/react-native-sdk';
 import {PAGE_VIEW_EVENT_EXAMPLE} from '../example/events';
-import {
-  HStack,
-  ScrollView,
-  Skeleton,
-  Text,
-  VStack,
-  View,
-} from 'native-base';
+import {HStack, ScrollView, Skeleton, Text, VStack, View} from 'native-base';
 import {ProductCardList} from '../components/ProductCard/ProductCardList';
-import { useToast } from "react-native-toast-notifications";
+import {useToast} from 'react-native-toast-notifications';
 
 export const Home = () => {
   const toast = useToast();
@@ -61,19 +54,16 @@ export const Home = () => {
 
     setRecommendations(recommendationList);
     setIsLoaded(true);
-    toast.show(
-      "",
-      {
-        type: "custom_toast",
-        animationDuration: 100,
-        data: {
-          title: 'Page View Event Sent',
-          messages: {
-            'category': PAGE_VIEW_EVENT_EXAMPLE.category,
-          }
+    toast.show('', {
+      type: 'custom_toast',
+      animationDuration: 100,
+      data: {
+        title: 'Page View Event Sent',
+        messages: {
+          category: PAGE_VIEW_EVENT_EXAMPLE.category,
         },
-      }
-    )
+      },
+    });
     console.log('Page View Event Sent');
   }, []);
 
