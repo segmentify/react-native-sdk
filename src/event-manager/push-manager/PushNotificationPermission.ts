@@ -1,13 +1,9 @@
 import { Platform } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import { getStorageItem } from '../../utils';
-import { HandlePlatformSpecificPushFlow } from './HandlePlatformSpecificPushFlow';
+import { HandlePlatformSpecificPushFlow } from './handlers/HandlePlatformSpecificPushFlow';
 
 import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
-import type {
-  NotificationAndroid,
-  NotificationIOS,
-} from '@notifee/react-native';
 
 /**
  * PushNotificationPermission
@@ -23,16 +19,11 @@ import type {
 
 export const PushNotificationPermission = async ({
   messaging,
-  pushNotificationConfig,
 }: {
   messaging:
     | FirebaseMessagingTypes.Statics
     | FirebaseMessagingTypes.Module
     | any;
-  pushNotificationConfig?: {
-    android: NotificationAndroid;
-    ios: NotificationIOS;
-  };
 }) => {
   const user = await getStorageItem({ key: 'user' });
 
@@ -45,7 +36,6 @@ export const PushNotificationPermission = async ({
     if (enabled) {
       await HandlePlatformSpecificPushFlow({
         messaging,
-        pushNotificationConfig,
         user,
       });
     }
@@ -64,7 +54,6 @@ export const PushNotificationPermission = async ({
     if (authStatus === PermissionsAndroid.RESULTS.GRANTED) {
       await HandlePlatformSpecificPushFlow({
         messaging,
-        pushNotificationConfig,
         user,
       });
     }

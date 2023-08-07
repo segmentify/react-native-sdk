@@ -1,6 +1,11 @@
 export { API_ERRORS } from './error';
 export { API_GET_AWAY_TIME_OUT } from './request';
-export { CHANNEL_ID, CHANNEL_NAME } from './push-channel';
+export {
+  CHANNEL_ID,
+  CHANNEL_NAME,
+  PRESS_ACTION_ID,
+  LAUNCH_ACTIVITY,
+} from './push-channel';
 export { SEGMENTIFY_EVENT_PARAMS } from './event-params';
 export {
   SEND_EVENTS_URL,

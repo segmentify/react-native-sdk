@@ -19,7 +19,6 @@ export type TContext = {
     | FirebaseMessagingTypes.Statics
     | FirebaseMessagingTypes.Module
     | any;
-  pushNotificationConfig?: any;
   logger?: boolean;
 };
 

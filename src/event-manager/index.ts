@@ -5,6 +5,6 @@ export {
 } from './EventManager';
 
 export {
-  HandlePushInteraction,
-  HandleBackGroundNotification,
+  HandleInitialNotification,
+  InitializePushService,
 } from './push-manager';

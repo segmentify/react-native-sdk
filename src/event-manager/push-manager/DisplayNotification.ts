@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import notifee, { AndroidImportance } from '@notifee/react-native';
-import { CHANNEL_ID } from '../../constants';
+import { CHANNEL_ID, PRESS_ACTION_ID, LAUNCH_ACTIVITY } from '../../constants';
 
 import type { Notification } from '@notifee/react-native';
 
@@ -39,9 +39,11 @@ export const DisplayNotification = async (
         channelId: CHANNEL_ID,
         importance: AndroidImportance.HIGH,
         pressAction: {
-          id: 'default',
-          launchActivity: 'default',
+          id: PRESS_ACTION_ID,
+          launchActivity: LAUNCH_ACTIVITY,
         },
+        showTimestamp: true,
+        timestamp: Date.now(),
         ...(android || {}),
       },
       data: {
@@ -56,6 +58,8 @@ export const DisplayNotification = async (
     ...notification,
     ios: {
       ...notification.ios,
+      showTimestamp: true,
+      timestamp: Date.now(),
       ...(ios || {}),
     },
     data: {
