@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import {Providers} from '../provider/Providers';
-import {Linking, Text} from 'react-native';
-import notifee from '@notifee/react-native';
-import messaging from '@react-native-firebase/messaging';
+import {HandleInitialNotification} from '@segmentify/react-native-sdk';
+import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 // Screens
 import {Home, Product, Search} from '../screens/';
 
@@ -40,39 +38,12 @@ export const Router = () => {
     config: {
       screens: {
         Home: 'home',
-        Product: 'product/:id',
+        Product: 'product/:productId',
         Search: 'search',
       },
     },
     async getInitialURL() {
-      // Check if app was opened from a deep link
-      const url = await Linking.getInitialURL();
-      if (url != null) {
-        return url;
-      }
-      const message = await notifee.getInitialNotification();
-
-      return message?.notification?.data?.url;
-    },
-    subscribe(listener: (arg0: string) => void) {
-      const onReceiveURL = ({url}: {url: string}) => listener(url);
-      // Listen to incoming links from deep linking
-      const subscription = Linking.addEventListener('url', onReceiveURL);
-
-      const unsubscribeNotification = messaging().onNotificationOpenedApp(
-        message => {
-          const url = message.data?.url;
-
-          if (url) {
-            listener(url);
-          }
-        },
-      );
-
-      return () => {
-        subscription.remove();
-        unsubscribeNotification();
-      };
+      return await HandleInitialNotification();
     },
   };
 

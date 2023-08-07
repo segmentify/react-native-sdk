@@ -1,2 +1,2 @@
-export { HandlePushInteraction } from './HandlePushInteraction';
-export { HandleBackGroundNotification } from './HandleBackGroundNotification';
+export { HandleInitialNotification } from './deep-link/HandleInitialNotification';
+export { InitializePushService } from './InitializePushService';

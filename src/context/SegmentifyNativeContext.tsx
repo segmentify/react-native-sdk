@@ -25,7 +25,6 @@ const SegmentifyNativeProvider = ({
   segmentify,
   logger = false,
   messaging,
-  pushNotificationConfig,
 }: TContext): JSX.Element => {
   const [userReadyStatus, setUserReadyStatus] = useState<boolean>(false);
   const { config, user } = segmentify;
@@ -52,7 +51,6 @@ const SegmentifyNativeProvider = ({
       if (messaging) {
         PushNotificationPermission({
           messaging,
-          pushNotificationConfig,
         });
       }
     }
@@ -61,7 +59,6 @@ const SegmentifyNativeProvider = ({
     segmentifyState?.segmentify?.user?.sessionId,
     messaging,
     userReadyStatus,
-    pushNotificationConfig,
   ]);
 
   return (

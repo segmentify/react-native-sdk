@@ -16,6 +16,6 @@ export {
   RequestCredentials,
   FireEvent,
   RequestPushNotificationPermission,
-  HandlePushInteraction,
-  HandleBackGroundNotification,
+  InitializePushService,
+  HandleInitialNotification,
 } from './event-manager';

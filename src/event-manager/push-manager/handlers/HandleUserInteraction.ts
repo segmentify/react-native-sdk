@@ -3,7 +3,7 @@ import {
   HandleClickedNotification,
   HandleReceivedNotification,
   CancelNotification,
-} from './utils';
+} from '../utils';
 
 import type { Event as NotifeeEvent } from '@notifee/react-native';
 
