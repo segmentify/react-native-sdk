@@ -38,12 +38,12 @@ export const DisplayNotification = async (
         ...notification.android,
         channelId: CHANNEL_ID,
         importance: AndroidImportance.HIGH,
+        showTimestamp: true,
+        timestamp: Date.now(),
         pressAction: {
           id: PRESS_ACTION_ID,
           launchActivity: LAUNCH_ACTIVITY,
         },
-        showTimestamp: true,
-        timestamp: Date.now(),
         ...(android || {}),
       },
       data: {

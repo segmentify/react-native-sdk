@@ -7,12 +7,12 @@ export type {
 } from './segmentify-events/push.interface';
 
 export type {
-  PageViewEventType,
-  ProductViewEventType,
-  BasketOperationsEventType,
-  CheckOutEventType,
+  PageView,
+  ProductView,
+  BasketOperations,
+  CheckOut,
   UserOperations,
-  CustomEventType,
-  InteractionEventType,
-  SearchEventType,
+  Custom,
+  Interaction,
+  Search,
 } from './segmentify-events';

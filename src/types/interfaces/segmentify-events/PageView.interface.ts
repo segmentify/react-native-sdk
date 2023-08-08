@@ -13,7 +13,21 @@ import type { TPAGE_TYPES } from '../../types';
  *  subCategory: 'Shoes'
  * }
  */
+
+/**
+ * PageViewEventType - This interface describes structure of PageView event's attributes type.
+ */
 export interface PageView extends CommonEventParameters {
-  category?: typeof TPAGE_TYPES | String;
-  subCategory?: String;
+  /**
+   * The category of the page view event. It can be 'Home Page', 'Product Page', 'Category Page', 'Search Page', 'Basket Page', 'Checkout Page' or some custom category.
+   * @example
+   * 'Home Page', 'Product Page', 'Category Page', 'Search Page', 'Basket Page', 'Checkout Page'
+   */
+  category?: typeof TPAGE_TYPES | string;
+  /**
+   * The sub category of the page view event.
+   * @example
+   * 'Shoes'
+   */
+  subCategory?: string;
 }
