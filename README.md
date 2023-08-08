@@ -70,9 +70,9 @@ This is the configuration that you can get from Segmentify.
 const providerConfig = {
   config: {
     apiKey: 'your-api-key',
-    dataCenterUrl: 'https://gandalf.segmentify.com',
-    subDomain: 'https://www.intersport.com.tr',
-    dataCenterPushUrl: 'https://gimli.segmentify.com',
+    dataCenterUrl: 'https://per.segmentify.com',
+    subDomain: 'https://www.yoursite.com',
+    dataCenterPushUrl: 'https://psh.segmentify.com',
     isApnsEnabled: false,
   },
   user: {
@@ -216,7 +216,7 @@ const MyComponent = () => {
 
 _FireEvent_ returns promise that resolves with response object if event is sent successfully, otherwise it rejects.
 
-All events requires userId and sessionId to be sent and event payload changes according to event type. You can find all event types and their payload from [here](https://segmentify.atlassian.net/wiki/spaces/SEG/pages/131072/Segmentify+Events).
+All events requires userId and sessionId to be sent and event payload changes according to event type. You can find all event types and their payload from [here]([https://segmentify.atlassian.net/wiki/spaces/SEG/pages/131072/Segmentify+Events](https://segmentify.github.io/segmentify-dev-doc/integration_web/)).
 
 ## Bare Workflow Usage
 
