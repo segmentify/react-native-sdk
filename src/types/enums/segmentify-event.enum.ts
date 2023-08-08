@@ -1,3 +1,17 @@
+/**
+ * Segmentify event types
+ * @enum SEGMENTIFY_EVENTS
+ * @description Segmentify event types.
+ * @property {string} PAGE_VIEW
+ * @property {string} PRODUCT_VIEW
+ * @property {string} BASKET_OPERATIONS
+ * @property {string} CHECKOUT
+ * @property {string} USER_OPERATIONS
+ * @property {string} CUSTOM_EVENT
+ * @property {string} INTERACTION
+ * @property {string} SEARCH
+ */
+
 export const SEGMENTIFY_EVENTS = {
   PAGE_VIEW: 'PAGE_VIEW',
   PRODUCT_VIEW: 'PRODUCT_VIEW',

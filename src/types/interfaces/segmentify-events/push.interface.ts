@@ -116,6 +116,16 @@ export interface TNotificationConfigs {
          */
         list: boolean;
       };
+      /**
+       * attachments is the attachments of the notification.
+       * @example
+       * [
+       *  {
+       *    url: "https://www.segmentify.com/wp-content/uploads/2020/12/segmentify-logo.png",
+       *    thumbnailHidden: false
+       *  }
+       * ]
+       */
       attachments?: [
         {
           url: string;
@@ -124,10 +134,31 @@ export interface TNotificationConfigs {
       ];
     };
     android?: {
+      /**
+       * channelId is the channel id of the notification.
+       * @example
+       * "234234234-23423423423"
+       */
       channelId: string;
+      /**
+       * smallIcon is the small icon of the notification.
+       * @example
+       * "ic_launcher"
+       */
       smallIcon: string;
       pressAction?: {
+        /**
+         * id is the id of the notification.
+         * @default
+         * "Segmentify"
+         */
         id: string;
+        /**
+         * launchActivity is the launch activity of the notification.
+         * @default
+         * "default"
+         */
+        launchActivity: string;
       };
     };
   };

@@ -2,7 +2,42 @@ import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TUSER_OPERATIONS_STEPS } from '../../types';
 
 /**
- * UserOperationsEventType - This interface describes structure of UserOperations event's attributes type.
+ * @typedef
+ * @name UserOperations
+ * @description UserOperations type is used to define the type of the user operations.
+ * @property {TUSER_OPERATIONS_STEPS} step - The step of the user operations event. It can be 'signup', 'signin', 'signout' or 'update'.
+ * @property {string} [username] - The username of the user.
+ * @property {string} [fullName] - The full name of the user.
+ * @property {string} [email] - The email of the user. (Mandatory for using email module)
+ * @property {string} [phone] - The phone of the user. (Like '+905555555555')
+ * @property {boolean} [isLogin] - The login status of the user.
+ * @property {boolean} [isRegistered] - The registered status of the user.
+ * @property {string} [gender] - The registered gender of the user.
+ * @property {string} [age] - The registered age of the user.
+ * @property {string} [birthdate] - The registered birthdate of the user.
+ * @property {string} [memberSince] - The registered member since date of the user.
+ * @property {string} [location] - The registered location of the user.
+ * @property {string[]} [segments] - The registered segments of the user.
+ * @type {UserOperations}
+ * @example
+ *  {
+ *   "step": "signup",
+ *   "username": "John_Doe",
+ *   "fullName": "John Doe",
+ *   "email": "john@description.com",
+ *   "phone": "+905555555555",
+ *   "isLogin": true,
+ *   "isRegistered": true,
+ *   "gender": "whatyoufeel",
+ *   "age": "40",
+ *   "birthdate": "16.08.1993",
+ *   "memberSince": "12.02.2019",
+ *   "location": "New York",
+ *   "segments": [
+ *     "segment1",
+ *     "segment2"
+ *   ]
+ * }
  */
 export interface UserOperations extends CommonEventParameters {
   /**
@@ -42,14 +77,14 @@ export interface UserOperations extends CommonEventParameters {
    * true
    * @default false
    */
-  isLogin?: Boolean;
+  isLogin?: boolean;
   /**
    * The registered status of the user.
    * @example
    * true
    * @default false
    */
-  isRegistered?: Boolean;
+  isRegistered?: boolean;
   /**
    * Gender of the user.
    * @example
@@ -89,7 +124,17 @@ export interface UserOperations extends CommonEventParameters {
 }
 
 /**
-  UserChangeEventType - This interface describes structure of UserChange event's attributes type.
+ * @typedef
+ * @name UserChangeEventType
+ * @description UserChangeEventType is used to define the type of the user change event.
+ * @property {string} oldUserId - The old user id of the user.
+ * @property {string} userId - The new user id of the user.
+ * @type {UserChangeEventType}
+ * @example
+ *  {
+ *   "oldUserId": "123123123",
+ *   "userId": "123123123"
+ *   }
  */
 export interface UserChangeEventType extends CommonEventParameters {
   /**

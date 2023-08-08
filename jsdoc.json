@@ -20,12 +20,12 @@
     "cleverLinks": false,
     "search": true,
     "default": {
-      "name": "Segmentify React Native Documentation",
-      "title": "Segmentify React Native Documentation"
+      "name": "Segmentify React Native SDK",
+      "title": "Segmentify React Native SDK"
     },
     "better-docs": {
-      "name": "Segmentify React Native Documentation",
-      "title": "Segmentify React Native Documentation"
+      "name": "Segmentify React Native SDK",
+      "title": "Segmentify React Native SDK"
     }
   },
   "opts": {

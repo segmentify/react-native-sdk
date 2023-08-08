@@ -10,14 +10,14 @@ const SegmentifyNativeContext = createContext<TSegmentifyState>(
 );
 
 /**
- * Segmentify Native Provider
+ * @typedef
+ * @name SegmentifyNativeProvider
  * @param {Object} props - Props
  * @param {Object} props.children - Children
  * @param {Object} props.segmentify - Segmentify
  * @param {Object} props.messaging - Messaging
  * @param {Object} props.pushNotificationConfig - Push Notification Config
  * @returns {JSX.Element}
- * @constructor
  */
 
 const SegmentifyNativeProvider = ({

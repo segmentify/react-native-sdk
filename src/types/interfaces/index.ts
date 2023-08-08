@@ -1,12 +1,4 @@
 export type {
-  TRequestPushNotificationPermission,
-  TFirePushNotification,
-  TRequestPushNotificationPermissionPayload,
-  TFirePushNotificationInteraction,
-  TNotificationConfigs,
-} from './segmentify-events/push.interface';
-
-export type {
   PageView,
   ProductView,
   BasketOperations,
@@ -15,4 +7,9 @@ export type {
   Custom,
   Interaction,
   Search,
+  TRequestPushNotificationPermission,
+  TFirePushNotification,
+  TRequestPushNotificationPermissionPayload,
+  TFirePushNotificationInteraction,
+  TNotificationConfigs,
 } from './segmentify-events';

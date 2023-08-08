@@ -13,11 +13,11 @@ export type {
   TLogLevel,
 } from './util.types';
 
-export type { SEGMENTIFY_REQUEST_TYPE } from './segmentify-request.type';
+export type { SEGMENTIFY_REQUEST_TYPE } from './SegmentifyRequest.type';
 
-export type { APIErrorType } from './api-error.type';
+export type { APIErrorType } from './ApiError.type';
 
-export type { TSEGMENTIFY_EVENT_PARAMETERS } from './event-parameters.type';
+export type { TSEGMENTIFY_EVENT_PARAMETERS } from './EventParameters.type';
 
 export type {
   TContext,
@@ -27,13 +27,13 @@ export type {
   StorageType,
 } from './segmentify-provider.type';
 
-export type { User } from './user.type';
+export type { User } from './User.type';
 
-export type { TFireBasePushResponse } from './firebase-push-response.type';
+export type { TFireBasePushResponse } from './FireBasePushResponse';
 
-export type { CheckoutProduct } from './checkout-product.type';
+export type { CheckoutProduct } from './CheckOutProduct.type';
 
-export type { BannerDetail } from './banner-detail.type';
+export type { BannerDetail } from './BannerDetail.type';
 
 export type {
   TEventTypes,
@@ -42,6 +42,6 @@ export type {
   RequestPushNotificationPermissionResponse,
   FirePushNotificationInteractionResponse,
   TCredentialsPayload,
-} from './event-manager.type';
+} from './EventManager.type';
 
-export type { ResponseStatusCodeType } from './response-code.type';
+export type { ResponseStatusCodeType } from './ResponseCodes';

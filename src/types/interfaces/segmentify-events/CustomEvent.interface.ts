@@ -1,7 +1,15 @@
 import type { CommonEventParameters } from '../CommonEventParameters';
 
 /**
- * Custom Event - This interface describes structure of Custom event's attributes type.
+ * @typedef
+ * @name CustomEvent
+ * @description
+ * Custom is a type that describes the parameters that custom event takes.
+ * @property {string} type The type of the custom event.
+ * @example
+ *  {
+ *   type: 'your_custom_event_type',
+ *  }
  */
 export interface Custom extends CommonEventParameters {
   /**

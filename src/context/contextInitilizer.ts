@@ -5,16 +5,9 @@ import { initialUserHandler, getStore } from './utils';
 import type { TContextInitilizer } from '../types';
 
 /**
- * useContextInitilizer
- * @description
- * useContextInitilizer is a function that is used to initialize Segmentify context.
- * It is used in SegmentifyProvider component.
- * It takes stateSetter and ctxData as parameters.
- * stateSetter is a function that is used to set Segmentify context state.
- * ctxData is an object that contains config and user data.
- * It sets deviceInformation, config and user data to AsyncStorage.
- * It also sets deviceInformation, config and user data to Segmentify context state.
- * It is used in SegmentifyProvider component.
+ * @typedef
+ * @name useContextInitilizer
+ * @description useContextInitilizer is a function that is used to set the storage and initial trigger of the Segmentify.
  * @param {TContextInitilizer} TContextInitilizer
  * @returns {void}
  */

@@ -1,7 +1,15 @@
 import type { CommonEventParameters } from '../CommonEventParameters';
 
 /**
- * SearchEventType - This interface describes structure of Search event's attributes type.
+ * @typedef
+ * @name Search
+ * @description Search type is used to define the type of the search event.
+ * @property {string} [query] - The query of the search event.
+ * @type {Search}
+ * @example
+ * {
+ *  "query": "iphone"
+ * }
  */
 export interface Search extends CommonEventParameters {
   /**
