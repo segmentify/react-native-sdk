@@ -32,7 +32,7 @@ import type {
 import type {
   GenericSegmentifyEventPayload,
   KEYS_OF_EVENTS,
-} from '../types/interfaces/events/events-payload.interface';
+} from '../types/interfaces/segmentify-events/events-payload.interface';
 
 /**
  * RequestCredentials

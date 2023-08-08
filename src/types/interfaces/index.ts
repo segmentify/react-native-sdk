@@ -4,15 +4,15 @@ export type {
   TRequestPushNotificationPermissionPayload,
   TFirePushNotificationInteraction,
   TNotificationConfigs,
-} from './events/push.interface';
+} from './segmentify-events/push.interface';
 
 export type {
   PageViewEventType,
   ProductViewEventType,
   BasketOperationsEventType,
   CheckOutEventType,
-  UserOperationsEventType,
+  UserOperations,
   CustomEventType,
   InteractionEventType,
   SearchEventType,
-} from './events';
+} from './segmentify-events';

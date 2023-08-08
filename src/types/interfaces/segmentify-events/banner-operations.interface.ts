@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TBANNER_OPERATIONS_TYPES } from '../../types';
 
 /**
@@ -25,7 +25,7 @@ import type { TBANNER_OPERATIONS_TYPES } from '../../types';
  *  label: 'iPhone 12 Pro Max'
  * }
  */
-export interface BannerOperationsEventType extends SegmentifyBase {
+export interface BannerOperationsEventType extends CommonEventParameters {
   type: typeof TBANNER_OPERATIONS_TYPES;
   title: String;
   group: String;

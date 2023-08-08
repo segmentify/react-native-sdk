@@ -7,7 +7,7 @@ import type {
   CustomEventType,
   InteractionEventType,
   SearchEventType,
-} from './';
+} from '.';
 import type { SEGMENTIFY_EVENTS } from '../../enums';
 
 export type KEYS_OF_EVENTS = keyof typeof SEGMENTIFY_EVENTS;

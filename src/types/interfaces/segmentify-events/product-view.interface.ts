@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 
 /**
  * @name ProductViewEventType
@@ -34,7 +34,7 @@ import type { SegmentifyBase } from '../segmentify-event-base.interface';
  *   price: 100,
  *  }
  */
-export interface ProductViewEventType extends SegmentifyBase {
+export interface ProductView extends CommonEventParameters {
   productId: String;
   title: String;
   inStock?: Boolean;

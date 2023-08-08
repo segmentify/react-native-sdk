@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 import type { BannerDetail } from '../../types';
 
 /**
@@ -20,7 +20,7 @@ import type { BannerDetail } from '../../types';
  *  ],
  * }
  */
-export interface BannerGroupViewEventType extends SegmentifyBase {
+export interface BannerGroupViewEventType extends CommonEventParameters {
   group: String;
   banners?: Array<BannerDetail>;
 }

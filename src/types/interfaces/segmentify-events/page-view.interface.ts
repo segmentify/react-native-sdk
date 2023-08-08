@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TPAGE_TYPES } from '../../types';
 
 /**
@@ -13,7 +13,7 @@ import type { TPAGE_TYPES } from '../../types';
  *  subCategory: 'Shoes'
  * }
  */
-export interface PageViewEventType extends SegmentifyBase {
+export interface PageView extends CommonEventParameters {
   category?: typeof TPAGE_TYPES | String;
   subCategory?: String;
 }

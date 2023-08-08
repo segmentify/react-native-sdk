@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TBASKET_OPERATIONS_STEPS } from '../../types';
 
 /**
@@ -17,7 +17,7 @@ import type { TBASKET_OPERATIONS_STEPS } from '../../types';
  *   productId: '1234567890'
  * }
  */
-export interface BasketOperationsEventType extends SegmentifyBase {
+export interface BasketOperations extends CommonEventParameters {
   step: typeof TBASKET_OPERATIONS_STEPS;
   productId: String;
   price?: Number;

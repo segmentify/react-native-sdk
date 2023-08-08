@@ -1,4 +1,4 @@
-import type { SegmentifyBase } from '../segmentify-event-base.interface';
+import type { CommonEventParameters } from '../CommonEventParameters';
 import type { CheckoutProduct, TCHECKOUT_STEPS } from '../../types';
 
 /**
@@ -21,7 +21,7 @@ import type { CheckoutProduct, TCHECKOUT_STEPS } from '../../types';
  *  ]
  * }
  */
-export interface CheckOutEventType extends SegmentifyBase {
+export interface CheckOut extends CommonEventParameters {
   step: typeof TCHECKOUT_STEPS;
   totalPrice: Number;
   orderNo?: String;
