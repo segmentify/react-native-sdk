@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { Image, Stack, Badge } from 'native-base';
 
 export const BeforeSearchBanner = ({ banners }: any) => {
+  const windowWidth = Dimensions.get('window').width;
+
   useEffect(() => {
     console.log('Before Search Banner', banners);
     console.log('Before Search Banner Started');
@@ -21,7 +23,7 @@ export const BeforeSearchBanner = ({ banners }: any) => {
           <Image source={{ uri: item?.bannerUrl }}
             alt={item.name}
             size="xl"
-            width={420}
+            width={windowWidth - 8}
             height={160}
             key={item.id}
           />
