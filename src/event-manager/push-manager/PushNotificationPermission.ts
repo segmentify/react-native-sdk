@@ -6,15 +6,15 @@ import { HandlePlatformSpecificPushFlow } from './handlers/HandlePlatformSpecifi
 import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 /**
- * PushNotificationPermission
+ * @typedef
+ * @name PushNotificationPermission
  * @description
  * PushNotificationPermission is a function that requests permission for push notifications.
  * It takes messaging and pushNotificationConfig parameters.
  * messaging is the FirebaseMessaging object.
  * pushNotificationConfig is the push notification configuration object.
- * @param messaging
- * @param pushNotificationConfig
- * @returns Promise<void>
+ * @param {Messaging} messaging
+ * @returns {Promise<void>}
  */
 
 export const PushNotificationPermission = async ({

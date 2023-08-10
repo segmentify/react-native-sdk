@@ -8,15 +8,16 @@ import {
 import type { Event as NotifeeEvent } from '@notifee/react-native';
 
 /**
- * HandleUserInteraction
+ * @typedef
+ * @name HandleUserInteraction
  * @description
  * HandleUserInteraction is a function that handles the user interaction with the notification.
  * It takes type and detail parameters.
  * type is the type of the event.
  * detail is the detail of the event.
- * @param type
- * @param detail
- * @returns Promise<void>
+ * @param {NotifeeEvent['type']} type
+ * @param {NotifeeEvent['detail']} detail
+ * @returns {void}
  */
 
 export const HandleUserInteraction = async ({

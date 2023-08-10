@@ -7,17 +7,18 @@ import type { TCredentialsPayload } from '../../../types';
 import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 /**
- * HandlePlatformSpecificPushFlow
+ * @typedef
+ * @name HandlePlatformSpecificPushFlow
  * @description
  * HandlePlatformSpecificPushFlow is a function that handles the push notification flow for both Android and iOS.
  * It takes messaging, pushNotificationConfig and user parameters.
  * messaging is the FirebaseMessaging object.
  * pushNotificationConfig is the push notification configuration object.
  * user is the user object.
- * @param messaging
- * @param pushNotificationConfig
- * @param user
- * @returns Promise<void>
+ * @param {Messaging} messaging
+ * @param {PushNotificationConfigType} pushNotificationConfig
+ * @param {TCredentialsPayload} user
+ * @returns {Promise<void>}
  */
 
 export const HandlePlatformSpecificPushFlow = async ({

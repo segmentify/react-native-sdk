@@ -19,14 +19,14 @@ Introducing the cutting-edge React Native app designed to revolutionize personal
 
 #### Key Features
 
-- Personalized Recommendations:</br> Our app leverages advanced algorithms and machine learning techniques to analyze user behavior, purchase history, and preferences. Based on these insights, it generates personalized product recommendations that are displayed within the app. This helps businesses enhance the user experience, increase conversions, and drive customer loyalty.
-
+- **Personalized Recommendations**: </br> Our app leverages advanced algorithms and machine learning techniques to analyze user behavior, purchase history, and preferences. Based on these insights, it generates personalized product recommendations that are displayed within the app. This helps businesses enhance the user experience, increase conversions, and drive customer loyalty.
 - **Dynamic Content**: Delivering the right content to the right audience is crucial in capturing users' attention. Our app allows businesses to dynamically update and customize app content based on user segments. Whether it's displaying targeted banners, promotional offers, or exclusive content, our app ensures that each user sees content relevant to their interests and needs.
 - **Search Functionality**: Our app includes a powerful search feature that allows users to quickly find products based on their preferences. Users can search by keywords, filters, categories, or any other relevant attributes. The search results are displayed in real-time, ensuring a smooth and efficient user experience. Businesses can also utilize search analytics to gain insights into popular search terms, customer preferences, and optimize their product offerings.
 - **User Segmentation**: Understanding your audience is key to effective marketing. Our app enables businesses to segment their user base using a wide range of criteria, including demographics, purchase history, engagement level, and more. This segmentation capability allows businesses to create highly targeted marketing campaigns and tailor their messaging to specific user groups, resulting in higher engagement and conversion rates.
 - **A/B Testing**: Optimizing user experiences and marketing strategies is made easy with our A/B testing feature. Businesses can create multiple versions of app components, such as layouts, UI elements, or promotional content, and test them with different user segments. By measuring and analyzing user interactions and conversion rates, businesses can make data-driven decisions to continuously improve their app's performance and user satisfaction.
 - **Seamless Integration**: Our React Native app seamlessly integrates with existing e-commerce platforms, ensuring a smooth and hassle-free implementation process. Whether you're using popular e-commerce platforms like Shopify or WooCommerce, our app can be easily integrated into your existing infrastructure, allowing you to leverage the power of personalization and segmentation without disrupting your current operations.
 - **Analytics and Insights** : In-depth analytics and reporting provide businesses with valuable insights into user behavior, preferences, and campaign performance. Our app provides detailed analytics dashboards, allowing businesses to track key metrics, monitor the success of personalization efforts, and make data-backed decisions to optimize their marketing strategies.
+- **Push Notifications**: Our app allows businesses to send personalized push notifications to their users. Businesses can create custom push notifications based on user segments, such as location, demographics, or purchase history. This enables businesses to deliver targeted messages to specific user groups, resulting in higher engagement and conversion rates.
 
 Take your e-commerce business to new heights with our React Native app that brings personalization and segmentation to the forefront. Engage your users on a personal level, deliver relevant content, and drive conversions like never before. Stay ahead of the competition and build lasting relationships with your customers with our powerful and intuitive app..
 
@@ -216,7 +216,7 @@ const MyComponent = () => {
 
 _FireEvent_ returns promise that resolves with response object if event is sent successfully, otherwise it rejects.
 
-All events requires userId and sessionId to be sent and event payload changes according to event type. You can find all event types and their payload from [here]([https://segmentify.atlassian.net/wiki/spaces/SEG/pages/131072/Segmentify+Events](https://segmentify.github.io/segmentify-dev-doc/integration_web/)).
+All events requires userId and sessionId to be sent and event payload changes according to event type. You can find all event types and their payload from [here](<[https://segmentify.atlassian.net/wiki/spaces/SEG/pages/131072/Segmentify+Events](https://segmentify.github.io/segmentify-dev-doc/integration_web/)>).
 
 ## Bare Workflow Usage
 
@@ -249,16 +249,18 @@ Every set of credentials should be revalidated if application is deleted and rei
 
 ## Integrating Push Notifications
 
-Segmentify Handles push notification according to your firebase integration. React Native projects requires an external package for firebase integration. You can find more information from [here](https://rnfirebase.io/). Also for push notifications you need to install [notifee](https://www.npmjs.com/package/@notifee/react-native)
+Segmentify Handles push notification according to your firebase integration. React Native projects requires an external package for firebase integration. You can find more information from [here](https://rnfirebase.io/). Also for push notifications you need to install [notifee](https://www.npmjs.com/package/@notifee/react-native).
 
 ### Installation Guide
 
 ```js
 # Using npm
 npm install --save @react-native-firebase/app
+npm install --save @notifee/react-native
 
 # Using Yarn
 yarn add @react-native-firebase/app
+yarn add @notifee/react-native
 ```
 
 The `@react-native-firebase/app` module must be installed before using any other Firebase service.
@@ -395,19 +397,17 @@ Android devices have different approach for background notifications. If you wan
 import { AppRegistry } from 'react-native';
 import App from './App';
 import messaging from '@react-native-firebase/messaging';
-import {
-  HandlePushInteraction,
-  HandleBackGroundNotification,
-} from '@segmentify/react-native-sdk';
+import { InitializePushService } from '@segmentify/react-native-sdk';
 import { name as appName } from './app.json';
 
-HandleBackGroundNotification(messaging);
-HandlePushInteraction();
+InitializePushService(messaging);
 
 function HeadlessCheck({ isHeadless }) {
   if (isHeadless) {
-    return <App />;
+    return null;
   }
+
+  return <App />;
 }
 
 AppRegistry.registerComponent(appName, () => HeadlessCheck);

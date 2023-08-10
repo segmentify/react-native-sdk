@@ -6,6 +6,15 @@ import { HandleUserInteraction } from './HandleUserInteraction';
 import type { TFireBasePushResponse } from '../../../types';
 import type { Messaging, PushNotificationConfigType } from './types';
 
+/**
+ * @typedef
+ * @name HandleForeGroundNotification
+ * @description
+ * HandleForeGroundNotification is a function that handles the foreground notification.
+ * It takes a messaging object as a parameter.
+ * @param {Messaging} messaging
+ * @returns {void}
+ */
 export const HandleForeGroundNotification = (
   messaging: Messaging,
   pushNotificationConfig = {} as PushNotificationConfigType
