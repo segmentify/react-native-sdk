@@ -3,8 +3,11 @@ import notifee from '@notifee/react-native';
 import { DisplayNotification } from '../DisplayNotification';
 import { HandleUserInteraction } from './HandleUserInteraction';
 
-import type { TFireBasePushResponse } from '../../../types';
-import type { Messaging, PushNotificationConfigType } from './types';
+import type {
+  TFireBasePushResponse,
+  Messaging,
+  PushNotificationConfigType,
+} from '../../../types';
 
 /**
  * @typedef

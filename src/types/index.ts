@@ -21,6 +21,10 @@ export type {
   TCredentialsPayload,
   UtilsGetStoreType,
   StorageType,
+  NotificationAndroid,
+  NotificationIOS,
+  Messaging,
+  PushNotificationConfigType,
 } from './types/';
 
 export type {

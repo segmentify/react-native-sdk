@@ -45,3 +45,10 @@ export type {
 } from './EventManager.type';
 
 export type { ResponseStatusCodeType } from './ResponseCodes';
+
+export type {
+  NotificationAndroid,
+  NotificationIOS,
+  Messaging,
+  PushNotificationConfigType,
+} from './handlers.type';
