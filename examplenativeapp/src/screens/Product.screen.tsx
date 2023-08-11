@@ -133,7 +133,7 @@ export const Product = ({navigation, route}: Props) => {
         style={ProductScreenStyles(width, height).footer}>
         <HStack alignItems="center" justifyContent="space-between" width="100%" height="100%" padding={2}>
           <VStack alignItems="flex-start" justifyContent="center" width="50%" height="100%">
-            {route.params!.item.oldPriceTexts && (
+            {route.params!.item.oldPriceText && (
                 <Text
                   fontSize="md"
                   fontWeight="400"
@@ -147,7 +147,7 @@ export const Product = ({navigation, route}: Props) => {
                 fontSize="2xl"
                 fontWeight="600"
                 marginLeft={2}
-                color={route.params!.item.oldPriceTexts ? 'green.600' : 'gray.600'}>
+                color={route.params!.item.oldPriceText ? 'green.600' : 'gray.600'}>
                 {route.params!.item.priceText}
               </Text>
           </VStack>
