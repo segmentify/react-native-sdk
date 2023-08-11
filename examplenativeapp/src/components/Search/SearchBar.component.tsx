@@ -1,23 +1,28 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
-
 import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import {SearchBarMime} from './SearchBarMime.component';
 import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
+import {useToast} from 'react-native-toast-notifications';
 
 export const SearchBar = ({
   isMime = false,
-  setSearchProducts,
+  setSearchProducts = () => {},
+  setSearchBanners = () => {},
+  setSearchQuery = () => {},
+  searchQuery,
 }: {
   isMime?: boolean;
-  setSearchProducts: any;
+  setSearchProducts?: any;
+  setSearchBanners?: any;
+  setSearchQuery?: any;
+  searchQuery?: string;
 }) => {
+  const toast = useToast();
   const navigation = useNavigation();
   const {
     segmentify: {user},
   } = useSegmentifyStorage();
-  const [inputValue, setInputValue] = useState<string>('');
-
   const getSearchProducts = useCallback(
     async ({query}: {query: string}) => {
       if (query.length >= 1) {
@@ -32,37 +37,52 @@ export const SearchBar = ({
           },
         }).then(res => {
           const products = res?.search[0][0]?.products;
+          const banners = res?.search[0][0]?.banners;
           setSearchProducts(products);
+          setSearchBanners(banners);
+          toast.show('', {
+            type: 'custom_toast',
+            animationDuration: 100,
+            data: {
+              title: 'Search Event Sent',
+              messages: {
+                query: query,
+                userId: user?.userId,
+                sessionId: user?.sessionId,
+              },
+            },
+          });
         });
       } else {
         setSearchProducts([]);
+        setSearchBanners([]);
       }
     },
     [user?.userId, user?.sessionId, setSearchProducts],
   );
 
   const onSearchHandler = useCallback(
-    (text: string) => {
-      setInputValue(text);
+    (text: string | undefined) => {
+      const query = text || '';
+      setSearchQuery(query);
     },
-    [setInputValue],
+    [setSearchQuery],
   );
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchProducts({query: inputValue});
-      console.log('onSearchHandler', inputValue);
+      getSearchProducts({query: searchQuery || ''});
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [inputValue, getSearchProducts]);
+  }, [searchQuery, getSearchProducts]);
 
   return (
     <SearchBarMime
       navigation={navigation}
       isMime={isMime}
-      inputValue={inputValue}
       onSearchHandler={onSearchHandler}
+      searchQuery={searchQuery}
     />
   );
 };

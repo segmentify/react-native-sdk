@@ -1,98 +1,121 @@
-import React, {useCallback} from 'react';
-import {Skeleton, Center, VStack} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
-import {
-  FlatList,
-  TouchableOpacity,
-  Image,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import {FireEvent, useSegmentifyStorage} from '@segmentify/react-native-sdk';
-import type {ISearchResponse} from '../../types/search-response.interface';
-import {SearchIcon} from 'native-base';
+import React from 'react';
+import {Text, StyleSheet} from 'react-native';
+import {View, Skeleton, Center, VStack, SearchIcon, Stack, Heading} from 'native-base';
+import {ProductCardList} from '../ProductCard/ProductCardList';
+import {BeforeSearch} from './BeforeSearch/BeforeSearch.component';
+import { AfterSearchBanner } from './AfterSearch/AfterSearchBanner.component';
+import {FireEvent} from '@segmentify/react-native-sdk';
+import {SEARCH_EVENT_EXAMPLE} from '../../example/events';
 
 type SearchResultsProps = {
   searchProducts?: any;
+  setSearchQuery?: any;
+  searchBanners?: any;
 };
 
-export const SearchResults = ({searchProducts}: SearchResultsProps) => {
-  const navigation = useNavigation();
-  const {
-    segmentify: {user},
-  } = useSegmentifyStorage();
-  const onClickHandler = useCallback(
-    async (item: ISearchResponse) => {
-      FireEvent({
-        type: 'INTERACTION',
-        eventPayload: {
-          name: 'INTERACTION',
-          type: 'CLICK',
-          productId: item.productId,
-          userId: user?.userId,
-          sessionId: user?.sessionId,
-        },
-      }).then(() => {
-        console.log('Product CLICK Event Sent');
-      });
-      // @ts-ignore
-      navigation.navigate('Product', {item});
-    },
-    [user, navigation],
-  );
+export const SearchResults = ({searchProducts, setSearchQuery, searchBanners}: SearchResultsProps) => {
+  const [beforeSearch, setBeforeSearch] = React.useState<any>(null);
 
-  console.log('searchProducts', searchProducts);
+  const handleBeforeSearch = React.useCallback(async () => {
+    setBeforeSearch('loading');
+    await FireEvent({
+      type: 'SEARCH',
+      eventPayload: {
+        ...SEARCH_EVENT_EXAMPLE,
+      },
+    }).then((res:any) => {
+      if(res?.search[0][0]){
+        setBeforeSearch(res?.search[0][0]);
+      } else {
+        setBeforeSearch(null);
+      }
+    }).catch((err:any) => {
+      setBeforeSearch(null);
+      console.log(err);
+    });
+  }, [searchProducts]);
+
+
+  React.useEffect(() => {
+    handleBeforeSearch();
+  }, [handleBeforeSearch]);
 
   if (searchProducts === 'loading') {
     return (
       <Center>
         <VStack w="100%" h="100%" space={4} overflow="hidden" p={4}>
-          {Array.from(Array(15).keys()).map((item, index) => (
-            <Skeleton key={index} h="20" />
-          ))}
+          <View
+            flexDirection="row"
+            flexWrap="wrap"
+            justifyContent="space-between">
+              <Skeleton w="100%" h="150" mb="4" rounded="md" />
+              <Skeleton w="60%" ml="20%" h="8" mb="2" rounded="md" justifyContent="center" />
+            {Array.from(Array(15).keys()).map((_item, index) => (
+              <Skeleton key={index} w="48%" h="280" mb="4" rounded="md" />
+            ))}
+          </View>
         </VStack>
       </Center>
     );
   }
 
-  return (
-    <View>
-      {searchProducts.length > 0 && (
-        <>
-          <FlatList
-            data={searchProducts}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                style={styles.renderContainer}
-                onPress={() => onClickHandler(item)}>
-                <Image
-                  source={{uri: item.image}}
-                  style={styles.renderContainer.image}
-                />
-                <View style={styles.renderContainer.textContainer}>
-                  <Text style={styles.renderContainer.text}>{item.name}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-            keyExtractor={item => item.productId}
-          />
-        </>
-      )}
+  if (beforeSearch === 'loading') {
+    return (
+      <Center>
+        <VStack w="100%" h="100%" space={4} overflow="hidden" p={4}>
+          <View
+            flexDirection="row"
+            flexWrap="wrap"
+            justifyContent="space-between">
+              <Skeleton w="100%" h="150" mb="4" rounded="md" />
 
-      {searchProducts.length === 0 && (
-        // <View style={styles.container}>
-        //   <Text style={styles.renderContainer.text}>
-        //     There is no product found
-        //   </Text>
-        // </View>
+              <Skeleton w="30%" h="8" mb="2" rounded="md" />
+              <Skeleton w="100%" h="6" mb="2" rounded="md" />
+              <Skeleton w="30%" h="8" mb="2" rounded="md" />
+              <Skeleton w="100%" h="6" mb="2" rounded="md" />
+              <Skeleton w="30%" h="8" mb="2" rounded="md" />
+              <Skeleton w="100%" h="6" mb="2" rounded="md" />
+
+              <Skeleton w="30%" h="8" mb="2" rounded="md" />
+            {Array.from(Array(15).keys()).map((_item, index) => (
+              <Skeleton key={index} w="48%" h="280" mb="4" rounded="md" />
+            ))}
+          </View>
+        </VStack>
+      </Center>
+    );
+  }
+
+  if (searchProducts.length === 0) {
+    return (
+      <>
+      {beforeSearch && beforeSearch !== 'loading' && beforeSearch?.banners.length > 0 ? (
+        <BeforeSearch beforeSearch={beforeSearch} setSearchQuery={setSearchQuery}/>
+      ):(
+      <View style={styles.container}>
         <VStack space={2} style={styles.container}>
           <SearchIcon size="90" color="gray.400" />
           <Text style={styles.renderContainer.text}>
             There is no product found
           </Text>
         </VStack>
+      </View>
       )}
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      {searchBanners && searchBanners.length > 0 && (
+        <>
+          <AfterSearchBanner banners={searchBanners}/>
+          <Stack ml="2" direction="row" space={3}>
+            <Heading size="md" mt="4" mb="2">Search Results</Heading>
+          </Stack>
+        </>
+      )}
+      <ProductCardList productList={searchProducts} cardSize="50%" />
     </View>
   );
 };
@@ -106,6 +129,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 4,
+    paddingTop: 10,
   },
   renderContainer: {
     flexDirection: 'row',

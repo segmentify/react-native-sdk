@@ -21,6 +21,10 @@ export type {
   TCredentialsPayload,
   UtilsGetStoreType,
   StorageType,
+  NotificationAndroid,
+  NotificationIOS,
+  Messaging,
+  PushNotificationConfigType,
 } from './types/';
 
 export type {
@@ -29,4 +33,12 @@ export type {
   TRequestPushNotificationPermissionPayload,
   TFirePushNotificationInteraction,
   TNotificationConfigs,
+  PageView,
+  ProductView,
+  BasketOperations,
+  CheckOut,
+  UserOperations,
+  Custom,
+  Interaction,
+  Search,
 } from './interfaces/';

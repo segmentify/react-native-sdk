@@ -1,7 +1,8 @@
 import type { TSEGMENTIFY_EVENT_PARAMETERS } from '../types';
 
 /**
- * SEGMENTIFY_EVENT_PARAMS
+ * @typedef
+ * @name SEGMENTIFY_EVENT_PARAMS
  * @description
  * SEGMENTIFY_EVENT_PARAMS is a constant object that contains all possible parameters that can be sent with Segmentify events.
  * Each event has requiredParams and optionalParams. requiredParams is a string array that contains required parameters for the event.
@@ -9,15 +10,41 @@ import type { TSEGMENTIFY_EVENT_PARAMETERS } from '../types';
  * If you send an event with missing required parameters, you will get an error response from Segmentify API.
  * If you send an event with missing optional parameters, you will not get an error response from Segmentify API.
  * You can check the required and optional parameters for each event from this object.
+ * @property {object} PAGE_VIEW
+ * @property {string[]} PAGE_VIEW.requiredParams
+ * @property {string[]} PAGE_VIEW.optionalParams
+ * @property {object} PRODUCT_VIEW
+ * @property {string[]} PRODUCT_VIEW.requiredParams
+ * @property {string[]} PRODUCT_VIEW.optionalParams
+ * @property {object} BASKET_OPERATIONS
+ * @property {string[]} BASKET_OPERATIONS.requiredParams
+ * @property {string[]} BASKET_OPERATIONS.optionalParams
+ * @property {object} CHECKOUT
+ * @property {string[]} CHECKOUT.requiredParams
+ * @property {string[]} CHECKOUT.optionalParams
+ * @property {object} USER_OPERATIONS
+ * @property {string[]} USER_OPERATIONS.requiredParams
+ * @property {string[]} USER_OPERATIONS.optionalParams
+ * @property {object} CUSTOM_EVENT
+ * @property {string[]} CUSTOM_EVENT.requiredParams
+ * @property {string[]} CUSTOM_EVENT.optionalParams
+ * @property {object} INTERACTION
+ * @property {string[]} INTERACTION.requiredParams
+ * @property {string[]} INTERACTION.optionalParams
+ * @property {object} SEARCH
+ * @property {string[]} SEARCH.requiredParams
+ * @property {string[]} SEARCH.optionalParams
  */
+
+const commonParams = ['sessionId', 'userId', 'lang', 'device', 'os'];
 
 export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
   PAGE_VIEW: {
-    requiredParams: ['sessionId', 'userId'],
+    requiredParams: [...commonParams],
     optionalParams: ['category', 'subCategory'],
   },
   PRODUCT_VIEW: {
-    requiredParams: ['productId', 'sessionId', 'userId'],
+    requiredParams: ['productId', ...commonParams],
     optionalParams: [
       'title',
       'url',
@@ -58,11 +85,11 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   BASKET_OPERATIONS: {
-    requiredParams: ['productId', 'basketId', 'step', 'sessionId', 'userId'],
+    requiredParams: ['productId', 'basketId', 'step', ...commonParams],
     optionalParams: ['price', 'quantity', 'size', 'activeBanners'],
   },
   CHECKOUT: {
-    requiredParams: ['totalPrice', 'basketId', 'step', 'sessionId', 'userId'],
+    requiredParams: ['totalPrice', 'basketId', 'step', ...commonParams],
     optionalParams: [
       'productList',
       'orderNo',
@@ -77,7 +104,7 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   USER_OPERATIONS: {
-    requiredParams: ['step', 'sessionId', 'userId'],
+    requiredParams: ['step', ...commonParams],
     optionalParams: [
       'username',
       'fullName',
@@ -100,15 +127,15 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
     ],
   },
   CUSTOM_EVENT: {
-    requiredParams: ['type', 'sessionId', 'userId'],
+    requiredParams: ['type', ...commonParams],
     optionalParams: [],
   },
   INTERACTION: {
     requiredParams: ['type'],
-    optionalParams: ['interactionId', 'instanceId'],
+    optionalParams: ['interactionId', 'instanceId', ...commonParams],
   },
   SEARCH: {
-    requiredParams: ['sessionId', 'userId'],
+    requiredParams: ['sessionId', 'userId', ...commonParams],
     optionalParams: [
       'query',
       'type',

@@ -1,3 +1,7 @@
+/**
+ * @enum CURRENCY
+ * @description Supported currencies by Segmentify.
+ */
 export const CURRENCY = {
   AED: 'AED',
   AFN: 'AFN',

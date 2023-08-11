@@ -29,15 +29,21 @@ import type {
   FirePushNotificationInteractionResponse,
 } from '../types';
 
+import type {
+  GenericSegmentifyEventPayload,
+  KEYS_OF_EVENTS,
+} from '../types/interfaces/segmentify-events/EventsPayloads.interface';
+
 /**
- * RequestCredentials
+ * @typedef
+ * @name RequestCredentials
  * @description
  * RequestCredentials is a function that is used to get the required credentials from Segmentify API.
  * It takes requiredFields as parameter.
  * requiredFields is the number of required credentials.
  * It returns a promise that resolves to the required credentials.
  * @param {TRequiredFieldCount} requiredFields
- * @returns Promise<any>
+ * @returns {RequestCredentialsResponse}
  */
 
 export const RequestCredentials = async ({
@@ -60,7 +66,8 @@ export const RequestCredentials = async ({
 };
 
 /**
- * FireEvent
+ * @typedef
+ * @name FireEvent
  * @description
  * FireEvent is a function that is used to send events to Segmentify API.
  * It takes type and eventPayload as parameters.
@@ -68,17 +75,17 @@ export const RequestCredentials = async ({
  * eventPayload is the payload of the event.
  * It returns a promise that resolves to the response of the API.
  * @param {TEventTypes} type
- * @param {any} eventPayload
- * @returns Promise<any>
- * @throws Error
+ * @param {GenericSegmentifyEventPayload<T>} eventPayload
+ * @returns {Promise<any>}
+ * @throws {Error}
  */
 
-export const FireEvent = async ({
+export const FireEvent = async <T extends KEYS_OF_EVENTS>({
   type,
   eventPayload,
 }: {
   type: TEventTypes;
-  eventPayload: any;
+  eventPayload: GenericSegmentifyEventPayload<T> | any;
 }) => {
   const eventType = eventPayload?.name;
   if (type === eventType) {
@@ -103,6 +110,7 @@ export const FireEvent = async ({
       `${dataCenterUrl}${SEND_EVENTS_URL}?apiKey=${apiKey}`,
       eventPayload
     );
+
     return data;
   }
 
@@ -110,7 +118,8 @@ export const FireEvent = async ({
 };
 
 /**
- * RequestPushNotificationPermission
+ * @typedef
+ * @name RequestPushNotificationPermission
  * @description
  * RequestPushNotificationPermission is a function that is used to request permission for push notifications.
  * It takes deviceToken and userId as parameters.
@@ -118,8 +127,8 @@ export const FireEvent = async ({
  * userId is the id of the user.
  * It returns a promise that resolves to the response of the API.
  * @param {TRequestPushNotificationPermission} deviceToken
- * @returns Promise<any>
- * @throws Error
+ * @returns {RequestPushNotificationPermissionResponse}
+ * @throws {Error}
  */
 
 export const RequestPushNotificationPermission = async ({
@@ -150,6 +159,17 @@ export const RequestPushNotificationPermission = async ({
   );
 };
 
+/**
+ * @typedef
+ * @name FirePushNotification
+ * @description
+ * FirePushNotification is a function that is used to send push notifications to Segmentify API.
+ * It takes deviceToken, type, instanceId and productId as parameters.
+ * @param {TFirePushNotification} deviceToken
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+
 export const FirePushNotification = async ({
   deviceToken,
   type,
@@ -171,7 +191,8 @@ export const FirePushNotification = async ({
 };
 
 /**
- * FirePushNotificationInteraction
+ * @typedef
+ * @name FirePushNotificationInteraction
  * @description
  * FirePushNotificationInteraction is a function that is used to send push notification interactions to Segmentify API.
  * It takes instanceId and type as parameters.
@@ -179,8 +200,8 @@ export const FirePushNotification = async ({
  * type is the type of the interaction.
  * It returns a promise that resolves to the response of the API.
  * @param {TFirePushNotificationInteraction} instanceId
- * @returns Promise<any>
- * @throws Error
+ * @returns {FirePushNotificationInteractionResponse}
+ * @throws {Error}
  */
 
 export const FirePushNotificationInteraction = async ({

@@ -10,21 +10,21 @@ const SegmentifyNativeContext = createContext<TSegmentifyState>(
 );
 
 /**
- * Segmentify Native Provider
+ * @typedef
+ * @name SegmentifyNativeProvider
  * @param {Object} props - Props
  * @param {Object} props.children - Children
  * @param {Object} props.segmentify - Segmentify
  * @param {Object} props.messaging - Messaging
  * @param {Object} props.pushNotificationConfig - Push Notification Config
  * @returns {JSX.Element}
- * @constructor
  */
 
 const SegmentifyNativeProvider = ({
   children,
   segmentify,
+  logger = false,
   messaging,
-  pushNotificationConfig,
 }: TContext): JSX.Element => {
   const [userReadyStatus, setUserReadyStatus] = useState<boolean>(false);
   const { config, user } = segmentify;
@@ -34,6 +34,7 @@ const SegmentifyNativeProvider = ({
 
   useContextInitilizer({
     stateSetter: setState,
+    logger,
     ctxData: {
       config,
       user,
@@ -50,7 +51,6 @@ const SegmentifyNativeProvider = ({
       if (messaging) {
         PushNotificationPermission({
           messaging,
-          pushNotificationConfig,
         });
       }
     }
@@ -59,7 +59,6 @@ const SegmentifyNativeProvider = ({
     segmentifyState?.segmentify?.user?.sessionId,
     messaging,
     userReadyStatus,
-    pushNotificationConfig,
   ]);
 
   return (

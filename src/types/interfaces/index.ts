@@ -1,7 +1,15 @@
 export type {
+  PageView,
+  ProductView,
+  BasketOperations,
+  CheckOut,
+  UserOperations,
+  Custom,
+  Interaction,
+  Search,
   TRequestPushNotificationPermission,
   TFirePushNotification,
   TRequestPushNotificationPermissionPayload,
   TFirePushNotificationInteraction,
   TNotificationConfigs,
-} from './events/push.interface';
+} from './segmentify-events';

@@ -1,19 +1,17 @@
 import type { API_ERROR_ENUMS } from '../enums';
-
+type statusCode = keyof typeof API_ERROR_ENUMS & { SUCCESS: 'SUCCESS' };
 /**
- * TSEGMENTIFY_CAMPAING_RESPONSE
- * TSEGMENTIFY_CAMPAING_RESPONSE is a type that represents the response body for Segmentify API.
- * It is a json object that contains the response of the request.
- * It has a statusCode parameter that represents the status of the request.
- * You can check the possible status codes from API_ERROR_ENUMS constant.
- * It has a timestamp parameter that represents the time of the response.
- * It has a search parameter that represents the search results for the request.
- * It has a campaigns parameter that represents the campaigns results for the request.
- * It has a coupons parameter that represents the coupons results for the request.
- * It has a experiments parameter that represents the experiments results for the request.
- * It has a responses parameter that represents the responses results for the request.
- * Each of these parameters is an array of objects.
- * You can check the possible objects from Segmentify API documentation.
+ * @typedef
+ * @name TSEGMENTIFY_CAMPAING_RESPONSE
+ * @description
+ * TSEGMENTIFY_CAMPAING_RESPONSE is a type that describes the response of the Segmentify API.
+ * @property {Array<any[]>} search The search array of the response.
+ * @property {Array<any[]>} campaigns The campaigns array of the response.
+ * @property {Array<any[]>} coupons The coupons array of the response.
+ * @property {Array<any[]>} experiments The experiments array of the response.
+ * @property {Array<any[]>} responses The responses array of the response.
+ * @property {statusCode} statusCode The statusCode of the response. {@link ResponseStatusCodeType}
+ * @property {number} timestamp The timestamp of the response.
  */
 
 export type TSEGMENTIFY_CAMPAING_RESPONSE = {
@@ -22,6 +20,6 @@ export type TSEGMENTIFY_CAMPAING_RESPONSE = {
   coupons: Array<any[]>;
   experiments: Array<any[]>;
   responses: Array<any[]>;
-  statusCode: typeof API_ERROR_ENUMS & { SUCCESS: 'SUCCESS' };
+  statusCode: statusCode;
   timestamp: number;
 };
