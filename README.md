@@ -442,7 +442,8 @@ const AppProviders =({children}:React.ReactNode)=>{
   .
   .
   .
-  return (
+
+return (
     <SegmentifyNativeProvider
       segmentifyState={providerConfig}
       messaging={messaging}
@@ -461,6 +462,65 @@ By default mobile devices operating systems have restricted policy about request
 ### Android Only
 
 You can customize your push notification title and bodies using html and inline css in segmentify campaign management tool.
+
+### iOS Only
+
+This is a quick guide to display an image in an incoming notification. Android handles this out of the box so this extra setup is only necessary for iOS.
+
+| If you want to know more about the specifics of this setup read the official [Firebase](https://firebase.google.com/docs/cloud-messaging/ios/send-image?hl=tr) docs.
+
+Before you start Be sure you already have Cloud Messaging installed and set up. In case you don't get started [here](https://rnfirebase.io/messaging/usage).
+
+### Step 1 - Add a notification service extension
+
+From Xcode top menu go to: `File > New > Target...`
+A modal will present a list of possible targets, scroll down or use the filter to select Notification Service Extension. Press Next.
+
+- Add a product name (use ImageNotification to follow along) and click Finish
+- Enable the scheme by clicking Activate
+
+  ![step-1](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2o0NHkwY3doajg0N2E0NW82dnNmN3hvOGZlYWo2Ym80OGlrdXJ1ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0Yv6qXifJaSR1oYXjM/giphy.gif)
+
+### Step 2 - Add target to the Podfile
+
+Ensure that your new extension has access to Firebase/Messaging pod by adding it in the Podfile:
+
+- From the Navigator open the Podfile: Pods > Podfile
+- Scroll down to the bottom of the file and add:
+
+```objc
+  target 'ImageNotification' do
+    pod 'Firebase/Messaging', '~> VERSION_NUMBER' # eg 6.31.0
+  end
+```
+
+- Make sure to change the version number `VERSION_NUMBER` with the currently installed version (check your Podfile.lock)
+- Install or update your pods using `pod install` from the ios folder
+
+  ![step-2](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTE3Y2l3aGlsbm5xOGI0dTBweDJjbnVmY3VmYjFwZWk5dXJiMDU1ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0X8x9Zb5pCcu4v2MFf/giphy.gif)
+
+### Step 3 - Use the extension helper
+
+At this point everything should still be running normally. This is the final step which is invoking the extension helper.
+
+From the navigator select your ImageNotification extension
+Open the `NotificationService.m` file
+At the top of the file `import FirebaseMessaging.h` right after the `NotificationService.h` as shown below
+
+```objc
+#import "NotificationService.h"
++ #import "FirebaseMessaging.h"
+then replace everything from line 25 to 28 with the extension helper
+- // Modify the notification content here...
+- self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
+
+- self.contentHandler(self.bestAttemptContent);
++ [[FIRMessaging extensionHelper] populateNotificationContent:self.bestAttemptContent withContentHandler:contentHandler];
+```
+
+![step-3](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXphcnVkcDU1aGtoNnlod2g3OHFtZ2Zpd29mMms4dncwZTZjdnRrOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DtAMEDiAwg4BvHjRXB/giphy.gif)
+
+Run the app and check it builds successfully – make sure you have the correct target selected. Now you can use the Notifications composer to test sending notifications with an image (300KB max size).
 
 ## Configuring Push Notifications
 
