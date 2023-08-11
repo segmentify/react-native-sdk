@@ -71,3 +71,6 @@ lib/
 
 # Docs
 docs/
+
+
+*.tgz

@@ -1,5 +1,3 @@
-// TODO: Mock has to be updated according to the new data structure
-
 export const recommendedProductsArray = [
   {
     'RECOMMENDATION_SMART_OFFERS|TODAY|NONE': [[Object], [Object], [Object]],

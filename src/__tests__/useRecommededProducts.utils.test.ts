@@ -1,7 +1,7 @@
 import {
   FilteredData,
   CategorizeProductsByKeys,
-} from '../hooks/recommended-products/utils';
+} from '../hooks/recommendation/recommended-products/utils';
 
 describe('useRecommendedProducts utils', () => {
   it('should return filtered data', () => {

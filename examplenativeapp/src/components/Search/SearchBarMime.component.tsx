@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   View,
@@ -13,15 +13,27 @@ type SearchBarMimeProps = {
   navigation: any;
   isMime?: boolean;
   onSearchHandler?: (text: string | undefined) => void;
+  searchQuery?: string;
 };
 
 export const SearchBarMime = ({
   navigation,
   isMime = true,
   onSearchHandler,
+  searchQuery,
 }: SearchBarMimeProps) => {
-  const [searchText, setSearchText] = useState<string | undefined>('');
+  const [searchText, setSearchText] = useState<string | undefined>(searchQuery);
   const windowWidth = Dimensions.get('window').width;
+
+  useEffect(() => {
+    setSearchText(searchQuery);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    return () => {
+      setSearchText('');
+    };
+  }, []);
 
   const submitSearch = () => {
     if (onSearchHandler) {
@@ -62,7 +74,7 @@ export const SearchBarMime = ({
             navigation.navigate('Search');
           }
         }}>
-        <Input 
+        <Input
           editable={!isMime}
           width="100%"
           height="100%"
@@ -79,7 +91,7 @@ export const SearchBarMime = ({
             setSearchText(text);
           }}
           onSubmitEditing={submitSearch}
-          InputLeftElement={<SearchIcon color="gray.400" size="5" ml="2" />} 
+          InputLeftElement={<SearchIcon color="gray.400" size="5" ml="2" />}
           InputRightElement={searchText && searchText.length ? <CloseIcon color="gray.400" size="4" mr="3" onPress={clearSearch} /> : undefined}
         />
       </View>

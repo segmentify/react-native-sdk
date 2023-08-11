@@ -1,7 +1,8 @@
-export { CURRENCY } from './currency.enum';
+export { CURRENCY } from './Currency.enum';
 export { SEGMENTIFY_EVENTS } from './segmentify-event.enum';
-export { API_ERROR_ENUMS } from './api-error.enum';
-export { SUPPORTED_LANGUAGES } from './supported-languages.enum';
+export { API_ERROR_ENUMS } from './ApiError.enum';
+export { SUPPORTED_LANGUAGES } from './SupportedLanguages.enum';
+export { LOG_LEVELS } from './log-levels.enum';
 export {
   BASKET_OPERATIONS_STEPS,
   CHECKOUT_STEPS,
@@ -9,4 +10,6 @@ export {
   PAGE_TYPES,
   USER_OPERATIONS_STEPS,
   BANNER_OPERATIONS_TYPES,
-} from './segmentify-event-steps.enum';
+} from './SegmentifyEventSteps.enum';
+
+export { OS_TYPES, DEVICE_TYPES } from './DeviceOs.enum';

@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { getApiKey, getSubDomain } from '../event-manager/utils';
+import { getStorageItem } from './storage';
+import { Logger } from './logger';
 import { API_ERRORS, API_GET_AWAY_TIME_OUT } from '../constants';
 
 import type { ResponseStatusCodeType } from '../types';
+
+const loggerEnabled = getStorageItem({ key: 'logger' });
 
 export const apiGetAway = axios.create({
   timeout: API_GET_AWAY_TIME_OUT,
@@ -20,15 +24,27 @@ apiGetAway.interceptors.request.use(
     return config;
   },
   async (error) => {
-    const res = await Promise.reject(
-      `Request Interceptor Error: ${error?.message}`
-    );
-    console.error(res);
+    if (await loggerEnabled) {
+      return Logger({
+        level: 'ERROR',
+        message: 'Request Interceptor Error: ',
+        payload: error?.message,
+      });
+    }
+    await Promise.reject(`Request Interceptor Error: ${error?.message}`);
   }
 );
 
 apiGetAway.interceptors.response.use(
-  (response) => {
+  async (response) => {
+    if (await loggerEnabled) {
+      Logger({
+        level: 'INFO',
+        message: 'Response Interceptor: ',
+        payload: response.data,
+      });
+    }
+
     const responseStatusCode: ResponseStatusCodeType = response.data.statusCode;
 
     if (responseStatusCode !== 'SUCCESS' && response.data.statusText) {
@@ -42,9 +58,21 @@ apiGetAway.interceptors.response.use(
   },
   async (error) => {
     if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
-      console.log('Request timed out');
+      if (await loggerEnabled) {
+        Logger({
+          level: 'ERROR',
+          message: 'Response Interceptor Error: ',
+          payload: 'Request timed out',
+        });
+      }
+    } else {
+      Logger({
+        level: 'ERROR',
+        message: 'Response Interceptor Error: ',
+        payload: error?.message,
+      });
     }
-    const res = await Promise.reject(`Response Interceptor Error: ${error}`);
-    console.error(res);
+
+    await Promise.reject(`Response Interceptor Error: ${error}`);
   }
 );

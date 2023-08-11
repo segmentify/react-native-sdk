@@ -61,18 +61,32 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "contributors": [
+    {
+      "name": "sarpkayature",
+      "email": "sarpkayature@gmail.com"
+    },
+    {
+      "name": "ihalilaltun",
+      "email": "ihalilaltun@gmail.com"
+    },
+    {
+      "name": "hasanugr",
+      "email": "hasan.ugur4535@gmail.com"
+    }
+  ],
   "packageManager": "yarn@1.22.15",
   "engines": {
     "node": ">= 16.0.0"
   },
   "dependencies": {
+    "@notifee/react-native": "^7.8.0",
     "@react-native-async-storage/async-storage": "^1.19.0",
     "axios": "^1.4.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
-    "@notifee/react-native": "^7.8.0",
     "@react-native-community/eslint-config": "^3.0.2",
     "@react-native-firebase/app": "^18.2.0",
     "@react-native-firebase/messaging": "^18.2.0",
@@ -104,6 +118,11 @@
     "react": "*",
     "react-native": "*"
   },
+  "bundledDependencies": [
+    "@notifee/react-native",
+    "@react-native-async-storage/async-storage",
+    "axios"
+  ],
   "resolutions": {
     "@types/react": "17.0.21"
   },

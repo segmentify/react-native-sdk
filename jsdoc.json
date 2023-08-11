@@ -20,12 +20,34 @@
     "cleverLinks": false,
     "search": true,
     "default": {
-      "name": "Segmentify React Native Documentation",
-      "title": "Segmentify React Native Documentation"
+      "name": "Segmentify React Native SDK",
+      "title": "Segmentify React Native SDK"
     },
     "better-docs": {
-      "name": "Segmentify React Native Documentation",
-      "title": "Segmentify React Native Documentation"
+      "name": "Segmentify React Native SDK",
+      "title": "Segmentify React Native SDK",
+      "sections": [
+        "Modules",
+        "Classes",
+        "Externals",
+        "Events",
+        "Namespaces",
+        "Mixins",
+        "Tutorials",
+        "Interfaces",
+        "Global"
+      ],
+      "logo": {
+        "url": "https://segmentify.com/wp-content/themes/segmentify/dist/img/static/segmentify-header-logo.svg",
+        "width": 200,
+        "height": 200
+      },
+      "navLinks": [
+        {
+          "label": "Repository",
+          "href": "https://github.com/segmentify/react-native-sdk"
+        }
+      ]
     }
   },
   "opts": {
