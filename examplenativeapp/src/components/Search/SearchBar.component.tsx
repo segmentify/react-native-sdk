@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import {SearchBarMime} from './SearchBarMime.component';
@@ -7,16 +7,16 @@ import {useToast} from 'react-native-toast-notifications';
 
 export const SearchBar = ({
   isMime = false,
-  setSearchProducts,
+  setSearchProducts = () => {},
+  setSearchBanners = () => {},
+  setSearchQuery = () => {},
   searchQuery,
-  setSearchQuery,
-  setSearchBanners,
 }: {
   isMime?: boolean;
   setSearchProducts?: any;
-  searchQuery?: string;
-  setSearchQuery?: any;
   setSearchBanners?: any;
+  setSearchQuery?: any;
+  searchQuery?: string;
 }) => {
   const toast = useToast();
   const navigation = useNavigation();
@@ -39,6 +39,7 @@ export const SearchBar = ({
           const products = res?.search[0][0]?.products;
           const banners = res?.search[0][0]?.banners;
           setSearchProducts(products);
+          setSearchBanners(banners);
           toast.show('', {
             type: 'custom_toast',
             animationDuration: 100,
