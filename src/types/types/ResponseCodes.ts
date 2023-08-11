@@ -1,5 +1,7 @@
 import { API_ERROR_ENUMS } from '../enums';
 
+type APIErrorType = keyof typeof API_ERROR_ENUMS;
+
 /**
  * @typedef
  * @name APIErrorType
@@ -7,4 +9,5 @@ import { API_ERROR_ENUMS } from '../enums';
  * @example
  * "INVALID_TOKEN"
  */
-export type ResponseStatusCodeType = keyof typeof API_ERROR_ENUMS | 'SUCCESS';
+
+export type ResponseStatusCodeType = APIErrorType | 'SUCCESS';

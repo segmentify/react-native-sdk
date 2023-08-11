@@ -1,15 +1,16 @@
 import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TBASKET_OPERATIONS_STEPS } from '../../types';
 
+type BasketOperationsSteps = typeof TBASKET_OPERATIONS_STEPS;
 /**
  * @typedef
  * @name BasketOperations
  * @description
  * BasketOperations is a type that describes the parameters that basket operations event takes.
- * @property {TBASKET_OPERATIONS_STEPS} step The step of the basket operation. It can be 'add' or 'remove'.
+ * @property {string} step The step of the basket operation. It can be 'add' or 'remove'. {@link TBASKET_OPERATIONS_STEPS}
  * @property {string} productId The id of the product.
- * @property {number} [price] The price of the product.
- * @property {number} [quantity] The quantity of the product.
+ * @property {number} price The price of the product.
+ * @property {number} quantity The quantity of the product.
  * @example
  *  {
  *   step: 'add',
@@ -18,14 +19,14 @@ import type { TBASKET_OPERATIONS_STEPS } from '../../types';
  *   quantity: 1,
  *  }
  */
+
 export interface BasketOperations extends CommonEventParameters {
   /**
    * The step of the basket operation. It can be 'add' or 'remove'.
    * @example
    * 'add', 'remove'
-   * @type {TBASKET_OPERATIONS_STEPS}
    */
-  step: typeof TBASKET_OPERATIONS_STEPS;
+  step: BasketOperationsSteps;
   /**
    * The id of the product.
    * @example

@@ -1,7 +1,7 @@
 <h1 align="center">Segmentify React Native SDK</h1>
 
 <p align='center'>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.3-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/node-%3E%3D%2016.0.0-blue.svg" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
@@ -554,5 +554,6 @@ pushNotification:{
 
 - [@sarpkayature](https://github.com/sarpkayature)
 - [@hasanugur](https://github.com/hasanugr)
+- [@ihalilaltun](https://github.com/ihalilaltun)
 
 Made with ❤️ by Segmentify Development Team

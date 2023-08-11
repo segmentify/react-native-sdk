@@ -5,14 +5,14 @@ import type { TBANNER_OPERATIONS_TYPES } from '../../types';
  * @typedef
  * @name BannerOperations
  * @description BannerOperations type is used to define the type of the banner operations.
- * @property {TBANNER_OPERATIONS_TYPES} type - The type of the banner operation. It can be 'impression', 'click' or 'update'.
+ * @property {string} type - The type of the banner operation. It should be one of the following: {@link TBANNER_OPERATIONS_TYPES}
  * @property {string} title - The title of the banner.
  * @property {string} group - The group of the banner.
  * @property {number} order - The order of the banner in the group.
- * @property {string} [productId] - The unique id of the product.
- * @property {string} [category] - category of the product. It should be hierarchical like 'Electronics > Mobile Phones > Smartphones'.
- * @property {string} [brand] - The brand of the product.
- * @property {string} [label] - The label of the product.
+ * @property {string} productId - The unique id of the product.
+ * @property {string} category - category of the product. It should be hierarchical like 'Electronics > Mobile Phones > Smartphones'.
+ * @property {string} brand - The brand of the product.
+ * @property {string} label - The label of the product.
  * @type {BannerOperations}
  * @example
  *  {
@@ -26,13 +26,15 @@ import type { TBANNER_OPERATIONS_TYPES } from '../../types';
  *   "label": "iPhone 12 Pro Max"
  *  }
  */
+
+type bannerType = typeof TBANNER_OPERATIONS_TYPES;
 export interface BannerOperations extends CommonEventParameters {
   /**
    * The type of the banner operation.
    * @example
    * 'impression', 'click' or 'update'
    */
-  type: typeof TBANNER_OPERATIONS_TYPES;
+  type: bannerType;
   /**
    * The title of the banner.
    * @example

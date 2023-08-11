@@ -1,15 +1,17 @@
 import type { CommonEventParameters } from '../CommonEventParameters';
 import type { CheckoutProduct, TCHECKOUT_STEPS } from '../../types';
 
+type CheckoutSteps = typeof TCHECKOUT_STEPS;
+
 /**
  * @typedef
  * @name CheckOut
  * @description
  * CheckOut is a type that describes the parameters that checkout event takes.
- * @property {TCHECKOUT_STEPS} step The step of the checkout.
+ * @property {string} step The step of the checkout. It can be 'customer', 'view-basket', 'payment-info', 'purchase'. {@link TCHECKOUT_STEPS}
  * @property {number} totalPrice The total price of the products.
- * @property {string} [orderNo] The order number of the products.
- * @property {string} [cartUrl] The url of the cart.
+ * @property {string} orderNo The order number of the products.
+ * @property {string} cartUrl The url of the cart.
  * @property {CheckoutProduct[]} products The products in the cart.
  * @example
  * {
@@ -22,13 +24,14 @@ import type { CheckoutProduct, TCHECKOUT_STEPS } from '../../types';
  *  ],
  * }
  */
+
 export interface CheckOut extends CommonEventParameters {
   /**
    * The step of the checkout..
    * @example
    * 'customer', 'view-basket', 'payment-info', 'purchase'
    */
-  step: typeof TCHECKOUT_STEPS;
+  step: CheckoutSteps;
   /**
    * The total price of the products.
    * @example

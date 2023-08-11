@@ -15,8 +15,8 @@ import type { Event as NotifeeEvent } from '@notifee/react-native';
  * It takes type and detail parameters.
  * type is the type of the event.
  * detail is the detail of the event.
- * @param {NotifeeEvent['type']} type
- * @param {NotifeeEvent['detail']} detail
+ * @param {NotifeeEvent.type} type
+ * @param {NotifeeEvent.detail} detail
  * @returns {void}
  */
 

@@ -104,6 +104,8 @@ export type TSegmentifyState = {
   };
 };
 
+type ctxConfig = TSegmentifyState['segmentify']['config'];
+type ctxUser = TSegmentifyState['segmentify']['user'];
 /**
  * @typedef
  * @name TSegmentifyContext
@@ -113,13 +115,13 @@ export type TSegmentifyState = {
  * @property {React.Dispatch<React.SetStateAction<TSegmentifyState>>} stateSetter The stateSetter of the SegmentifyProvider.
  * @property {boolean} logger The logger of the SegmentifyProvider.
  * @property {object} ctxData The ctxData of the SegmentifyProvider.
- * @property {object} ctxData.config The config object that contains the apiKey, dataCenterUrl, subDomain, dataCenterPushUrl and isApnsEnabled.
- * @property {string} ctxData.config.apiKey The apiKey of the Segmentify.
- * @property {string} ctxData.config.dataCenterUrl The dataCenterUrl of the Segmentify.
- * @property {string} ctxData.config.subDomain The subDomain of the Segmentify.
- * @property {string} ctxData.config.dataCenterPushUrl The dataCenterPushUrl of the Segmentify.
- * @property {boolean} ctxData.config.isApnsEnabled The isApnsEnabled of the Segmentify.
- * @property {object} ctxData.user The user object that contains the userId and sessionId.
+ * @property {TSegmentifyState.segmentify.config} TContextInitilizer.ctxData.config The config object that contains the apiKey, dataCenterUrl, subDomain, dataCenterPushUrl and isApnsEnabled.
+ * @property {string} TContextInitilizer.ctxData.config.apiKey The apiKey of the Segmentify.
+ * @property {string} TContextInitilizer.ctxData.config.dataCenterUrl The dataCenterUrl of the Segmentify.
+ * @property {string} TContextInitilizer.ctxData.config.subDomain The subDomain of the Segmentify.
+ * @property {string} TContextInitilizer.ctxData.config.dataCenterPushUrl The dataCenterPushUrl of the Segmentify.
+ * @property {boolean} TContextInitilizer.ctxData.config.isApnsEnabled The isApnsEnabled of the Segmentify.
+ * @property {TSegmentifyState.segmentify.user} TContextInitilize.ctxData.user The user object that contains the userId and sessionId.
  * @property {string} ctxData.user.userId The userId of the user.
  * @property {string} ctxData.user.sessionId The sessionId of the user.
  */
@@ -127,8 +129,8 @@ export type TContextInitilizer = {
   stateSetter: React.Dispatch<React.SetStateAction<TSegmentifyState>>;
   logger: boolean;
   ctxData: {
-    config: TSegmentifyState['segmentify']['config'];
-    user: TSegmentifyState['segmentify']['user'];
+    config: ctxConfig;
+    user: ctxUser;
   };
 };
 

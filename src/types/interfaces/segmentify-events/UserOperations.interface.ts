@@ -1,23 +1,25 @@
 import type { CommonEventParameters } from '../CommonEventParameters';
 import type { TUSER_OPERATIONS_STEPS } from '../../types';
 
+type UserOperationsSteps = typeof TUSER_OPERATIONS_STEPS;
+
 /**
  * @typedef
  * @name UserOperations
  * @description UserOperations type is used to define the type of the user operations.
- * @property {TUSER_OPERATIONS_STEPS} step - The step of the user operations event. It can be 'signup', 'signin', 'signout' or 'update'.
- * @property {string} [username] - The username of the user.
- * @property {string} [fullName] - The full name of the user.
- * @property {string} [email] - The email of the user. (Mandatory for using email module)
- * @property {string} [phone] - The phone of the user. (Like '+905555555555')
- * @property {boolean} [isLogin] - The login status of the user.
- * @property {boolean} [isRegistered] - The registered status of the user.
- * @property {string} [gender] - The registered gender of the user.
- * @property {string} [age] - The registered age of the user.
- * @property {string} [birthdate] - The registered birthdate of the user.
- * @property {string} [memberSince] - The registered member since date of the user.
- * @property {string} [location] - The registered location of the user.
- * @property {string[]} [segments] - The registered segments of the user.
+ * @property {string} step - The step of the user operations event. It can be 'signup', 'signin', 'signout' or 'update'. {@link TUSER_OPERATIONS_STEPS}
+ * @property {string} username - The username of the user.
+ * @property {string} fullName - The full name of the user.
+ * @property {string} email - The email of the user. (Mandatory for using email module)
+ * @property {string} phone - The phone of the user. (Like '+905555555555')
+ * @property {boolean} isLogin - The login status of the user.
+ * @property {boolean} isRegistered - The registered status of the user.
+ * @property {string} gender - The registered gender of the user.
+ * @property {string} age - The registered age of the user.
+ * @property {string} birthdate - The registered birthdate of the user.
+ * @property {string} memberSince - The registered member since date of the user.
+ * @property {string} location - The registered location of the user.
+ * @property {string[]} segments - The registered segments of the user.
  * @type {UserOperations}
  * @example
  *  {
@@ -39,14 +41,14 @@ import type { TUSER_OPERATIONS_STEPS } from '../../types';
  *   ]
  * }
  */
+
 export interface UserOperations extends CommonEventParameters {
   /**
    * The step of the user operations event. It can be 'signup', 'signin', 'signout' or 'update'.
    * @example
    * 'signup', 'signin', 'signout', 'update'
-   * @type {TUSER_OPERATIONS_STEPS}
    */
-  step: typeof TUSER_OPERATIONS_STEPS;
+  step: UserOperationsSteps;
   /**
    * The username of the user.
    * @example
