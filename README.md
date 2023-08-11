@@ -479,7 +479,7 @@ A modal will present a list of possible targets, scroll down or use the filter t
 - Add a product name (use ImageNotification to follow along) and click Finish
 - Enable the scheme by clicking Activate
 
-  ![step-1](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2o0NHkwY3doajg0N2E0NW82dnNmN3hvOGZlYWo2Ym80OGlrdXJ1ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0Yv6qXifJaSR1oYXjM/giphy.gif)
+  ![step-1](https://cdn.segmentify.com/v3/assets/ios-notification-images-step-1.gif)
 
 ### Step 2 - Add target to the Podfile
 
@@ -497,7 +497,7 @@ Ensure that your new extension has access to Firebase/Messaging pod by adding it
 - Make sure to change the version number `VERSION_NUMBER` with the currently installed version (check your Podfile.lock)
 - Install or update your pods using `pod install` from the ios folder
 
-  ![step-2](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTE3Y2l3aGlsbm5xOGI0dTBweDJjbnVmY3VmYjFwZWk5dXJiMDU1ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0X8x9Zb5pCcu4v2MFf/giphy.gif)
+  ![step-2](https://cdn.segmentify.com/v3/assets/ios-notification-images-step-2.gif)
 
 ### Step 3 - Use the extension helper
 
@@ -518,7 +518,7 @@ then replace everything from line 25 to 28 with the extension helper
 + [[FIRMessaging extensionHelper] populateNotificationContent:self.bestAttemptContent withContentHandler:contentHandler];
 ```
 
-![step-3](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXphcnVkcDU1aGtoNnlod2g3OHFtZ2Zpd29mMms4dncwZTZjdnRrOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DtAMEDiAwg4BvHjRXB/giphy.gif)
+![step-3](https://cdn.segmentify.com/v3/assets/ios-notification-images-step-3.gif)
 
 Run the app and check it builds successfully – make sure you have the correct target selected. Now you can use the Notifications composer to test sending notifications with an image (300KB max size).
 
