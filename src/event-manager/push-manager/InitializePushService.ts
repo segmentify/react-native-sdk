@@ -5,7 +5,8 @@ import { HandleForeGroundNotification } from './handlers/HandleForeGroundNotific
 import type { Messaging } from '../../types/types/handlers.type';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name InitializePushService
  * @description
  * InitializePushService is a function that initializes the push service.

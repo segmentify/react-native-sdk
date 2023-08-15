@@ -1,6 +1,6 @@
 /**
  * @description Segmentify Event Steps
- * @enum BASKET_OPERATIONS_STEPS
+ * @namespace BASKET_OPERATIONS_STEPS
  * @property {string} ADD
  * @property {string} REMOVE
  */
@@ -11,7 +11,7 @@ export const BASKET_OPERATIONS_STEPS = {
 
 /**
  * @description Segmentify CHECKOUT_STEPS
- * @enum CHECKOUT_STEPS
+ * @namespace CHECKOUT_STEPS
  * @property {string} CUSTOMER
  * @property {string} VIEW_BASKET
  * @property {string} PAYMENT_INFO
@@ -26,7 +26,7 @@ export const CHECKOUT_STEPS = {
 
 /**
  * @description Segmentify Event INTERACTION_TYPES
- * @enum INTERACTION_TYPES
+ * @namespace INTERACTION_TYPES
  * @property {string} IMPRESSION
  * @property {string} CLICK
  * @property {string} SEARCH
@@ -41,7 +41,7 @@ export const INTERACTION_TYPES = {
 
 /**
  * @description Segmentify Event PAGE_TYPES
- * @enum PAGE_TYPES
+ * @namespace PAGE_TYPES
  * @property {string} HOME
  * @property {string} PRODUCT
  * @property {string} CATEGORY
@@ -63,7 +63,7 @@ export const PAGE_TYPES = {
 
 /**
  * @description Segmentify Event USER_OPERATIONS_STEPS
- * @enum USER_OPERATIONS_STEPS
+ * @namespace USER_OPERATIONS_STEPS
  * @property {string} SIGN_UP
  * @property {string} SIGN_IN
  * @property {string} SIGN_OUT
@@ -79,7 +79,7 @@ export const USER_OPERATIONS_STEPS = {
 
 /**
  * @description Segmentify Event BANNER_OPERATIONS_TYPES
- * @enum BANNER_OPERATIONS_TYPES
+ * @namespace BANNER_OPERATIONS_TYPES
  * @property {string} IMPRESSION
  * @property {string} CLICK
  * @property {string} UPDATE

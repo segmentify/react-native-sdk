@@ -35,7 +35,8 @@ import type {
 } from '../types/interfaces/segmentify-events/EventsPayloads.interface';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name RequestCredentials
  * @description
  * RequestCredentials is a function that is used to get the required credentials from Segmentify API.
@@ -66,7 +67,8 @@ export const RequestCredentials = async ({
 };
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name FireEvent
  * @description
  * FireEvent is a function that is used to send events to Segmentify API.
@@ -118,7 +120,8 @@ export const FireEvent = async <T extends KEYS_OF_EVENTS>({
 };
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name RequestPushNotificationPermission
  * @description
  * RequestPushNotificationPermission is a function that is used to request permission for push notifications.
@@ -160,7 +163,8 @@ export const RequestPushNotificationPermission = async ({
 };
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name FirePushNotification
  * @description
  * FirePushNotification is a function that is used to send push notifications to Segmentify API.
@@ -191,7 +195,8 @@ export const FirePushNotification = async ({
 };
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name FirePushNotificationInteraction
  * @description
  * FirePushNotificationInteraction is a function that is used to send push notification interactions to Segmentify API.

@@ -164,10 +164,14 @@ export type UtilsGetStoreType = Promise<{
  * @name StorageType
  * @description
  * StorageType is a type that describes the parameters that all events take.
- * @property {string} key The key of the storage.
- * @property {any} value The value of the storage.
  */
 export type StorageType = {
+  /**
+   *  The key of the storage.
+   */
   key: string;
+  /**
+   * The value of the storage.
+   */
   value: any;
 };

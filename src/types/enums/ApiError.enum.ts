@@ -1,5 +1,6 @@
 /**
- * @enum API_ERROR_ENUMS
+ * @memberof module:EventManager
+ * @namespace API_ERROR_ENUMS
  * @description
  * API_ERROR_ENUMS is an enum that describes the possible errors of the Segmentify API.
  * @property {string} NO_API_KEY Your request doesn't have an apiKey parameter, please provide apiKey parameter at the request with your account's unique api key.

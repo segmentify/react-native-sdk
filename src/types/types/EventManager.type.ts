@@ -6,10 +6,11 @@ export type TEventTypes = keyof typeof SEGMENTIFY_EVENTS;
 export type TRequiredFieldCount = number;
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name RequestCredentialsResponse
  * @description RequestCredentialsResponse type is used to define the type of the request credentials response.
- * @type {RequestCredentialsResponse}
+ * @returns {Promise<AxiosResponse<Array<string>>>}
  * @example
  * [
  *  "123456789",
@@ -19,14 +20,10 @@ export type TRequiredFieldCount = number;
 export type RequestCredentialsResponse = Promise<AxiosResponse<Array<string>>>;
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name RequestPushNotificationPermissionResponseBody
  * @description RequestPushNotificationPermissionResponseBody type is used to define the type of the request push notification permission response body.
- * @property {string} deviceToken - Device token
- * @property {string} os - Operating system
- * @property {string} providerType - Provider type
- * @property {string} userId - User id
- * @type {RequestPushNotificationPermissionResponseBody}
  * @returns {Promise<AxiosResponse<RequestPushNotificationPermissionResponseBody>>}
  * @example
  * {
@@ -37,17 +34,29 @@ export type RequestCredentialsResponse = Promise<AxiosResponse<Array<string>>>;
  * }
  */
 export type RequestPushNotificationPermissionResponseBody = {
+  /**
+   * Device token is unique for each device.
+   */
   deviceToken: string;
+  /**
+   * OS is the operating system of the device.
+   */
   os: string;
+  /**
+   * Provider type is the push notification provider type.
+   */
   providerType: string;
+  /**
+   * User id is the unique id of the user.
+   */
   userId: string;
 };
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name RequestPushNotificationPermissionResponse
  * @description RequestPushNotificationPermissionResponse type is used to define the type of the request push notification permission response.
- * @type {RequestPushNotificationPermissionResponse}
  * @returns {Promise<AxiosResponse<RequestPushNotificationPermissionResponseBody>>}
  */
 export type RequestPushNotificationPermissionResponse = Promise<
@@ -55,10 +64,10 @@ export type RequestPushNotificationPermissionResponse = Promise<
 >;
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name FirePushNotificationInteractionResponse
  * @description FirePushNotificationInteractionResponse type is used to define the type of the fire push notification interaction response.
- * @type {FirePushNotificationInteractionResponse}
  * @returns {Promise<AxiosResponse<TFireBasePushResponse>>}
  */
 export type FirePushNotificationInteractionResponse = Promise<
@@ -66,10 +75,11 @@ export type FirePushNotificationInteractionResponse = Promise<
 >;
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name FirePushNotificationInteractionPayload
  * @description FirePushNotificationInteractionPayload type is used to define the type of the fire push notification interaction payload.
- * @type {FirePushNotificationInteractionPayload}
+ * @returns {Promise<AxiosResponse<TFireBasePushResponse>>}
  * @example
  * {
  *  userId: "123456789",
@@ -77,6 +87,12 @@ export type FirePushNotificationInteractionResponse = Promise<
  * }
  */
 export type TCredentialsPayload = {
+  /**
+   * User id is the unique id of the user.
+   */
   userId: string;
+  /**
+   * Device token is unique for each device.
+   */
   sessionId: string;
 };

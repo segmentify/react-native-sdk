@@ -8,14 +8,9 @@ import type { TSEGMENTIFY_EVENTS, TSUPPORTED_LANGUAGES, TCURRENCY } from '.';
  * Each event has a name, userId and sessionId parameters.
  * You can check the required and optional parameters for each event from SEGMENTIFY_EVENT_PARAMS constant.
  * You can check the possible event names from SEGMENTIFY_EVENT_ENUMS constant.
- * @property {TSEGMENTIFY_EVENTS} name
- * @property {string} userId
- * @property {string} sessionId
- * @property {TSUPPORTED_LANGUAGES | string} [lang]
- * @property {string} [region]
- * @property {TCURRENCY | string} [currency]
- * @property {string} [pageUrl]
- * @property {boolean} [testMode]
+ *  {@link TSEGMENTIFY_EVENTS}
+ * {@link TCURRENCY}
+ * {@link TSUPPORTED_LANGUAGES}
  * @type {SEGMENTIFY_REQUEST_TYPE}
  * @example
  * {
@@ -31,12 +26,36 @@ import type { TSEGMENTIFY_EVENTS, TSUPPORTED_LANGUAGES, TCURRENCY } from '.';
  */
 
 export type SEGMENTIFY_REQUEST_TYPE = {
+  /**
+   * The name of the event.
+   */
   name: TSEGMENTIFY_EVENTS;
+  /**
+   * The user id of the event.
+   */
   userId: string;
+  /**
+   * The session id of the event.
+   */
   sessionId: string;
+  /**
+   * The language of the payload.
+   */
   lang?: TSUPPORTED_LANGUAGES | string;
+  /**
+   * The region of the payload.
+   */
   region?: string;
+  /**
+   * The currency of integration.
+   */
   currency?: TCURRENCY | string;
+  /**
+   * The page url of the payload.
+   */
   pageUrl?: string;
+  /**
+   * The test mode.
+   */
   testMode?: boolean;
 };

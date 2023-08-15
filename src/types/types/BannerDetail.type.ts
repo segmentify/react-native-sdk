@@ -1,12 +1,7 @@
 /**
  * @typedef
  * @name BannerDetail
- * @category Types
  * @description BannerDetail type is used to define the type of the banner detail.
- * @property {string} [title] - Banner title
- * @property {string} [image] - Banner image
- * @property {number} [order] - Banner order
- * @property {string[]} [urls] - Banner urls
  * @type {BannerDetail}
  * @example
  * {
