@@ -1,6 +1,6 @@
 /**
  * Supported languages
- * @enum SUPPORTED_LANGUAGES
+ * @namespace SUPPORTED_LANGUAGES
  * @description Supported languages by Segmentify.
  * @property {string} TR
  * @property {string} EN

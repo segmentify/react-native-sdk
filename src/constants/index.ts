@@ -1,3 +1,8 @@
+/**
+ * @module Constants
+ * @description
+ * This module exports all constants used in the SDK.
+ */
 export { API_ERRORS } from './error';
 export { API_GET_AWAY_TIME_OUT } from './request';
 export {

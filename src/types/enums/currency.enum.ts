@@ -1,6 +1,6 @@
 /**
- * @enum CURRENCY
- * @description Supported currencies by Segmentify.
+ * @namespace CURRENCY
+ * @description Supported currencies by Segmentify. ISO 4217
  */
 export const CURRENCY = {
   AED: 'AED',

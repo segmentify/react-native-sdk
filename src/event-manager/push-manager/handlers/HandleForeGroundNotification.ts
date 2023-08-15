@@ -10,7 +10,8 @@ import type {
 } from '../../../types';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name HandleForeGroundNotification
  * @description
  * HandleForeGroundNotification is a function that handles the foreground notification.

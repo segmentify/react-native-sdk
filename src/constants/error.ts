@@ -2,13 +2,13 @@ import type { APIErrorType } from '../types';
 import { API_ERROR_ENUMS } from '../types';
 
 /**
- * API_ERRORS
+ * @memberof module:Constants
+ * @namespace API_ERRORS
  * @description
  * API_ERRORS is a constant object that contains all possible errors that can be returned by Segmentify API.
  * Each error has a statusCode and a message. statusCode is a number that represents the error type.
  * message is a string that describes the error.
  */
-
 export const API_ERRORS: APIErrorType<typeof API_ERROR_ENUMS> = {
   NO_API_KEY: {
     statusCode: API_ERROR_ENUMS.NO_API_KEY,

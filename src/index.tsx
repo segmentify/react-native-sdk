@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module SegmentifyNative
+ */
+
 export { useSegmentifyStorage } from './context/SegmentifyNativeContext';
 export { default as SegmentifyNativeProvider } from './context/SegmentifyNativeContext';
 
