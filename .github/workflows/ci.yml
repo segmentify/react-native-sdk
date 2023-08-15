@@ -59,3 +59,15 @@ jobs:
       - name: Build example for Web
         run: |
           yarn example expo export:web
+
+  build-documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Documentation
+        uses: ./.github/actions/setup
+
+      - name: Build documentation
+        run: yarn docs
