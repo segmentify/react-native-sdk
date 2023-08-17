@@ -82,16 +82,16 @@ export const Home = () => {
         if (!isLoaded) {
           return (
             <VStack key={key} mb={8} p={3}>
-              <Skeleton height={8} width="65%" />
+              <Skeleton height={8} width='65%' />
               <HStack
-                justifyContent="space-between"
-                alignItems="center"
+                justifyContent='space-between'
+                alignItems='center'
                 mt={2}
                 space={4}>
-                <Skeleton height={250} width="200" />
-                <Skeleton height={250} width="200" />
-                <Skeleton height={250} width="200" />
-                <Skeleton height={250} width="200" />
+                <Skeleton height={250} width='200' />
+                <Skeleton height={250} width='200' />
+                <Skeleton height={250} width='200' />
+                <Skeleton height={250} width='200' />
               </HStack>
             </VStack>
           );
@@ -99,7 +99,7 @@ export const Home = () => {
 
         return (
           <View key={key} mb={8}>
-            <Text fontSize="2xl" fontWeight="bold" mb={2} ml={3}>
+            <Text fontSize='2xl' fontWeight='bold' mb={2} ml={3}>
               {name}
             </Text>
             <ProductCardList
