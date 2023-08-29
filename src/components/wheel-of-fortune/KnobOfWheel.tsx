@@ -37,7 +37,7 @@ const KnobOfWheel = ({ options, state }: IKnobOfWheel) => {
           source={
             options.knobSource
               ? options.knobSource
-              : require('../../../assets/images/knob.png')
+              : require('../../assets/images/knob.png')
           }
           style={styles({ knobSize, YOLO, state }).image}
         />
