@@ -3,7 +3,7 @@ export const PAGE_VIEW_EVENT_EXAMPLE = {
   userId: '-897541074991628287',
   sessionId: '4020489616172081152',
   testMode: 'false',
-  device: 'app',
+  device: 'mobile',
   noProcess: false,
   tryCount: 0,
   nextPage: false,
