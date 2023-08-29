@@ -34,7 +34,8 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install",
-    "docs": "jsdoc -c jsdoc.json && open -a \"Google Chrome\" docs/index.html"
+    "docs": "jsdoc -c jsdoc.json && open -a \"Google Chrome\" docs/index.html",
+    "createTgz": "rm -rf segmentify-react-native-sdk-0.7.0.tgz && npm cache clean --force && npm pack"
   },
   "keywords": [
     "react-native",
@@ -82,7 +83,9 @@
   "dependencies": {
     "@notifee/react-native": "^7.8.0",
     "@react-native-async-storage/async-storage": "^1.19.0",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "d3-shape": "^3.2.0",
+    "react-native-svg": "^13.11.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
@@ -91,8 +94,9 @@
     "@react-native-firebase/app": "^18.2.0",
     "@react-native-firebase/messaging": "^18.2.0",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@types/d3-shape": "^3.1.2",
     "@types/jest": "^29.5.2",
-    "@types/react": "~17.0.21",
+    "@types/react": "^18.2.20",
     "@types/react-native": "0.70.0",
     "@types/react-native-push-notification": "^8.1.1",
     "better-docs": "^2.7.2",
