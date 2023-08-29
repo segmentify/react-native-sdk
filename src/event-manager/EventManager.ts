@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { apiGetAway } from '../utils/api-getaway';
+import { apiGetAway } from '../utils';
 import {
   getApiKey,
   getApiKeyWithBaseUrl,
