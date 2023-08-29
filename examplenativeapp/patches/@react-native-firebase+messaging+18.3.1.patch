@@ -1,0 +1,10 @@
+diff --git a/node_modules/@react-native-firebase/messaging/modular/index.js b/node_modules/@react-native-firebase/messaging/modular/index.js
+index 5c99d8f..6d4ee1e 100644
+--- a/node_modules/@react-native-firebase/messaging/modular/index.js
++++ b/node_modules/@react-native-firebase/messaging/modular/index.js
+@@ -1,4 +1,4 @@
+-import { firebase } from '..';
++import { firebase } from '../';
+ 
+ /**
+  * Returns a Messaging instance for the given app.
