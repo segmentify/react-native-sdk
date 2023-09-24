@@ -2,42 +2,50 @@ export type TWheelOfFortuneState = {
   enabled: boolean;
   started: boolean;
   finished: boolean;
-  winner: any;
   gameScreen: any;
-  wheelOpacity: any;
-  imageLeft: any;
-  imageTop: any;
-  fontSize: number;
   oneTurn: number;
   angleBySegment: number;
   angleOffset: number;
-  _wheelPaths: { [key: string]: any };
+  _wheelPaths: [{ [key: string]: any }];
   _angle: any;
   rewards: Array<any>;
-  rewardCount: number;
   numberOfSegments: number;
   angle: number;
 };
 
 export type TWheelOfFortuneProps = {
   options: TWheelOfFortuneOptions;
-  getWinner?: any;
+  closeCampaign?: any;
 };
 
 export type TWheelOfFortuneOptions = {
-  rewards: string[];
-  knobSize?: number;
-  borderWidth?: number;
-  borderColor?: string;
-  backgroundColor?: string;
-  duration?: number;
-  knobSource?: any;
-  playButton?: any;
-  innerRadius?: number;
-  winner?: number;
-  colors?: string[];
-  textColor?: string;
-  textAngle?: string;
-  onRef?: any;
-  getWinner?: any;
+  reward: TWheelOfFortuneReward;
+  possibleRewards: TWheelOfFortunePossibleReward[];
+  baseColor: string;
+  bgImage: string;
+  campaignTitle: string;
+  ctaButtonColor: string;
+  ctaButtonTextColor: string;
+  ctaButtonContent: string;
+  overlay: string;
+  pointerColor: string;
+  pointerImage: string;
+  resultTitle: string;
+};
+
+export type TWheelOfFortunePossibleReward = {
+  color: string;
+  content: string;
+  description: string;
+  index: number;
+};
+
+export type TWheelOfFortuneReward = {
+  assignedToUser: boolean;
+  coupon: string;
+  couponUrl: string;
+  description: string;
+  index: number;
+  instanceId: string;
+  timestamp: string;
 };

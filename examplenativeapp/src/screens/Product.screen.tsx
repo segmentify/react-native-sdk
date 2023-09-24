@@ -1,11 +1,18 @@
 import React, {useCallback, useEffect} from 'react';
 import {StyleSheet, View, Image, Dimensions} from 'react-native';
-import { Button, Text, HStack, ScrollView, VStack, ArrowForwardIcon } from 'native-base';
+import {
+  Button,
+  Text,
+  HStack,
+  ScrollView,
+  VStack,
+  ArrowForwardIcon,
+} from 'native-base';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import type {RootStackParamList} from '../router/Router';
-import { useToast } from "react-native-toast-notifications";
-
+import {useToast} from 'react-native-toast-notifications';
+import {PAGE_VIEW_EVENT_EXAMPLE} from '../example/events';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Product'>;
 
@@ -16,6 +23,11 @@ export const Product = ({navigation, route}: Props) => {
   console.log('Product', route.params!.item.productId);
 
   const getProductDetails = useCallback(async () => {
+    const sendPageViewEvent = await FireEvent({
+      type: 'PAGE_VIEW',
+      eventPayload: {...PAGE_VIEW_EVENT_EXAMPLE, category: 'Product Page'},
+    });
+
     const sendProductViewEvent = await FireEvent({
       type: 'PRODUCT_VIEW',
       eventPayload: {
@@ -42,42 +54,38 @@ export const Product = ({navigation, route}: Props) => {
         device: 'android',
       },
     });
-    await Promise.all([sendProductViewEvent, sendProductInteractionEvent]).then(
-      () => {
-        toast.show(
-          "",
-          {
-            type: "custom_toast",
-            animationDuration: 100,
-            data: {
-              title: 'Product View Event Sent',
-              messages: {
-                'productId': route.params!.item.productId,
-                'userId': segmentify?.user?.userId,
-                'sessionId': segmentify?.user?.sessionId,
-              }
-            },
-          }
-        )
-        toast.show(
-          "",
-          {
-            type: "custom_toast",
-            animationDuration: 100,
-            data: {
-              title: 'Product Interaction Event Sent',
-              messages: {
-                'productId': route.params!.item.productId,
-                'userId': segmentify?.user?.userId,
-                'sessionId': segmentify?.user?.sessionId,
-              }
-            },
-          }
-        )
-        console.log('Product View Event Sent');
-        console.log('Product Interaction Event Sent');
-      },
-    );
+    await Promise.all([
+      sendPageViewEvent,
+      sendProductViewEvent,
+      sendProductInteractionEvent,
+    ]).then(() => {
+      toast.show('', {
+        type: 'custom_toast',
+        animationDuration: 100,
+        data: {
+          title: 'Product View Event Sent',
+          messages: {
+            productId: route.params!.item.productId,
+            userId: segmentify?.user?.userId,
+            sessionId: segmentify?.user?.sessionId,
+          },
+        },
+      });
+      toast.show('', {
+        type: 'custom_toast',
+        animationDuration: 100,
+        data: {
+          title: 'Product Interaction Event Sent',
+          messages: {
+            productId: route.params!.item.productId,
+            userId: segmentify?.user?.userId,
+            sessionId: segmentify?.user?.sessionId,
+          },
+        },
+      });
+      console.log('Product View Event Sent');
+      console.log('Product Interaction Event Sent');
+    });
 
     console.log('route.params!.item.productId', route.params!.item.productId);
   }, [route.params!.item.productId]);
@@ -85,7 +93,13 @@ export const Product = ({navigation, route}: Props) => {
   const DummyExtraTitle = ({title}: {title: string}) => {
     return (
       <View style={ProductScreenStyles(width, height).dummySubTitle}>
-        <Text style={{color: '#7d7d7d', fontSize: 16, textAlign: 'right', fontWeight: 'bold'}}>
+        <Text
+          style={{
+            color: '#7d7d7d',
+            fontSize: 16,
+            textAlign: 'right',
+            fontWeight: 'bold',
+          }}>
           {title}
         </Text>
         <ArrowForwardIcon size="sm" color="#7d7d7d" marginTop={1} />
@@ -97,31 +111,35 @@ export const Product = ({navigation, route}: Props) => {
     return (
       <View style={ProductScreenStyles(width, height).containerScrollView}>
         <ScrollView>
-            <Image
-              style={ProductScreenStyles(width, height).image}
-              source={{
-                uri: route.params!.item.imageS,
-              }}
-            />
-            <View style={ProductScreenStyles(width, height).containerInsideView}>
-              <Text style={{color: '#7d7d7d', fontSize: 12, textAlign: 'right'}}>
-                {route.params!.item.category}
+          <Image
+            style={ProductScreenStyles(width, height).image}
+            source={{
+              uri: route.params!.item.imageS,
+            }}
+          />
+          <View style={ProductScreenStyles(width, height).containerInsideView}>
+            <Text style={{color: '#7d7d7d', fontSize: 12, textAlign: 'right'}}>
+              {route.params!.item.category}
+            </Text>
+            <Text style={ProductScreenStyles(width, height).name}>
+              <Text style={{color: '#ff6000'}}>
+                {route.params!.item.brand}{' '}
               </Text>
-              <Text style={ProductScreenStyles(width, height).name}>
-                <Text style={{color: '#ff6000'}}>
-                  {route.params!.item.brand}{' '}
-                </Text>
-                {route.params!.item.name}
-              </Text>
+              {route.params!.item.name}
+            </Text>
 
-              <VStack alignItems="flex-start" justifyContent="flex-start" width="100%" height="100%">
-                <DummyExtraTitle title="Ürün Açıklamaları" />
-                <DummyExtraTitle title="Ürün Özellikleri" />
-                <DummyExtraTitle title="Ürün Yorumları" />
-                <DummyExtraTitle title="Ürün Soru ve Cevapları" />
-                <DummyExtraTitle title="Ürün Hakkında" />
-              </VStack>
-            </View>
+            <VStack
+              alignItems="flex-start"
+              justifyContent="flex-start"
+              width="100%"
+              height="100%">
+              <DummyExtraTitle title="Ürün Açıklamaları" />
+              <DummyExtraTitle title="Ürün Özellikleri" />
+              <DummyExtraTitle title="Ürün Yorumları" />
+              <DummyExtraTitle title="Ürün Soru ve Cevapları" />
+              <DummyExtraTitle title="Ürün Hakkında" />
+            </VStack>
+          </View>
         </ScrollView>
       </View>
     );
@@ -129,27 +147,37 @@ export const Product = ({navigation, route}: Props) => {
 
   const Footer = () => {
     return (
-      <View
-        style={ProductScreenStyles(width, height).footer}>
-        <HStack alignItems="center" justifyContent="space-between" width="100%" height="100%" padding={2}>
-          <VStack alignItems="flex-start" justifyContent="center" width="50%" height="100%">
+      <View style={ProductScreenStyles(width, height).footer}>
+        <HStack
+          alignItems="center"
+          justifyContent="space-between"
+          width="100%"
+          height="100%"
+          padding={2}>
+          <VStack
+            alignItems="flex-start"
+            justifyContent="center"
+            width="50%"
+            height="100%">
             {route.params!.item.oldPriceText && (
-                <Text
-                  fontSize="md"
-                  fontWeight="400"
-                  color="gray.500"
-                  marginBottom={-2}
-                  strikeThrough>
-                  {route.params!.item.oldPriceText}
-                </Text>
-            )}
               <Text
-                fontSize="2xl"
-                fontWeight="600"
-                marginLeft={2}
-                color={route.params!.item.oldPriceText ? 'green.600' : 'gray.600'}>
-                {route.params!.item.priceText}
+                fontSize="md"
+                fontWeight="400"
+                color="gray.500"
+                marginBottom={-2}
+                strikeThrough>
+                {route.params!.item.oldPriceText}
               </Text>
+            )}
+            <Text
+              fontSize="2xl"
+              fontWeight="600"
+              marginLeft={2}
+              color={
+                route.params!.item.oldPriceText ? 'green.600' : 'gray.600'
+              }>
+              {route.params!.item.priceText}
+            </Text>
           </VStack>
           <Button
             style={ProductScreenStyles(width, height).footerButton}
@@ -182,7 +210,10 @@ export const Product = ({navigation, route}: Props) => {
   return MemoizedElement;
 };
 
-export const ProductScreenStyles = (windowWidth: number, windowHeight: number) => {
+export const ProductScreenStyles = (
+  windowWidth: number,
+  windowHeight: number,
+) => {
   const footerHeight = 80;
   const fhPixelHeightAsPercent = (footerHeight / windowHeight) * 100;
   return StyleSheet.create({

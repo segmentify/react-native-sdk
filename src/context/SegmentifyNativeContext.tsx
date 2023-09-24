@@ -4,7 +4,7 @@ import { useContextInitilizer } from './contextInitilizer';
 import { PushNotificationPermission } from '../event-manager/push-manager/PushNotificationPermission';
 
 import type { TContext, TSegmentifyState } from '../types';
-// import DynamicContent from '../components/dynamic-content';
+import DynamicContent from '../components/dynamic-content';
 
 const SegmentifyNativeContext = createContext<TSegmentifyState>(
   segmentifyInitialState
@@ -87,7 +87,7 @@ const SegmentifyNativeProvider = ({
       {userReadyStatus && (
         <>
           {children}
-          {/* <DynamicContent /> */}
+          <DynamicContent />
         </>
       )}
     </SegmentifyNativeContext.Provider>

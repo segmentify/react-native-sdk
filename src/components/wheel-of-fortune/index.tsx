@@ -5,14 +5,17 @@ import {
   Dimensions,
   Animated,
   TouchableOpacity,
+  Text,
+  ImageBackground,
 } from 'react-native';
 import * as d3Shape from 'd3-shape';
 import type {
   TWheelOfFortuneState,
   TWheelOfFortuneProps,
-} from '../../types/types';
+} from '../../types/types/wheel-of-fortune.type';
 import { wofReducer } from '../../reducers/wheel-of-fortune';
 import SVGWheel from './SVGWheel';
+import WinScreen from './WinScreen';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -20,45 +23,38 @@ const initialState: TWheelOfFortuneState = {
   enabled: false,
   started: false,
   finished: false,
-  winner: null,
   gameScreen: new Animated.Value(width - 40),
-  wheelOpacity: new Animated.Value(1),
-  imageLeft: new Animated.Value(width / 2 - 30),
-  imageTop: new Animated.Value(height / 2 - 70),
-  fontSize: 20,
   oneTurn: 360,
-  angleBySegment: 0,
-  angleOffset: 0,
-  _wheelPaths: { path: '', color: '', value: '', centroid: '' },
+  angleBySegment: 10,
+  angleOffset: 180,
+  _wheelPaths: [{ path: '', color: '', value: '', centroid: '' }],
   _angle: new Animated.Value(0),
   rewards: [],
-  rewardCount: 0,
   numberOfSegments: 0,
   angle: 0,
 };
 
-const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
+const WheelOfFortune = ({ options, closeCampaign }: TWheelOfFortuneProps) => {
   const [state, dispatch] = useReducer(wofReducer, initialState);
 
   const prepareWheel = () => {
+    const rewards = options.possibleRewards.map((reward: any) => {
+      return reward.content;
+    });
+    const rewardsLength = rewards.length;
+
     dispatch({
       type: 'change',
       payload: {
-        rewards: options.rewards,
-        rewardCount: options.rewards.length,
-        numberOfSegments: options.rewards.length,
-        fontSize: 20,
+        rewards,
+        numberOfSegments: rewardsLength,
         oneTurn: 360,
-        angleBySegment: 360 / options.rewards.length,
-        angleOffset: 360 / options.rewards.length / 2,
-        winner:
-          options.winner ?? Math.floor(Math.random() * options.rewards.length),
-        _wheelPaths: makeWheel(),
+        angleBySegment: 360 / rewardsLength,
+        angleOffset: 360 / rewardsLength / 2,
+        _wheelPaths: makeWheel(rewardsLength),
         _angle: new Animated.Value(0),
       },
     });
-
-    options.onRef(this); // TODO: fix this
   };
 
   const resetWheelState = () => {
@@ -68,7 +64,6 @@ const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
         enabled: false,
         started: false,
         finished: false,
-        winner: null,
         gameScreen: new Animated.Value(width - 40),
         wheelOpacity: new Animated.Value(1),
         imageLeft: new Animated.Value(width / 2 - 30),
@@ -76,13 +71,6 @@ const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
       },
     });
   };
-
-  // const tryAgain = () => {
-  //   prepareWheel();
-  //   resetWheelState();
-  //   angleListener();
-  //   onPress();
-  // };
 
   const angleListener = () => {
     state._angle.addListener((event: { value: any }) => {
@@ -111,58 +99,41 @@ const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
 
     return () => {
       resetWheelState();
-      options.onRef(undefined);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const makeWheel = () => {
-    const data: any = Array.from({ length: state.numberOfSegments }).fill(1);
+  const makeWheel = (numberOfSegments: number) => {
+    const data: any = Array.from({ length: numberOfSegments }).fill(1);
     const arcs = d3Shape.pie()(data);
-    var colors = options.colors
-      ? options.colors
-      : [
-          '#E07026',
-          '#E8C22E',
-          '#ABC937',
-          '#4F991D',
-          '#22AFD3',
-          '#5858D0',
-          '#7B48C8',
-          '#D843B9',
-          '#E23B80',
-          '#D82B2B',
-        ];
+
     return arcs.map((arc: any, index: number) => {
+      const possibleReward = options.possibleRewards[index];
       const instance = d3Shape
         .arc()
         .padAngle(0.01)
         .outerRadius(width / 2)
-        .innerRadius(options.innerRadius || 100);
+        .innerRadius(40);
+
       return {
         path: instance(arc),
-        color: colors[index % colors.length],
-        value: state.rewards[index],
+        color: possibleReward?.color || '#333',
+        value: possibleReward?.content || '',
         centroid: instance.centroid(arc),
       };
     });
   };
 
-  const getWinnerIndex = () => {
-    const deg = Math.abs(Math.round(state.angle % state.oneTurn));
-    // wheel turning counterclockwise
-    if (state.angle < 0) {
-      return Math.floor(deg / state.angleBySegment);
-    }
-    // wheel turning clockwise
-    return (
-      (state.numberOfSegments - Math.floor(deg / state.angleBySegment)) %
-      state.numberOfSegments
-    );
-  };
-
   const onPress = () => {
-    const duration = options.duration || 10000;
+    const duration = 5000;
+    const winnerIndex = options.reward.index;
+    const oneSliceAngle = state.oneTurn / state.numberOfSegments;
+    const animateTargetAngle =
+      (4 * 360 +
+        winnerIndex * oneSliceAngle -
+        oneSliceAngle / 2 +
+        Math.floor(Math.random() * (oneSliceAngle - 20) + 10)) *
+      -1;
 
     dispatch({
       type: 'change',
@@ -171,41 +142,70 @@ const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
       },
     });
     Animated.timing(state._angle, {
-      toValue:
-        365 -
-        state.winner * (state.oneTurn / state.numberOfSegments) +
-        360 * (duration / 1000),
+      toValue: animateTargetAngle,
       duration: duration,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start(() => {
-      const winnerIndex = getWinnerIndex();
-      dispatch({
-        type: 'change',
-        payload: {
-          finished: true,
-          winner: state._wheelPaths[winnerIndex].value,
-        },
-      });
-      if (getWinner) {
-        getWinner(state._wheelPaths[winnerIndex].value, winnerIndex);
-      } else {
-        options?.getWinner?.(state._wheelPaths[winnerIndex].value, winnerIndex);
-      }
+      setTimeout(() => {
+        dispatch({
+          type: 'change',
+          payload: {
+            finished: true,
+          },
+        });
+      }, 1000);
     });
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Animated.View style={styles.animatedView}>
-          <SVGWheel options={options} state={state} />
-        </Animated.View>
+    <View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <ImageBackground
+          source={{ uri: options?.bgImage || '' }}
+          resizeMode="cover"
+          style={styles.modalBgImage}
+        >
+          <TouchableOpacity
+            onPress={() => closeCampaign()}
+            style={styles.closeButtonContainer}
+          >
+            <View style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>X</Text>
+            </View>
+          </TouchableOpacity>
+          {state.finished ? (
+            <WinScreen options={options} />
+          ) : (
+            <>
+              <Text style={styles.title}>{options.campaignTitle}</Text>
+              <Animated.View style={styles.animatedView}>
+                <SVGWheel options={options} state={state} />
+              </Animated.View>
+              <TouchableOpacity
+                onPress={() => onPress()}
+                disabled={state.started}
+                style={styles.CTAButtonContainer}
+              >
+                <View
+                  style={[
+                    styles.CTAButton,
+                    { backgroundColor: options?.ctaButtonColor || '#fff' },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.CTAButtonText,
+                      { color: options?.ctaButtonTextColor || '#333' },
+                    ]}
+                  >
+                    {options.ctaButtonContent}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </>
+          )}
+        </ImageBackground>
       </View>
-      {options.playButton && (
-        <TouchableOpacity onPress={() => onPress()}>
-          {options.playButton()}
-        </TouchableOpacity>
-      )}
     </View>
   );
 };
@@ -213,27 +213,89 @@ const WheelOfFortune = ({ options, getWinner }: TWheelOfFortuneProps) => {
 export default WheelOfFortune;
 
 const styles = StyleSheet.create({
-  container: {
+  centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 22,
   },
-  content: {
+  modalView: {
+    position: 'relative',
+    margin: 10,
+    width: width - 20,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2,
+  },
+  modalBgImage: {
+    position: 'relative',
+    width: width - 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#FFF',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 30,
+    marginTop: 20,
+  },
+  closeButtonContainer: {
+    zIndex: 1,
     position: 'absolute',
-    width: width,
-    height: height / 2,
+    top: -15,
+    right: 10,
+  },
+  closeButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#fff',
+    borderColor: '#333',
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  animatedView: {
-    padding: 10,
-  },
-  startText: {
-    fontSize: 50,
-    color: '#fff',
+  closeButtonText: {
+    fontSize: 20,
     fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.4)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    color: '#333',
+  },
+  animatedView: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  CTAButtonContainer: {
+    position: 'relative',
+    marginBottom: 20,
+  },
+  CTAButton: {
+    width: '100%',
+    minWidth: 150,
+    height: 40,
+    borderRadius: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  CTAButtonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
   },
 });

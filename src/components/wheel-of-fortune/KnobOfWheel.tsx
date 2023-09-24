@@ -1,19 +1,19 @@
 import React from 'react';
-import { Animated, Image, StyleSheet } from 'react-native';
-import Svg from 'react-native-svg';
+import { Animated, StyleSheet } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 import type {
   TWheelOfFortuneState,
   TWheelOfFortuneOptions,
-} from '../../types/types';
+} from '../../types/types/wheel-of-fortune.type';
 
 interface IKnobOfWheel {
-  options: TWheelOfFortuneOptions;
   state: TWheelOfFortuneState;
+  options: TWheelOfFortuneOptions;
 }
 
-const KnobOfWheel = ({ options, state }: IKnobOfWheel) => {
-  const knobSize = options.knobSize ? options.knobSize : 20;
-  // [0, state.numberOfSegments]
+const KnobOfWheel = ({ state, options }: IKnobOfWheel) => {
+  const knobSize = 25;
+
   const YOLO = Animated.modulo(
     Animated.divide(
       Animated.modulo(
@@ -26,49 +26,46 @@ const KnobOfWheel = ({ options, state }: IKnobOfWheel) => {
   );
 
   return (
-    <Animated.View style={styles({ knobSize, YOLO, state }).container}>
-      <Svg
-        width={knobSize}
-        height={(knobSize * 100) / 57}
-        viewBox={`0 0 57 100`}
-        style={styles({ knobSize, YOLO, state }).animatedSvg}
-      >
-        <Image
-          source={
-            options.knobSource
-              ? options.knobSource
-              : require('../../assets/images/knob.png')
-          }
-          style={styles({ knobSize, YOLO, state }).image}
+    <Animated.View style={styles({ knobSize, YOLO }).container}>
+      {options.pointerImage && options.pointerImage !== '' ? (
+        <Animated.Image
+          source={{ uri: options.pointerImage }}
+          style={styles({ knobSize, YOLO }).image}
+          resizeMode="contain"
         />
-      </Svg>
+      ) : (
+        <Svg
+          width={knobSize}
+          height={(knobSize * 100) / 57}
+          viewBox={`0 0 27 49`}
+          style={styles({ knobSize, YOLO }).animatedSvg}
+        >
+          <Path
+            d="M13.152 1.25464e-09C5.90501 0.000100001 0 5.9779 0 13.3146C0.001 23.3005 12.026 47.1952 12.538 47.8518C12.686 48.036 12.913 48.1512 13.152 48.1512C13.391 48.1512 13.619 48.0475 13.778 47.8517C14.29 47.2067 26.315 23.2887 26.315 13.3144C26.303 5.9776 20.41 -9.99987e-05 13.152 1.25464e-09Z"
+            fill={options.pointerColor}
+          />
+        </Svg>
+      )}
     </Animated.View>
   );
 };
 
 export default KnobOfWheel;
 
-const styles = ({
-  knobSize,
-  YOLO,
-  state,
-}: {
-  knobSize: number;
-  YOLO: any;
-  state: TWheelOfFortuneState;
-}) =>
+const styles = ({ knobSize, YOLO }: { knobSize: number; YOLO: any }) =>
   StyleSheet.create({
     container: {
+      position: 'absolute',
+      top: -knobSize - 10,
       width: knobSize,
       height: knobSize * 2,
-      justifyContent: 'flex-end',
-      zIndex: 1,
-      opacity: state.wheelOpacity,
+      justifyContent: 'flex-start',
+      zIndex: 2,
       transform: [
         {
           rotate: YOLO.interpolate({
             inputRange: [-1, -0.5, -0.0001, 0.0001, 0.5, 1],
-            outputRange: ['0deg', '0deg', '35deg', '-35deg', '0deg', '0deg'],
+            outputRange: ['0deg', '0deg', '-15deg', '15deg', '0deg', '0deg'],
           }),
         },
       ],
@@ -79,5 +76,6 @@ const styles = ({
     image: {
       width: knobSize,
       height: (knobSize * 100) / 57,
+      transform: [{ translateY: 8 }],
     },
   });
