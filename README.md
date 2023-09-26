@@ -34,12 +34,28 @@ Take your e-commerce business to new heights with our React Native app that brin
 
 - node >= 16.0.0
 - react-native >= 0.71.8
+- react-native-clipboard/clipboard >= 1.11.2
 
 ## Install
 
-```sh
-npm install or yarn install
+Install the library using either Yarn:
 
+```sh
+yarn add @segmentify/react-native-sdk
+```
+
+```sh
+yarn add @react-native-clipboard/clipboard
+```
+
+or npm:
+
+```sh
+npm install --save @segmentify/react-native-sdk
+```
+
+```sh
+npm install --save @react-native-clipboard/clipboard
 ```
 
 ## Usage
@@ -63,6 +79,7 @@ Config is a type that contains the following properties:
 - `dataCenterUrl`: string (required)
 - `dataCenterPushUrl`: string (optional)
 - `subDomain`: string (required)
+- `language`: string (required) //'TR', 'EN' etc..
 
 This is the configuration that you can get from Segmentify.
 
@@ -74,6 +91,7 @@ const providerConfig = {
     subDomain: 'https://www.yoursite.com',
     dataCenterPushUrl: 'https://psh.segmentify.com',
     isApnsEnabled: false,
+    language: 'EN',
   },
   user: {
     userId: '',
@@ -120,6 +138,7 @@ segmentify: {
   subDomain: string,
   dataCenterPushUrl: string,
   isApnsEnabled: boolean,
+  language: string,
 },
 }
 ```
@@ -138,6 +157,7 @@ const MyComponent = () => {
         subDomain,
         dataCenterPushUrl,
         isApnsEnabled,
+        language,
       },
     },
   } = useSegmentifyNative();
