@@ -115,3 +115,16 @@ export const getUser = async () => {
 
   return user;
 };
+
+export const getLanguage = async () => {
+  const config = await getStorageItem({ key: 'config' });
+  const language = config?.language;
+
+  if (!language) {
+    throw new Error(
+      eventManagerUtilErrorHandler({ message: 'Language is not defined' })
+    );
+  }
+
+  return language;
+};

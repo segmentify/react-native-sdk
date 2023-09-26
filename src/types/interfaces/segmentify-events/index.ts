@@ -6,6 +6,7 @@ export type { UserOperations } from './UserOperations.interface';
 export type { Custom } from './CustomEvent.interface';
 export type { Interaction } from './Interaction.interface';
 export type { Search } from './Search.interface';
+export type { Gamification } from './Gamification.interface';
 export type {
   TRequestPushNotificationPermission,
   TFirePushNotification,

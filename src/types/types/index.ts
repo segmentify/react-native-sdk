@@ -52,3 +52,9 @@ export type {
   Messaging,
   PushNotificationConfigType,
 } from './handlers.type';
+
+export type {
+  TWheelOfFortuneState,
+  TWheelOfFortuneProps,
+  TWheelOfFortuneOptions,
+} from './wheel-of-fortune.type';

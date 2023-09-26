@@ -7,6 +7,7 @@ import type {
   Custom,
   Interaction,
   Search,
+  Gamification,
 } from '.';
 import type { SEGMENTIFY_EVENTS } from '../../enums';
 
@@ -21,6 +22,7 @@ type TEventPayload = {
   CUSTOM_EVENT: Custom;
   INTERACTION: Interaction;
   SEARCH: Search;
+  GAMIFICATION: Gamification;
 };
 
 /**

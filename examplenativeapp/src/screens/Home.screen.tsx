@@ -43,7 +43,6 @@ export const Home = () => {
       };
     });
 
-    console.group('Recommended Products');
     Object.keys(recommendationList).forEach((key: string) => {
       const productNames = recommendationList?.[key]?.['products']?.map(
         (product: any) => product.name,

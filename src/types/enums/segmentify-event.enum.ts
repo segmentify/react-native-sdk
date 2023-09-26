@@ -10,6 +10,7 @@
  * @property {string} CUSTOM_EVENT
  * @property {string} INTERACTION
  * @property {string} SEARCH
+ * @property {string} GAMIFICATION
  */
 
 export const SEGMENTIFY_EVENTS = {
@@ -21,4 +22,5 @@ export const SEGMENTIFY_EVENTS = {
   CUSTOM_EVENT: 'CUSTOM_EVENT',
   INTERACTION: 'INTERACTION',
   SEARCH: 'SEARCH',
+  GAMIFICATION: 'GAMIFICATION',
 };
