@@ -3,6 +3,8 @@ import { Modal, StyleSheet, View } from 'react-native';
 import { whichDynamicContentExist, apiGetAway } from '../../utils';
 import WheelOfFortune from '../wheel-of-fortune';
 import type { TWheelOfFortuneOptions } from '../../types/types/wheel-of-fortune.type';
+import { useSegmentifyStorage } from '../../context/SegmentifyNativeContext';
+import { sendInteractionForDynamicContent } from '../../utils/dynamic-content';
 
 const DynamicContent = () => {
   const [responseData, setResponseData] = useState(null);
@@ -10,6 +12,8 @@ const DynamicContent = () => {
   const [campaignData, setCampaignData] =
     useState<TWheelOfFortuneOptions | null>(null);
   const [isSet, setIsSet] = useState(false);
+
+  const { segmentify } = useSegmentifyStorage();
 
   const closeCampaign = () => {
     setCampaignType('');
@@ -42,14 +46,17 @@ const DynamicContent = () => {
       const campaignTypeTemp = campaignDetails?.campaignType || '';
       const campaignDataTemp: TWheelOfFortuneOptions | null =
         campaignDetails?.campaignData || null;
+      const campaignFullData = campaignDetails?.campaignFullData || null;
 
       if (campaignDataTemp === null) {
         return;
       }
       setCampaignType(campaignTypeTemp);
       setCampaignData(campaignDataTemp);
+
+      sendInteractionForDynamicContent(segmentify, campaignFullData);
     }
-  }, [responseData, campaignType, isSet]);
+  }, [responseData, campaignType, isSet, segmentify]);
 
   if (!isSet) {
     return null;

@@ -5,6 +5,7 @@ export const providerConfig = {
     subDomain: 'https://www.hizlisaat.com/',
     dataCenterPushUrl: 'https://gimli-qa.segmentify.com',
     isApnsEnabled: false,
+    language: 'TR',
   },
   user: {
     userId: '',

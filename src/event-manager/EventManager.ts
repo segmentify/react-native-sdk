@@ -8,6 +8,7 @@ import {
   getConfiguration,
   getDataCenterUrl,
   getUser,
+  getLanguage,
 } from './utils';
 import {
   GET_APP_INITIAL_CREDENTIALS_URL,
@@ -94,9 +95,22 @@ export const FireEvent = async <T extends KEYS_OF_EVENTS>({
     const requiredParams = SEGMENTIFY_EVENT_PARAMS[type]!.requiredParams;
     const optionalParams = SEGMENTIFY_EVENT_PARAMS[type]!.optionalParams;
 
+    const { deviceType } = await getDeviceInformation();
+    const language = await getLanguage();
+
+    const autocompleteParams: { [key: string]: string } = {
+      lang: language,
+      os: deviceType,
+      device: deviceType,
+    };
+
     requiredParams?.forEach((param) => {
       if (!eventPayload[param]) {
-        throw new Error(`${param} is required for ${type} event`);
+        if (autocompleteParams[param]) {
+          eventPayload[param] = autocompleteParams[param];
+        } else {
+          throw new Error(`${param} is required for ${type} event`);
+        }
       }
     });
 

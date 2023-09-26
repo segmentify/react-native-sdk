@@ -1993,6 +1993,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-clipboard/clipboard/-/clipboard-1.11.2.tgz#e826d0336b34e67294aaffa6878308900bc7d197"
   integrity "sha1-6CbQM2s05nKUqv+mh4MIkAvH0Zc= sha512-bHyZVW62TuleiZsXNHS1Pv16fWc0fh8O9WvBzl4h2fykqZRW9a+Pv/RGTH56E3X2PqzHP38K5go8zmCZUoIsoQ=="
 
+"@react-native-clipboard/clipboard@^1.12.1":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@react-native-clipboard/clipboard/-/clipboard-1.12.1.tgz#a23f9defb732077afa860d0598baa95f5ee9f54b"
+  integrity "sha1-oj+d77cyB3r6hg0FmLqpX17p9Us= sha512-+PNk8kflpGte0W1Nz61/Dp8gHTxyuRjkVyRYBawymSIGTDHCC/zOJSbig6kGIkD8MeaGHC2vGYQJyUyCrgVPBQ=="
+
 "@react-native-community/cli-clean@11.3.5":
   version "11.3.5"
   resolved "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-11.3.5.tgz"
@@ -2677,7 +2682,7 @@
 "@segmentify/react-native-sdk@file:../segmentify-react-native-sdk-0.7.0.tgz":
   version "0.7.0"
   resolved "file:../segmentify-react-native-sdk-0.7.0.tgz"
-  integrity "sha1-dCCnhVmj73BgAbdC3M8ciuVZwps= sha512-+ACZA43csuedMNv6aRAbltn1fbz+BbHL7KDcn0UgjI6kubDHuH+0/1ygNVMA+iI1DAAKccrCP1YVwCLADCkwWA=="
+  integrity "sha1-LQgHE12/RLFtpk1VH91OAIyuNlQ= sha512-Q+AtNtzwOa4pNk/YiY3f7tR9HKkEsbFDRXgiEIuZ524XB5p4CSP5vFzWz9iCcjGyGxC/AInXsg/NfvlNGRP2WA=="
   dependencies:
     "@notifee/react-native" "^7.8.0"
     "@react-native-async-storage/async-storage" "^1.19.0"

@@ -1,3 +1,5 @@
+import { FireEvent } from '../event-manager';
+
 const usableCampaigns = ['WHEEL_OF_FORTUNE'];
 
 export const whichDynamicContentExist = (data: any) => {
@@ -15,6 +17,7 @@ export const whichDynamicContentExist = (data: any) => {
     return {
       campaignType: firstCampaign.type,
       campaignData: getCampaignData(firstCampaign, firstCampaign.type),
+      campaignFullData: firstCampaign,
     };
   }
   return null;
@@ -35,6 +38,7 @@ const getCampaignData = (data: any, campaignType: string) => {
       pointerColor,
       pointerImage,
       resultTitle,
+      lang,
     } = data;
     const returnData = {
       reward,
@@ -49,8 +53,28 @@ const getCampaignData = (data: any, campaignType: string) => {
       pointerColor,
       pointerImage,
       resultTitle,
+      lang,
     };
     return returnData;
   }
   return null;
+};
+
+export const sendInteractionForDynamicContent = (
+  segmentify: any,
+  campaignData: any
+) => {
+  const impressionDetails = {
+    name: 'INTERACTION',
+    type: 'impression',
+    userId: segmentify?.user?.userId,
+    sessionId: segmentify?.user?.sessionId,
+    instanceId: campaignData?.instanceId,
+    interactionId: campaignData?.instanceId,
+  };
+
+  FireEvent({
+    type: 'INTERACTION',
+    eventPayload: impressionDetails,
+  });
 };

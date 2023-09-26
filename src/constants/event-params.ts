@@ -221,4 +221,8 @@ export const SEGMENTIFY_EVENT_PARAMS: TSEGMENTIFY_EVENT_PARAMETERS = {
       'mode',
     ],
   },
+  GAMIFICATION: {
+    requiredParams: ['type', ...commonParams],
+    optionalParams: ['name', 'used', 'record'],
+  },
 };

@@ -13,6 +13,8 @@ import type {
   TWheelOfFortuneState,
   TWheelOfFortuneProps,
 } from '../../types/types/wheel-of-fortune.type';
+import { useSegmentifyStorage } from '../../context/SegmentifyNativeContext';
+import { FireEvent } from '../../event-manager';
 import { wofReducer } from '../../reducers/wheel-of-fortune';
 import SVGWheel from './SVGWheel';
 import WinScreen from './WinScreen';
@@ -36,6 +38,7 @@ const initialState: TWheelOfFortuneState = {
 
 const WheelOfFortune = ({ options, closeCampaign }: TWheelOfFortuneProps) => {
   const [state, dispatch] = useReducer(wofReducer, initialState);
+  const { segmentify } = useSegmentifyStorage();
 
   const prepareWheel = () => {
     const rewards = options.possibleRewards.map((reward: any) => {
@@ -146,7 +149,20 @@ const WheelOfFortune = ({ options, closeCampaign }: TWheelOfFortuneProps) => {
       duration: duration,
       useNativeDriver: false,
     }).start(() => {
+      const eventDetails = {
+        name: 'GAMIFICATION',
+        type: 'win',
+        used: 'true',
+        record: options?.reward,
+        userId: segmentify?.user?.userId,
+        sessionId: segmentify?.user?.sessionId,
+      };
+
       setTimeout(() => {
+        FireEvent({
+          type: 'GAMIFICATION',
+          eventPayload: eventDetails,
+        });
         dispatch({
           type: 'change',
           payload: {

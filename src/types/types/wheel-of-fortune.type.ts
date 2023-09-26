@@ -15,6 +15,7 @@ export type TWheelOfFortuneState = {
 
 export type TWheelOfFortuneProps = {
   options: TWheelOfFortuneOptions;
+  campaignData?: any;
   closeCampaign?: any;
 };
 
@@ -31,6 +32,7 @@ export type TWheelOfFortuneOptions = {
   pointerColor: string;
   pointerImage: string;
   resultTitle: string;
+  lang: string;
 };
 
 export type TWheelOfFortunePossibleReward = {
