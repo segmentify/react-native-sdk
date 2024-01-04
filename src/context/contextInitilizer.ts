@@ -5,7 +5,8 @@ import { initialUserHandler, getStore } from './utils';
 import type { TContextInitilizer } from '../types';
 
 /**
- * @typedef
+ * @memberof module:SegmentifyNative
+ * @function
  * @name useContextInitilizer
  * @description useContextInitilizer is a function that is used to set the storage and initial trigger of the Segmentify.
  * @param {TContextInitilizer} TContextInitilizer

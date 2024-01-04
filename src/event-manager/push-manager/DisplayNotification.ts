@@ -8,7 +8,8 @@ import { CHANNEL_ID, PRESS_ACTION_ID, LAUNCH_ACTIVITY } from '../../constants';
 import type { Notification } from '@notifee/react-native';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name DisplayNotification
  * @description
  * DisplayNotification is a function that displays a notification on the device.

@@ -1,6 +1,6 @@
 /**
  * Segmentify event types
- * @enum SEGMENTIFY_EVENTS
+ * @namespace SEGMENTIFY_EVENTS
  * @description Segmentify event types.
  * @property {string} PAGE_VIEW
  * @property {string} PRODUCT_VIEW

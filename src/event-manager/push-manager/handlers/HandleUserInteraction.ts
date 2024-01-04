@@ -8,7 +8,8 @@ import {
 import type { Event as NotifeeEvent } from '@notifee/react-native';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name HandleUserInteraction
  * @description
  * HandleUserInteraction is a function that handles the user interaction with the notification.

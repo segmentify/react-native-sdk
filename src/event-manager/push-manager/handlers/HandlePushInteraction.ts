@@ -2,7 +2,8 @@ import notifee from '@notifee/react-native';
 import { HandleUserInteraction } from './HandleUserInteraction';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name HandlePushInteraction
  * @description
  * HandlePushInteraction is a function that handles the push interaction.

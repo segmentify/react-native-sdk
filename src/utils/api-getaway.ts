@@ -8,6 +8,17 @@ import type { ResponseStatusCodeType } from '../types';
 
 const loggerEnabled = getStorageItem({ key: 'logger' });
 
+/**
+ * @memberof module:CoreFunctions
+ * @namespace apiGetAway
+ * @description Axios instance for making API calls
+ * @see {@link API_GET_AWAY_TIME_OUT}
+ * @see {@link API_ERRORS}
+ * @see {@link Logger}
+ * @see {@link module:CoreFunctions.getApiKey}
+ * @see {@link ResponseStatusCodeType}
+ */
+
 export const apiGetAway = axios.create({
   timeout: API_GET_AWAY_TIME_OUT,
 });

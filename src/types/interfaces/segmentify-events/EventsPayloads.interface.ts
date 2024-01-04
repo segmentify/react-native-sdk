@@ -24,6 +24,7 @@ type TEventPayload = {
 };
 
 /**
+ * @memberof module:EventManager
  * @typedef
  * @name GenericSegmentifyEventPayload
  * @description
