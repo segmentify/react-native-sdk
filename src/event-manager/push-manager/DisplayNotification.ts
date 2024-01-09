@@ -1,8 +1,5 @@
 import { Platform } from 'react-native';
-import notifee, {
-  AndroidImportance,
-  AndroidStyle,
-} from '@notifee/react-native';
+import notifee, { AndroidImportance } from '@notifee/react-native';
 import { CHANNEL_ID, PRESS_ACTION_ID, LAUNCH_ACTIVITY } from '../../constants';
 
 import type { Notification } from '@notifee/react-native';
@@ -47,11 +44,11 @@ export const DisplayNotification = async (
         smallIcon: 'ic_launcher',
         showTimestamp: true,
         timestamp: Date.now(),
-        style: {
-          type: AndroidStyle.BIGPICTURE,
-          //@ts-ignore
-          picture: notification.image ? notification.image : '',
-        },
+        // style: {
+        //   type: AndroidStyle.BIGPICTURE,
+        //   //@ts-ignore
+        //   picture: notification.image ? notification.image : '',
+        // },
         pressAction: {
           id: PRESS_ACTION_ID,
           launchActivity: LAUNCH_ACTIVITY,
