@@ -10,7 +10,8 @@ const SegmentifyNativeContext = createContext<TSegmentifyState>(
 );
 
 /**
- * @typedef
+ * @memberof module:SegmentifyNative
+ * @function SegmentifyNativeProvider
  * @name SegmentifyNativeProvider
  * @param {Object} props - Props
  * @param {Object} props.children - Children
@@ -18,6 +19,21 @@ const SegmentifyNativeContext = createContext<TSegmentifyState>(
  * @param {Object} props.messaging - Messaging
  * @param {Object} props.pushNotificationConfig - Push Notification Config
  * @returns {JSX.Element}
+ *
+ * @example
+ *
+ * import SegmentifyNativeProvider from '@segmentify/react-native-core';
+ *
+ * const App = () => {
+ *
+ * const segmentify = {...}
+ *
+ * return (
+ *   <SegmentifyNativeProvider segmentify={segmentify}>
+ *      <App />
+ *   </SegmentifyNativeProvider>
+ *  )
+ * };
  */
 
 const SegmentifyNativeProvider = ({

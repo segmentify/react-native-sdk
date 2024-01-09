@@ -4,7 +4,8 @@ import type { TFireBasePushResponse } from '../../../types';
 import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 /**
- * @typedef
+ * @memberof module:EventManager
+ * @function
  * @name HandleBackGroundNotification
  * @description
  * HandleBackGroundNotification is a function that handles the background notification.

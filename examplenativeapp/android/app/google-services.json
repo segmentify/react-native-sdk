@@ -30,6 +30,13 @@
             {
               "client_id": "794335569547-ng6bboi02t8aksdnq9drqebr3qgu51t7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "794335569547-68bi4nn491b5bp1t8d5ejdk42fvkqi09.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.segmentify-react-native"
+              }
             }
           ]
         }
