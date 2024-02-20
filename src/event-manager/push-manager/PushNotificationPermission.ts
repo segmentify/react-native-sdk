@@ -48,9 +48,9 @@ export const PushNotificationPermission = async ({
   }
 
   if (Platform.OS === 'android') {
-    const authStatus = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS!
-    );
+    const authStatus = Platform.Version >= 33
+      ? await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS!)
+      : PermissionsAndroid.RESULTS.GRANTED;
 
     if (authStatus === PermissionsAndroid.RESULTS.GRANTED) {
       await HandlePlatformSpecificPushFlow({
