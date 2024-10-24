@@ -2681,9 +2681,9 @@
   dependencies:
     "@react-types/shared" "^3.18.1"
 
-"@segmentify/react-native-sdk@file:../segmentify-react-native-sdk-0.7.1.tgz":
+"@segmentify/react-native-sdk@../segmentify-react-native-sdk-0.7.1.tgz":
   version "0.7.1"
-  resolved "file:../segmentify-react-native-sdk-0.7.1.tgz#dc0406fc16f2886735f13b3b57fe3abf1057d710b55df610264026721a388041555713b9e56251c1fd7feb04c13d2dc29839a07fdba505bd20e7f1ce3e0092e9"
+  resolved "../segmentify-react-native-sdk-0.7.1.tgz#0ac7fbebda11f0dc989d220a736469065fca8899"
   dependencies:
     "@notifee/react-native" "^7.8.0"
     "@react-native-async-storage/async-storage" "^1.19.0"
