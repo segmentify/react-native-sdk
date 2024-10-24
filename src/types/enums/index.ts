@@ -1,4 +1,4 @@
-export { CURRENCY } from './Currency.enum';
+export { CURRENCY } from './currency.enum';
 export { SEGMENTIFY_EVENTS } from './segmentify-event.enum';
 export { API_ERROR_ENUMS } from './ApiError.enum';
 export { SUPPORTED_LANGUAGES } from './SupportedLanguages.enum';
