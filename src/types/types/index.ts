@@ -27,7 +27,7 @@ export type {
   StorageType,
 } from './segmentify-provider.type';
 
-export type { User } from './User.type';
+export type { User } from './user.type';
 
 export type { TFireBasePushResponse } from './FireBasePushResponse';
 

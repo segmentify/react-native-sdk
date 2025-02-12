@@ -17,6 +17,21 @@ export const Home = () => {
     };
   };
 
+  const interactionEvent = async () =>
+    await FireEvent({
+      type: 'INTERACTION',
+      eventPayload: {
+        type: 'impression',
+        instanceId: '1234567890',
+        interactionId: '1234567890',
+        sessionId: '1234567890',
+        userId: '1234567890',
+        lang: 'TR',
+        device: 'mobile',
+        os: 'android',
+      },
+    });
+
   const getRecommendedProducts = useCallback(async () => {
     setIsLoaded(false);
     const response = await FireEvent({
@@ -65,6 +80,12 @@ export const Home = () => {
       },
     });
     console.log('Page View Event Sent');
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      await interactionEvent();
+    })();
   }, []);
 
   useEffect(() => {
