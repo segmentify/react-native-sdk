@@ -83,7 +83,7 @@ const SegmentifyNativeProvider = ({
         segmentify: segmentifyState.segmentify,
       }}
     >
-      {userReadyStatus && children}
+      {children}
     </SegmentifyNativeContext.Provider>
   );
 };
