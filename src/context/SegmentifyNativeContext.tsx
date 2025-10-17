@@ -41,6 +41,7 @@ const SegmentifyNativeProvider = ({
   segmentify,
   logger = false,
   messaging,
+  manuelPushSetup = false,
 }: TContext): JSX.Element => {
   const [userReadyStatus, setUserReadyStatus] = useState<boolean>(false);
   const { config, user } = segmentify;
@@ -64,7 +65,7 @@ const SegmentifyNativeProvider = ({
       !userReadyStatus
     ) {
       setUserReadyStatus(true);
-      if (messaging) {
+      if (messaging && !manuelPushSetup) {
         PushNotificationPermission({
           messaging,
         });

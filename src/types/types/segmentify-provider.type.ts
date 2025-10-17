@@ -39,6 +39,7 @@ export type TContext = {
     | FirebaseMessagingTypes.Module
     | any;
   logger?: boolean;
+  manuelPushSetup?: boolean;
 };
 
 /**
