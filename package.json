@@ -1,6 +1,6 @@
 {
   "name": "@segmentify/react-native-sdk",
-  "version": "0.7.6",
+  "version": "0.8.0",
   "description": "Introducing the cutting-edge React Native app designed to revolutionize personalization and segmentation for e-commerce businesses. Our app harnesses the power of React Native, a powerful and widely adopted framework, to deliver a seamless cross-platform experience for both iOS and Android users.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
