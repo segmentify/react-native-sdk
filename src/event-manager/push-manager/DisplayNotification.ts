@@ -23,16 +23,7 @@ import { AndroidStyle } from '@notifee/react-native';
  * @returns {Promise<string>}
  */
 
-export const DisplayNotification = async (
-  notification: Notification,
-  {
-    android,
-    ios,
-  }: {
-    android?: Notification['android'];
-    ios?: Notification['ios'];
-  } = {}
-) => {
+export const DisplayNotification = async (notification: Notification) => {
   let androidNotification: Notification;
 
   if (Platform.OS === 'android') {
@@ -47,14 +38,13 @@ export const DisplayNotification = async (
         timestamp: Date.now(),
         style: {
           type: AndroidStyle.BIGPICTURE,
-          // @ts-expect-error 'type' exists value is 0 for BIGPICTURE
-          picture: notification.image ? notification.image : '',
+          // @ts-expect-error picture property exists
+          picture: notification.image ?? '',
         },
         pressAction: {
           id: PRESS_ACTION_ID,
           launchActivity: LAUNCH_ACTIVITY,
         },
-        ...(android || {}),
       },
       data: {
         ...notification,
@@ -65,17 +55,23 @@ export const DisplayNotification = async (
   }
 
   const iosNotification = {
-    ...notification,
+    ...notification.data,
     ios: {
-      ...notification.ios,
       showTimestamp: true,
       timestamp: Date.now(),
-      ...(ios || {}),
+      attachments: [
+        {
+          url: notification?.data?.image,
+        },
+      ],
     },
     data: {
       ...notification,
     },
   };
 
+  // @ts-expect-error ios property exists
   return await notifee.displayNotification(iosNotification);
 };
+
+//  {"apiKey": "0108b006-c136-460e-be1e-286bcfa9affc", "dataCenterUrl": "https://psh2.segmentify.com/", "image": "https://ltbjeans-hybris-p1.mncdn.com/mnresize/790/1059/media/products/0122546025250010000_14020_01.jpg", "instanceId": "psh_dbe5480aac000", "message": "New Wanda Düz Paça Rahat Kesim Jean Pantolon 1.169,99 TL", "redirectUrl": "https://www.ltbjeans.com/tr-TR/p/new-wanda-duz-paca-rahat-kesim-jean-pantolon-010095186016117_55998?utm_source=segmentify&utm_campaign=psh_dbe5480aac000&utm_content=010095186016117_55998&utm_medium=push", "title": "Test Mobile"}
