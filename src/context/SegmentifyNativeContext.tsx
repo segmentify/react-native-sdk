@@ -76,6 +76,7 @@ const SegmentifyNativeProvider = ({
     segmentifyState?.segmentify?.user?.sessionId,
     messaging,
     userReadyStatus,
+    manuelPushSetup,
   ]);
 
   return (

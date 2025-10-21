@@ -15,8 +15,11 @@ import type { Messaging } from '../../types/types/handlers.type';
  * @returns {void}
  */
 
-export const InitializePushService = (messaging: Messaging) => {
+export const InitializePushService = (
+  messaging: Messaging,
+  manuelSetup = false
+) => {
   HandleForeGroundNotification(messaging);
-  HandleBackGroundNotification(messaging);
+  if (!manuelSetup) HandleBackGroundNotification(messaging);
   HandlePushInteraction();
 };

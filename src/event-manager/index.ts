@@ -16,4 +16,5 @@ export {
 export {
   HandleInitialNotification,
   InitializePushService,
+  HandlePlatformSpecificPushFlow,
 } from './push-manager';

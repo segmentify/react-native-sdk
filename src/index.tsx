@@ -12,6 +12,7 @@ export {
   RequestPushNotificationPermission,
   InitializePushService,
   HandleInitialNotification,
+  HandlePlatformSpecificPushFlow,
 } from './event-manager';
 
 export type {

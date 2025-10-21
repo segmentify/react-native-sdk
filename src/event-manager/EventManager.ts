@@ -156,10 +156,18 @@ export const RequestPushNotificationPermission = async ({
     data.os = deviceType;
   }
 
-  return await apiGetAway.post(
-    `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_URL}?apiKey=${apiKey}`,
-    data
-  );
+  return await apiGetAway
+    .post(
+      `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_URL}?apiKey=${apiKey}`,
+      data
+    )
+    .then((res) => {
+      console.log('push permission response', res);
+      return res.data;
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 };
 
 /**
