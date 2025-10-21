@@ -1,9 +1,11 @@
 import { Platform } from 'react-native';
-import notifee, { AndroidImportance } from '@notifee/react-native';
+import notifee, {
+  AndroidImportance,
+  AndroidStyle,
+} from '@notifee/react-native';
 import { CHANNEL_ID, PRESS_ACTION_ID, LAUNCH_ACTIVITY } from '../../constants';
 
 import type { Notification } from '@notifee/react-native';
-import { AndroidStyle } from '@notifee/react-native';
 
 /**
  * @memberof module:EventManager
@@ -29,6 +31,11 @@ export const DisplayNotification = async (notification: Notification) => {
   if (Platform.OS === 'android') {
     androidNotification = {
       ...notification,
+      title: notification.title,
+      //@ts-expect-error android property exists
+      subtitle: notification.message,
+      //@ts-expect-error android property exists
+      body: notification.message,
       android: {
         ...notification,
         channelId: CHANNEL_ID,
@@ -46,22 +53,25 @@ export const DisplayNotification = async (notification: Notification) => {
           launchActivity: LAUNCH_ACTIVITY,
         },
       },
-      data: {
-        ...notification,
-      },
     };
 
     return await notifee.displayNotification(androidNotification);
   }
 
   const iosNotification = {
-    ...notification.data,
+    ...notification,
+    title: notification.title,
+    //@ts-expect-error ios property exists
+    subtitle: notification.message,
+    //@ts-expect-error ios property exists
+    body: notification.message,
     ios: {
       showTimestamp: true,
       timestamp: Date.now(),
       attachments: [
         {
-          url: notification?.data?.image,
+          // @ts-expect-error image property exists
+          url: notification?.image,
         },
       ],
     },
@@ -70,8 +80,5 @@ export const DisplayNotification = async (notification: Notification) => {
     },
   };
 
-  // @ts-expect-error ios property exists
   return await notifee.displayNotification(iosNotification);
 };
-
-//  {"apiKey": "0108b006-c136-460e-be1e-286bcfa9affc", "dataCenterUrl": "https://psh2.segmentify.com/", "image": "https://ltbjeans-hybris-p1.mncdn.com/mnresize/790/1059/media/products/0122546025250010000_14020_01.jpg", "instanceId": "psh_dbe5480aac000", "message": "New Wanda Düz Paça Rahat Kesim Jean Pantolon 1.169,99 TL", "redirectUrl": "https://www.ltbjeans.com/tr-TR/p/new-wanda-duz-paca-rahat-kesim-jean-pantolon-010095186016117_55998?utm_source=segmentify&utm_campaign=psh_dbe5480aac000&utm_content=010095186016117_55998&utm_medium=push", "title": "Test Mobile"}

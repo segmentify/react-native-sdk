@@ -1,13 +1,8 @@
-import { Platform } from 'react-native';
 import notifee from '@notifee/react-native';
 import { DisplayNotification } from '../DisplayNotification';
 import { HandleUserInteraction } from './HandleUserInteraction';
 
-import type {
-  TFireBasePushResponse,
-  Messaging,
-  PushNotificationConfigType,
-} from '../../../types';
+import type { TFireBasePushResponse, Messaging } from '../../../types';
 
 /**
  * @memberof module:EventManager
@@ -19,17 +14,9 @@ import type {
  * @param {Messaging} messaging
  * @returns {void}
  */
-export const HandleForeGroundNotification = (
-  messaging: Messaging,
-  pushNotificationConfig = {} as PushNotificationConfigType
-) => {
+export const HandleForeGroundNotification = (messaging: Messaging) => {
   messaging().onMessage((response: TFireBasePushResponse) => {
-    DisplayNotification(
-      response.data,
-      Platform.OS === 'android'
-        ? { android: pushNotificationConfig?.android }
-        : { ios: pushNotificationConfig?.ios }
-    );
+    DisplayNotification(response.data);
   });
 
   notifee.onForegroundEvent(async ({ type, detail }) => {

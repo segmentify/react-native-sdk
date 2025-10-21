@@ -162,7 +162,6 @@ export const RequestPushNotificationPermission = async ({
       data
     )
     .then((res) => {
-      console.log('push permission response', res);
       return res.data;
     })
     .catch((err) => {
