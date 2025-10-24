@@ -25,7 +25,16 @@ import type { Notification } from '@notifee/react-native';
  * @returns {Promise<string>}
  */
 
-export const DisplayNotification = async (notification: Notification) => {
+export const DisplayNotification = async (
+  notification: Notification,
+  pushDisplaySetup: {
+    android: Notification['android'];
+    ios: Notification['ios'];
+  } = {
+    android: undefined,
+    ios: undefined,
+  }
+) => {
   let androidNotification: Notification;
 
   if (Platform.OS === 'android') {
@@ -37,7 +46,6 @@ export const DisplayNotification = async (notification: Notification) => {
       //@ts-expect-error android property exists
       body: notification.message,
       android: {
-        ...notification,
         channelId: CHANNEL_ID,
         importance: AndroidImportance.HIGH,
         smallIcon: 'ic_launcher',
@@ -52,6 +60,7 @@ export const DisplayNotification = async (notification: Notification) => {
           id: PRESS_ACTION_ID,
           launchActivity: LAUNCH_ACTIVITY,
         },
+        ...(pushDisplaySetup.android ?? {}),
       },
     };
 
@@ -74,6 +83,7 @@ export const DisplayNotification = async (notification: Notification) => {
           url: notification?.image,
         },
       ],
+      ...(pushDisplaySetup.ios ?? {}),
     },
     data: {
       ...notification,

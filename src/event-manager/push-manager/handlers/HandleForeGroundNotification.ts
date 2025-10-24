@@ -1,4 +1,4 @@
-import notifee from '@notifee/react-native';
+import notifee, { type Notification } from '@notifee/react-native';
 import { DisplayNotification } from '../DisplayNotification';
 import { HandleUserInteraction } from './HandleUserInteraction';
 
@@ -14,9 +14,18 @@ import type { TFireBasePushResponse, Messaging } from '../../../types';
  * @param {Messaging} messaging
  * @returns {void}
  */
-export const HandleForeGroundNotification = (messaging: Messaging) => {
+export const HandleForeGroundNotification = (
+  messaging: Messaging,
+  pushDisplaySetup: {
+    android: Notification['android'];
+    ios: Notification['ios'];
+  } = {
+    android: undefined,
+    ios: undefined,
+  }
+) => {
   messaging().onMessage((response: TFireBasePushResponse) => {
-    DisplayNotification(response.data);
+    DisplayNotification(response.data, pushDisplaySetup);
   });
 
   notifee.onForegroundEvent(async ({ type, detail }) => {
