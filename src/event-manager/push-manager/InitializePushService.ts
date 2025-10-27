@@ -3,6 +3,7 @@ import { HandleBackGroundNotification } from './handlers/HandleBackGroundNotific
 import { HandleForeGroundNotification } from './handlers/HandleForeGroundNotification';
 
 import type { Messaging } from '../../types/types/handlers.type';
+import { type Notification } from '@notifee/react-native';
 
 /**
  * @memberof module:EventManager
@@ -17,9 +18,13 @@ import type { Messaging } from '../../types/types/handlers.type';
 
 export const InitializePushService = (
   messaging: Messaging,
-  manuelSetup = false
+  manuelSetup = false,
+  pushDisplaySetup?: {
+    android: Notification['android'];
+    ios: Notification['ios'];
+  }
 ) => {
-  HandleForeGroundNotification(messaging);
+  HandleForeGroundNotification(messaging, pushDisplaySetup);
   if (!manuelSetup) HandleBackGroundNotification(messaging);
   HandlePushInteraction();
 };
