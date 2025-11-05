@@ -6,7 +6,7 @@ import {ToastProvider} from 'react-native-toast-notifications';
 
 export default function App() {
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider config={{suppressColorAccessibilityWarning: true}} disableSSRWarning>
       <SafeAreaView style={styles.container}>
         <ToastProvider
           renderType={{

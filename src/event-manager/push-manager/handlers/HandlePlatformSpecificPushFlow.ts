@@ -1,5 +1,8 @@
 import { Platform } from 'react-native';
-import notifee, { AndroidImportance } from '@notifee/react-native';
+import notifee, {
+  AndroidImportance,
+  type AndroidChannel,
+} from '@notifee/react-native';
 import { CHANNEL_ID, CHANNEL_NAME } from '../../../constants';
 import { RequestPushNotificationPermission } from '../../EventManager';
 
@@ -25,12 +28,14 @@ import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 export const HandlePlatformSpecificPushFlow = async ({
   messaging,
   user,
+  androidOptions,
 }: {
   messaging:
     | FirebaseMessagingTypes.Statics
     | FirebaseMessagingTypes.Module
     | any;
   user?: TCredentialsPayload;
+  androidOptions?: AndroidChannel;
 }) => {
   // Get the token
   const deviceToken = await messaging().getToken();
@@ -46,6 +51,7 @@ export const HandlePlatformSpecificPushFlow = async ({
       id: CHANNEL_ID,
       name: CHANNEL_NAME,
       importance: AndroidImportance.HIGH,
+      ...androidOptions,
     });
   }
 };

@@ -21,11 +21,12 @@ export const Home = () => {
     await FireEvent({
       type: 'INTERACTION',
       eventPayload: {
+        name: 'INTERACTION',
         type: 'impression',
         instanceId: '1234567890',
         interactionId: '1234567890',
         sessionId: '1234567890',
-        userId: '1234567890',
+        userId: '6651177901089677312',
         lang: 'TR',
         device: 'mobile',
         os: 'android',

@@ -1,9 +1,9 @@
 export const providerConfig = {
   config: {
-    apiKey: '601a3084-d02b-4e78-a474-51ac38342958',
-    dataCenterUrl: 'https://gandalf-qa.segmentify.com',
-    subDomain: 'https://www.mototas.com.tr/',
-    dataCenterPushUrl: 'https://gimli-qa.segmentify.com',
+    apiKey: '0108b006-c136-460e-be1e-286bcfa9affc',
+    dataCenterUrl: 'https://per2.segmentify.com',
+    subDomain: 'ltbjeans.com',
+    dataCenterPushUrl: 'https://psh2.segmentify.com',
     isApnsEnabled: false,
     language: 'TR',
   },

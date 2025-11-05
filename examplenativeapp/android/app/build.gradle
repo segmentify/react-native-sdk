@@ -74,9 +74,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.examplenativeapp"
+    namespace "com.inveon.littlebig.internal"
     defaultConfig {
-        applicationId "com.segmentify.segmentifysdk"
+        applicationId "com.inveon.littlebig.internal"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
