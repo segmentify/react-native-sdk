@@ -1,9 +1,9 @@
 export const providerConfig = {
   config: {
-    apiKey: '0108b006-c136-460e-be1e-286bcfa9affc',
+    apiKey: '',
     dataCenterUrl: 'https://per2.segmentify.com',
-    subDomain: 'ltbjeans.com',
-    dataCenterPushUrl: 'https://psh2.segmentify.com',
+    subDomain: '',
+    dataCenterPushUrl: 'https://gimli-qa.segmentify.com',
     isApnsEnabled: false,
     language: 'TR',
   },
