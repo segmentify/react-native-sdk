@@ -5,6 +5,16 @@ import {
   HandleReceivedNotification,
 } from '../utils';
 
+/**
+ * @memberof module:EventManager
+ * @function
+ * @name HandleBackGroundNotification
+ * @description
+ * HandleBackGroundNotification is a function that handles the background notification.
+ * It takes a messaging object as a parameter.
+ * @param {Messaging} messaging
+ * @returns {void}
+ */
 export const HandleBackGroundNotification = (
   messaging:
     | FirebaseMessagingTypes.Statics
