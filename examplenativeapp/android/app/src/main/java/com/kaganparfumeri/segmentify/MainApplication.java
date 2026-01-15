@@ -1,7 +1,7 @@
-package com.inveon.littlebig.internal;
+package com.kaganparfumeri.segmentify;
 
 import android.app.Application;
-import com.inveon.littlebig.internal.BuildConfig;
+import com.kaganparfumeri.segmentify.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -61,3 +61,4 @@ public class MainApplication extends Application implements ReactApplication {
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 }
+

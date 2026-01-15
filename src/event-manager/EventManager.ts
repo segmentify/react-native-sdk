@@ -16,7 +16,6 @@ import {
   SEND_PUSH_NOTIFICATION_URL,
   SEGMENTIFY_EVENT_PARAMS,
 } from '../constants';
-
 import type {
   TRequestPushNotificationPermission,
   TFirePushNotification,
@@ -28,12 +27,10 @@ import type {
   RequestPushNotificationPermissionResponse,
   FirePushNotificationInteractionResponse,
 } from '../types';
-
 import type {
   GenericSegmentifyEventPayload,
   KEYS_OF_EVENTS,
 } from '../types/interfaces/segmentify-events/EventsPayloads.interface';
-
 /**
  * @memberof module:EventManager
  * @function
@@ -46,26 +43,20 @@ import type {
  * @param {TRequiredFieldCount} requiredFields
  * @returns {RequestCredentialsResponse}
  */
-
 export const RequestCredentials = async ({
   requiredFields,
 }: {
   requiredFields?: TRequiredFieldCount;
 }): RequestCredentialsResponse => {
   const dataCenterUrl = await getDataCenterUrl();
-
   if (!dataCenterUrl || dataCenterUrl === '')
     throw new Error('Data center url is not defined');
-
   const count = `?count=${requiredFields}`;
-
   const data = await apiGetAway.get(
     `${dataCenterUrl}${GET_APP_INITIAL_CREDENTIALS_URL}${count}`
   );
-
   return data;
 };
-
 /**
  * @memberof module:EventManager
  * @function
@@ -81,7 +72,6 @@ export const RequestCredentials = async ({
  * @returns {Promise<any>}
  * @throws {Error}
  */
-
 export const FireEvent = async <T extends KEYS_OF_EVENTS>({
   type,
   eventPayload,
@@ -93,32 +83,25 @@ export const FireEvent = async <T extends KEYS_OF_EVENTS>({
   if (type === eventType) {
     const requiredParams = SEGMENTIFY_EVENT_PARAMS[type]!.requiredParams;
     const optionalParams = SEGMENTIFY_EVENT_PARAMS[type]!.optionalParams;
-
     requiredParams?.forEach((param) => {
       if (!eventPayload[param]) {
         throw new Error(`${param} is required for ${type} event`);
       }
     });
-
     optionalParams?.forEach((param) => {
       if (!eventPayload[param]) {
         delete eventPayload[param];
       }
     });
-
     const { apiKey, dataCenterUrl } = await getApiKeyWithBaseUrl();
-
     const { data } = await apiGetAway.post(
       `${dataCenterUrl}${SEND_EVENTS_URL}?apiKey=${apiKey}`,
       eventPayload
     );
-
     return data;
   }
-
   throw new Error('Event type and event payload name does not match');
 };
-
 /**
  * @memberof module:EventManager
  * @function
@@ -133,7 +116,6 @@ export const FireEvent = async <T extends KEYS_OF_EVENTS>({
  * @returns {RequestPushNotificationPermissionResponse}
  * @throws {Error}
  */
-
 export const RequestPushNotificationPermission = async ({
   deviceToken,
   userId,
@@ -141,21 +123,17 @@ export const RequestPushNotificationPermission = async ({
   const apiKey = await getApiKey();
   const dataCenterPushUrl = await getDataCenterPushUrl();
   const { deviceType } = await getDeviceInformation();
-
   const { isApnsEnabled } = await getConfiguration();
-
   let data: TRequestPushNotificationPermissionPayload = {
     providerType: 'FIREBASE',
     deviceToken,
     userId,
     os: deviceType,
   };
-
   if (Platform.OS === 'ios' && isApnsEnabled) {
     data.providerType = 'APNS';
     data.os = deviceType;
   }
-
   return await apiGetAway
     .post(
       `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_URL}?apiKey=${apiKey}`,
@@ -168,7 +146,6 @@ export const RequestPushNotificationPermission = async ({
       throw new Error(err);
     });
 };
-
 /**
  * @memberof module:EventManager
  * @function
@@ -180,7 +157,6 @@ export const RequestPushNotificationPermission = async ({
  * @returns {Promise<void>}
  * @throws {Error}
  */
-
 export const FirePushNotification = async ({
   deviceToken,
   type,
@@ -189,7 +165,6 @@ export const FirePushNotification = async ({
 }: TFirePushNotification) => {
   const apiKey = await getApiKey();
   const dataCenterPushUrl = await getDataCenterPushUrl();
-
   return await apiGetAway.post(
     `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_URL}?apiKey=${apiKey}`,
     {
@@ -200,7 +175,6 @@ export const FirePushNotification = async ({
     }
   );
 };
-
 /**
  * @memberof module:EventManager
  * @function
@@ -215,7 +189,6 @@ export const FirePushNotification = async ({
  * @returns {FirePushNotificationInteractionResponse}
  * @throws {Error}
  */
-
 export const FirePushNotificationInteraction = async ({
   instanceId,
   type,
@@ -223,21 +196,31 @@ export const FirePushNotificationInteraction = async ({
   const apiKey = await getApiKey();
   const dataCenterPushUrl = await getDataCenterPushUrl();
   const user = await getUser();
-
+  const platformType =
+    Platform.OS === 'ios'
+      ? Platform.OS.toUpperCase()
+      : Platform.OS === 'android'
+      ? Platform.OS.toUpperCase()
+      : null;
   let data = {
     instanceId,
-    userId: user?.id,
-    os:
-      Platform.OS === 'ios'
-        ? Platform.OS.toUpperCase()
-        : Platform.OS === 'android'
-        ? Platform.OS.toUpperCase()
-        : null,
+    userId: user?.userId,
+    device: platformType,
+    os: platformType,
+    providerType: 'FIREBASE',
     type,
   };
-
-  return await apiGetAway.post(
-    `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_INTERACTION_URL}?apiKey=${apiKey}`,
-    data
-  );
+  console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaa', data);
+  return await apiGetAway
+    .post(
+      `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_INTERACTION_URL}?apiKey=${apiKey}`,
+      data
+    )
+    .then((res) => {
+      console.log('refalskdngbkajsdlngvlşadkbjvkagdşs', res.data);
+      return res.data;
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 };

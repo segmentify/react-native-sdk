@@ -30,7 +30,7 @@ apiGetAway.interceptors.request.use(
       'X-Sfy-Api-Key': await getApiKey(),
       'Origin': await getSubDomain(),
       'Accept': 'application/json',
-      'Content-Type': 'text/plain',
+      'Content-Type': 'application/json',
     };
     return config;
   },

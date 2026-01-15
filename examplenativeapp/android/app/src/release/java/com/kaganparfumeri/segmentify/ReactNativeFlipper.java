@@ -4,7 +4,7 @@
  * <p>This source code is licensed under the MIT license found in the LICENSE file in the root
  * directory of this source tree.
  */
-package com.inveon.littlebig.internal;
+package com.kaganparfumeri.segmentify;
 
 import android.content.Context;
 import com.facebook.react.ReactInstanceManager;
@@ -18,3 +18,4 @@ public class ReactNativeFlipper {
     // Do nothing as we don't want to initialize Flipper on Release.
   }
 }
+

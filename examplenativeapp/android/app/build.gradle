@@ -74,9 +74,14 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.inveon.littlebig.internal"
+    namespace "com.kaganparfumeri.segmentify"
     defaultConfig {
-        applicationId "com.inveon.littlebig.internal"
+        // Firebase Project Configuration (from google-services.json)
+        // Project ID: kaganparfumeri-6509d
+        // Project Number: 343716170783
+        // Mobile SDK App ID: 1:343716170783:android:2d6ec6be2c9a43935a592a
+        // Storage Bucket: kaganparfumeri-6509d.firebasestorage.app
+        applicationId "com.kaganparfumeri.segmentify"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

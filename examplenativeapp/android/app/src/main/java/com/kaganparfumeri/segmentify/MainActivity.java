@@ -1,4 +1,4 @@
-package com.inveon.littlebig.internal;
+package com.kaganparfumeri.segmentify;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -14,13 +14,13 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "com.inveon.littlebig.internal";
+    return "com.kaganparfumeri.segmentify";
   }
 
   // React Native Router Override
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
+    super.onCreate(savedInstanceState);
   }
 
   /**
