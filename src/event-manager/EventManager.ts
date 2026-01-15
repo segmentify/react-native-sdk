@@ -210,12 +210,14 @@ export const FirePushNotificationInteraction = async ({
     providerType: 'FIREBASE',
     type,
   };
+  console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaa', data);
   return await apiGetAway
     .post(
       `${dataCenterPushUrl}${SEND_PUSH_NOTIFICATION_INTERACTION_URL}?apiKey=${apiKey}`,
       data
     )
     .then((res) => {
+      console.log('refalskdngbkajsdlngvlşadkbjvkagdşs', res.data);
       return res.data;
     })
     .catch((err) => {
