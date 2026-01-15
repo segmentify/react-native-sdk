@@ -78,6 +78,7 @@
   "dependencies": {
     "@notifee/react-native": "^7.8.0",
     "@react-native-async-storage/async-storage": "^1.19.0",
+    "@segmentify/react-native-sdk": "../segmentify-react-native-sdk-0.8.4.tgz",
     "axios": "^1.4.0"
   },
   "devDependencies": {

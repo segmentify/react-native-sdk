@@ -13,19 +13,6 @@ import {useSegmentifyStorage, FireEvent} from '@segmentify/react-native-sdk';
 import type {RootStackParamList} from '../router/Router';
 import {useToast} from 'react-native-toast-notifications';
 
-(async () => {
-  const messaging = await import('@react-native-firebase/messaging').then(
-    module => module.default,
-  );
-  const InitializePushService = await import(
-    '@segmentify/react-native-sdk'
-  ).then(module => module.InitializePushService);
-
-  setTimeout(() => {
-    InitializePushService(messaging);
-  }, 4000);
-})();
-
 type Props = NativeStackScreenProps<RootStackParamList, 'Product'>;
 
 export const Product = ({navigation, route}: Props) => {
