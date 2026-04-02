@@ -45,6 +45,9 @@ export const DisplayNotification = async (
       subtitle: notification.message,
       //@ts-expect-error android property exists
       body: notification.message,
+      data: {
+        ...notification,
+      },
       android: {
         channelId: CHANNEL_ID,
         importance: AndroidImportance.HIGH,
