@@ -6,8 +6,7 @@ import {
 } from '../utils';
 
 import type { Event as NotifeeEvent } from '@notifee/react-native';
-import { setDeepLink } from 'src/event-manager/utils';
-
+import { setDeepLink } from '../../utils';
 /**
  * @memberof module:EventManager
  * @function
