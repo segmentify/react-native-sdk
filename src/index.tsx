@@ -15,6 +15,8 @@ export {
   HandlePlatformSpecificPushFlow,
 } from './event-manager';
 
+export { getDeepLink } from './event-manager/utils';
+
 export type {
   APIErrorType,
   SEGMENTIFY_REQUEST_TYPE,

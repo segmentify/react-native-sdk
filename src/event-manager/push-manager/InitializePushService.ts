@@ -18,13 +18,12 @@ import { type Notification } from '@notifee/react-native';
 
 export const InitializePushService = (
   messaging: Messaging,
-  manuelSetup = false,
   pushDisplaySetup?: {
     android: Notification['android'];
     ios: Notification['ios'];
   }
 ) => {
   HandleForeGroundNotification(messaging, pushDisplaySetup);
-  if (!manuelSetup) HandleBackGroundNotification(messaging);
+  HandleBackGroundNotification(messaging);
   HandlePushInteraction();
 };

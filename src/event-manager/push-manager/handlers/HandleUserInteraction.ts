@@ -6,6 +6,7 @@ import {
 } from '../utils';
 
 import type { Event as NotifeeEvent } from '@notifee/react-native';
+import { setDeepLink } from 'src/event-manager/utils';
 
 /**
  * @memberof module:EventManager
@@ -34,6 +35,11 @@ export const HandleUserInteraction = async ({
 
   const id = detail.notification?.id;
   const instanceId = String(detail?.notification?.data?.instanceId);
+  if (detail?.notification?.data?.deeplink) {
+    await setDeepLink({
+      deepLink: String(detail?.notification?.data?.deeplink),
+    });
+  }
 
   switch (type) {
     case DELIVERED:
