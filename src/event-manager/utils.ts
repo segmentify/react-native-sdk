@@ -1,4 +1,4 @@
-import { getStorageItem } from '../utils';
+import { getStorageItem, setStorageItem } from '../utils';
 
 const eventManagerUtilErrorHandler = ({ message }: { message: string }) => {
   return `Error: ${message}`;
@@ -114,4 +114,17 @@ export const getUser = async () => {
   }
 
   return user;
+};
+
+export const setDeepLink = async ({ deepLink }: { deepLink: string }) => {
+  await setStorageItem({ key: 'deepLink', value: deepLink });
+};
+
+export const getDeepLink = async () => {
+  const deepLink = await getStorageItem({ key: 'deepLink' });
+  return deepLink;
+};
+
+export const removeDeepLink = async () => {
+  await setStorageItem({ key: 'deepLink', value: '' });
 };
