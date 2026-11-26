@@ -5,6 +5,7 @@
  */
 export { API_ERRORS } from './error';
 export { API_GET_AWAY_TIME_OUT } from './request';
+export { SDK_VERSION } from './sdk';
 export {
   CHANNEL_ID,
   CHANNEL_NAME,

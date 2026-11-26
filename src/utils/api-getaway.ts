@@ -2,6 +2,7 @@ import axios from 'axios';
 import { getApiKey, getSubDomain } from '../event-manager/utils';
 import { getStorageItem } from './storage';
 import { Logger } from './logger';
+import { getUserAgent } from './user-agent';
 import { API_ERRORS, API_GET_AWAY_TIME_OUT } from '../constants';
 
 import type { ResponseStatusCodeType } from '../types';
@@ -25,12 +26,15 @@ export const apiGetAway = axios.create({
 
 apiGetAway.interceptors.request.use(
   async (config) => {
+    const userAgent = getUserAgent();
+
     //@ts-ignore
     config.headers = {
       'X-Sfy-Api-Key': await getApiKey(),
       'Origin': await getSubDomain(),
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      ...(userAgent ? { 'User-Agent': userAgent } : {}),
     };
     return config;
   },
