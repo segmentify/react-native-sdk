@@ -28,13 +28,21 @@ describe('buildUserAgent', () => {
 
   it('leaves the model out when it is not known', () => {
     expect(
-      buildUserAgent({ sdkVersion: '0.9.0', platform: 'ios', osVersion: '17.4' })
+      buildUserAgent({
+        sdkVersion: '0.9.0',
+        platform: 'ios',
+        osVersion: '17.4',
+      })
     ).toEqual('SegmentifySDK/0.9.0 (react-native; iOS 17.4)');
   });
 
   it('accepts a numeric version', () => {
     expect(
-      buildUserAgent({ sdkVersion: '0.9.0', platform: 'android', osVersion: 34 })
+      buildUserAgent({
+        sdkVersion: '0.9.0',
+        platform: 'android',
+        osVersion: 34,
+      })
     ).toEqual('SegmentifySDK/0.9.0 (react-native; Android 34)');
   });
 

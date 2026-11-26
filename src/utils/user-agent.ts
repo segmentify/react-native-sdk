@@ -2,6 +2,23 @@ import { Platform } from 'react-native';
 
 import { SDK_VERSION } from '../constants';
 
+const UNKNOWN = 'unknown';
+
+const OS_NAMES: Record<string, string | undefined> = {
+  ios: 'iOS',
+  android: 'Android',
+};
+
+/** Printable ASCII without the characters that delimit the parts of the header. */
+const text = (value?: string | number | null): string =>
+  String(value ?? '')
+    .replace(/[^\x20-\x7E]|[;()]/g, '')
+    .trim();
+
+/** `text` without spaces and slashes, for the parts that are a single token. */
+const token = (value?: string | number | null): string =>
+  text(value).replace(/[ /]/g, '');
+
 type UserAgentParts = {
   sdkVersion: string;
   platform: string;
@@ -19,8 +36,25 @@ type UserAgentParts = {
  * the format is a contract shared with the iOS and Android SDKs. Returns
  * `undefined` on platforms other than iOS and Android.
  */
-export const buildUserAgent = (_parts: UserAgentParts): string | undefined => {
-  return undefined;
+export const buildUserAgent = ({
+  sdkVersion,
+  platform,
+  osVersion,
+  model,
+}: UserAgentParts): string | undefined => {
+  const os = OS_NAMES[platform];
+
+  if (!os) {
+    return undefined;
+  }
+
+  const device = [
+    'react-native',
+    `${os} ${token(osVersion) || UNKNOWN}`,
+    text(model),
+  ].filter(Boolean);
+
+  return `SegmentifySDK/${token(sdkVersion) || UNKNOWN} (${device.join('; ')})`;
 };
 
 /**
