@@ -186,6 +186,7 @@
         "yarn test"
       ],
       "after:bump": [
+        "node scripts/write-sdk-version.js ${version}",
         "npx auto-changelog -p"
       ]
     },
